@@ -1,16 +1,17 @@
-# React + Vite
+# OWOW Client Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based dashboard platform designed to improve transparency and communication between OWOW and its clients.
 
-Currently, two official plugins are available:
+Built with React.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📌 Project Purpose
 
-## React Compiler
+Currently, project updates between OWOW and clients rely heavily on manual communication (emails, meetings).
+This platform centralizes project information in one place and provides:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Real-time project status overview
+- Deliverables & file tracking
+- Latest updates & milestones
+- Team contact information
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The goal is to improve communication efficiency and create a more transparent client experience.
