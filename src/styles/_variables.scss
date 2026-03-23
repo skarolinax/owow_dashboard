@@ -1,8 +1,39 @@
-// Colors if using different modes, need to be changed
+// Colors if using different modes
 :root[data-theme="dark"] {
-    --black: #111111;
-    --offBlack: #1B1B1B;
+    --bg-main: #0A0A0A;
+    --accent-card: #1b1b1b;
+    --color-text-primary: #f6f6f6;
+
+    --info-1-color: #FEB800;
+    --error-color: #ff573b;
+    --success-color: #018848;
+    --info-2-color: #0988EF;
+
 }
 
 :root[data-theme="light"] {
+    --bg-main: #F6F6F6;
+    --accent-card: #E2E2E2;
+    --color-text-primary: #1b1b1b;
+    
+
+    --info-1-color: #FEB800;
+    --error-color: #ff573b;
+    --success-color: #018848;
+    --info-2-color: #0988EF;
+}
+
+// Fonts used 
+@font-face {
+  font-family: 'Montreal';
+  src: url('../assets/fonts/PPNeueMontreal-Medium.woff2') format('woff2'),
+       url('../assets/fonts/PPNeueMontreal-Medium.woff') format('woff');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MontrealMono';
+  src: url('../assets/fonts/PPNeueMontrealMono-Medium.woff2') format('woff2'),
+       url('../assets/fonts/PPNeueMontrealMono-Medium.woff') format('woff');
+  font-style: normal;
 }

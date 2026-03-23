@@ -6,4 +6,27 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: var(--bg-main);
+    color: var(--color-text-primary);
+    font-family: Montreal;
+}
 
+// Separate the styles with comments per styled page/feature
+
+
+//////////////////// Navbar global styles /////////////////////////
+
+.navbar {
+    padding: 10px;
+    margin: 20px;
+    border-radius: 5px;
+    background-color: var(--accent-card);
+    display: flex;
+    justify-content: space-between;
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+}
