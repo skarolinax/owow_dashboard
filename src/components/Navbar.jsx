@@ -1,10 +1,31 @@
-import React from 'react';
-import { useTheme } from '../hooks/useTheme';
+import React, { useEffect, useState, useRef } from 'react';
 import Logo from '../assets/images/logo.svg'
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import SettingsIcon from '../assets/images/settings.svg'
+import SignOut from '../assets/images/signut.svg'
 
-function Navbar() {
-  const { theme, toggleTheme } = useTheme();
+function Navbar({theme, toggleTheme}) {
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  function handleLogout() {
+    navigate('/login');
+  }
 
   return (
     <nav className="navbar">
@@ -12,33 +33,51 @@ function Navbar() {
         <img src={Logo} alt="Logo of the agency" />
       </Link>
 
-      <div className='links-navbar'>
-        <Link to="/grid-dashboard">
-          <button>Overview</button>
-        </Link>
-        <Link to="/project-status">
-          <button>Status</button>
-        </Link>
-        <Link to="/budget">
-          <button>Budget</button>
-        </Link>
-        <Link to="/risks">
-          <button>Risks</button>
-        </Link>
-        <Link to="/roadmap">
-          <button>Roadmap</button>
-        </Link>
-        <Link to="/updates">
-          <button>Updates</button>
-        </Link>
+      <div className="links-navbar">
+        <NavLink to="/grid-dashboard" className={({ isActive }) => isActive ? 'active' : ''}>
+          Overview
+        </NavLink>
+
+        <NavLink to="/project-status" className={({ isActive }) => isActive ? 'active' : ''}>
+          Status
+        </NavLink>
+
+        <NavLink to="/budget" className={({ isActive }) => isActive ? 'active' : ''}>
+          Budget
+        </NavLink>
+
+        <NavLink to="/risks" className={({ isActive }) => isActive ? 'active' : ''}>
+          Risks
+        </NavLink>
+
+        <NavLink to="/roadmap" className={({ isActive }) => isActive ? 'active' : ''}>
+          Roadmap
+        </NavLink>
+
+        <NavLink to="/updates" className={({ isActive }) => isActive ? 'active' : ''}>
+          Updates
+        </NavLink>
       </div>
 
-      <button>Settings</button>
+     <div className="settings-container" ref={dropdownRef}>
+        <button className="btn-settings" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+          <img src={SettingsIcon} alt="Settings icon" />
+        </button>
 
-      {/* <button onClick={toggleTheme}>
-        {theme === 'dark' ? '🌞' : '🌙'}
-      </button> */}
+        {isDropdownOpen && (
+          <div className="settings-dropdown">
+            <button onClick={toggleTheme}>
+              {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+            </button>
+            <button onClick={handleLogout} className="logout-btn">
+              <img src={SignOut} alt="Signout icon" />
+              Log Out
+            </button>
+          </div>
+        )}
+      </div>
     </nav>
+          
   );
 }
 
