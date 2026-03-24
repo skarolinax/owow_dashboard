@@ -3,17 +3,22 @@ import Logo from '../assets/images/logo.svg'
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import SettingsIcon from '../assets/images/settings.svg'
 import SignOut from '../assets/images/signut.svg'
+import MenuIcon from '../assets/images/menu.svg'
 
 function Navbar({theme, toggleTheme}) {
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false);
       }
     }
 
@@ -58,6 +63,55 @@ function Navbar({theme, toggleTheme}) {
           Updates
         </NavLink>
       </div>
+
+      <button className="btn-mobile-nav" 
+        aria-label="Toggle menu" 
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}      >
+        <img src={MenuIcon} alt="Menu icon" />
+      </button>
+      
+      {isMobileMenuOpen && (
+        <>
+          <div
+            className="overlay"
+            onClick={() => setIsMobileMenuOpen(false)}
+          ></div>
+          <div className="mobile-menu" ref={mobileMenuRef}>
+            <NavLink to="/grid-dashboard" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>
+              Overview
+            </NavLink>
+
+            <NavLink to="/project-status" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>
+              Status
+            </NavLink>
+
+            <NavLink to="/budget" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>
+              Budget
+            </NavLink>
+
+            <NavLink to="/risks" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>
+              Risks
+            </NavLink>
+
+            <NavLink to="/roadmap" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>
+              Roadmap
+            </NavLink>
+
+            <NavLink to="/updates" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>
+              Updates
+            </NavLink>
+
+            <button onClick={toggleTheme}>
+                {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+              </button>
+            <button onClick={handleLogout} className="logout-btn">
+              <img src={SignOut} alt="Signout icon" />
+              Log Out
+            </button>
+
+          </div>
+        </>
+      )}
 
      <div className="settings-container" ref={dropdownRef}>
         <button className="btn-settings" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
