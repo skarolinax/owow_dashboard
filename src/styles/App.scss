@@ -38,7 +38,6 @@ a {
     }
 
     button {
-        
         cursor: pointer;
         color: var(--color-text-primary);
         font-family: MontrealMono;
@@ -52,7 +51,6 @@ a {
     align-items: center;
 
     a {
-        cursor: pointer;
         display: flex;
         color: currentColor;
         text-decoration: none;
@@ -61,7 +59,11 @@ a {
         padding: 10px;              
         border-radius: 20px;         
         align-items: center;  
-        transition: background-color 0.3s ease,
+        transition: 0.3s ease;
+
+        &:hover {
+            opacity: 0.6;
+        }
         
     }
 
@@ -131,6 +133,7 @@ a {
     flex-direction: column;
     justify-content: space-between;
     padding: 15px;
+    animation: slide-in-menu 0.3s ease-out forwards;
 
     a {
         font-family: MontrealMono;
@@ -150,6 +153,8 @@ a {
                 background-size: contain;
                 background-repeat: no-repeat;
                 margin-right: 15px;
+                filter: var(--icon-filter);
+
                 background-image: url('../assets/images/arrow-right.svg');
             }
 
@@ -160,6 +165,15 @@ a {
 
     @media (max-width: 1000px) {
         display: flex;
+    }
+}
+
+@keyframes slide-in-menu {
+    0% {
+        transform: translate(-100%);
+    }
+    100% {
+        transform: translate(0);
     }
 }
 

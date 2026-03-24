@@ -104,7 +104,9 @@ function Navbar({theme, toggleTheme}) {
         </button>
 
         {isDropdownOpen && (
-          <div className="settings-dropdown">
+          <div className="settings-dropdown"
+            aria-label="Settings options"
+          >
             <button onClick={toggleTheme}>
               {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
             </button>

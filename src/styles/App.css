@@ -73,7 +73,6 @@ a {
   align-items: center;
 }
 .links-navbar a {
-  cursor: pointer;
   display: flex;
   color: currentColor;
   text-decoration: none;
@@ -81,7 +80,10 @@ a {
   padding: 10px;
   border-radius: 20px;
   align-items: center;
-  transition: background-color 0.3s ease;
+  transition: 0.3s ease;
+}
+.links-navbar a:hover {
+  opacity: 0.6;
 }
 .links-navbar a.active {
   background-color: var(--bg-main);
@@ -146,6 +148,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   padding: 15px;
+  animation: slide-in-menu 0.3s ease-out forwards;
 }
 .mobile-menu a {
   font-family: MontrealMono;
@@ -165,6 +168,7 @@ a {
   background-size: contain;
   background-repeat: no-repeat;
   margin-right: 15px;
+  filter: var(--icon-filter);
   background-image: url("../assets/images/arrow-right.svg");
 }
 .mobile-menu a:hover {
@@ -176,6 +180,14 @@ a {
   }
 }
 
+@keyframes slide-in-menu {
+  0% {
+    transform: translate(-100%);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
 .btn-section {
   display: flex;
   flex-direction: column;
