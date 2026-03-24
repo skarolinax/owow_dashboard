@@ -12,6 +12,15 @@ function Navbar({theme, toggleTheme}) {
   const dropdownRef = useRef(null);
   const mobileMenuRef = useRef(null);
 
+  const links = [
+    { to: "/grid-dashboard", label: "Overview" },
+    { to: "/project-status", label: "Status" },
+    { to: "/budget", label: "Budget" },
+    { to: "/risks", label: "Risks" },
+    { to: "/roadmap", label: "Roadmap" },
+    { to: "/updates", label: "Updates" },
+  ];
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -39,29 +48,15 @@ function Navbar({theme, toggleTheme}) {
       </Link>
 
       <div className="links-navbar">
-        <NavLink to="/grid-dashboard" className={({ isActive }) => isActive ? 'active' : ''}>
-          Overview
-        </NavLink>
-
-        <NavLink to="/project-status" className={({ isActive }) => isActive ? 'active' : ''}>
-          Status
-        </NavLink>
-
-        <NavLink to="/budget" className={({ isActive }) => isActive ? 'active' : ''}>
-          Budget
-        </NavLink>
-
-        <NavLink to="/risks" className={({ isActive }) => isActive ? 'active' : ''}>
-          Risks
-        </NavLink>
-
-        <NavLink to="/roadmap" className={({ isActive }) => isActive ? 'active' : ''}>
-          Roadmap
-        </NavLink>
-
-        <NavLink to="/updates" className={({ isActive }) => isActive ? 'active' : ''}>
-          Updates
-        </NavLink>
+         {links.map(link => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) => isActive ? 'active' : ''}
+            >
+              {link.label}
+            </NavLink>
+          ))}
       </div>
 
       <button className="btn-mobile-nav" 
@@ -69,7 +64,7 @@ function Navbar({theme, toggleTheme}) {
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}      >
         <img src={MenuIcon} alt="Menu icon" />
       </button>
-      
+
       {isMobileMenuOpen && (
         <>
           <div
@@ -77,37 +72,27 @@ function Navbar({theme, toggleTheme}) {
             onClick={() => setIsMobileMenuOpen(false)}
           ></div>
           <div className="mobile-menu" ref={mobileMenuRef}>
-            <NavLink to="/grid-dashboard" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>
-              Overview
-            </NavLink>
+            <div className="mobile-links-section">
+                {links.map(link => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </NavLink>
+                ))}
+            </div>
 
-            <NavLink to="/project-status" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>
-              Status
-            </NavLink>
-
-            <NavLink to="/budget" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>
-              Budget
-            </NavLink>
-
-            <NavLink to="/risks" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>
-              Risks
-            </NavLink>
-
-            <NavLink to="/roadmap" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>
-              Roadmap
-            </NavLink>
-
-            <NavLink to="/updates" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>
-              Updates
-            </NavLink>
-
-            <button onClick={toggleTheme}>
-                {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+            <aside className="btn-section">
+              <button onClick={toggleTheme}>
+                  {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+                </button>
+              <button onClick={handleLogout} className="logout-btn">
+                <img src={SignOut} alt="Signout icon" />
+                Log Out
               </button>
-            <button onClick={handleLogout} className="logout-btn">
-              <img src={SignOut} alt="Signout icon" />
-              Log Out
-            </button>
+            </aside>
 
           </div>
         </>

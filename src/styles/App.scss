@@ -12,6 +12,10 @@ body {
     font-family: Montreal;
 }
 
+a {
+    text-decoration: none;
+    color: currentColor;
+}
 // Separate the styles with comments per styled page/feature
 
 
@@ -125,10 +129,73 @@ body {
     min-height: 100%;
     display: none;
     flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+
+    a {
+        font-family: MontrealMono;
+        font-size: clamp(24px, 3vw, 32px);
+        transition: 0.3s ease;
+        font-weight: 700;
+        position:relative;
+
+        &::after {
+                content: "";
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 16px;
+                height: 16px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                margin-right: 15px;
+                background-image: url('../assets/images/arrow-right.svg');
+            }
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
 
     @media (max-width: 1000px) {
         display: flex;
     }
+}
+
+.btn-section {
+    display: flex;
+    flex-direction: column;
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: none;
+            color: var(--color-text-primary);
+            text-align: left;
+            cursor: pointer;
+            align-items: center;
+            display: flex;
+
+            &:nth-child(2) {
+                justify-content: flex-end; 
+                text-align: right; 
+            }
+            
+            img {
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+                filter: var(--icon-filter);
+            }
+        }
+}
+
+.mobile-links-section {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .overlay {
@@ -144,7 +211,6 @@ body {
    @media (max-width: 1000px) {
         display:block;
     }
-
 }
 
 .settings-dropdown {
