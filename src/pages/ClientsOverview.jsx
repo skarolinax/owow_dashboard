@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 function ClientsOverview() {
 
+  const [selectedLetter, setSelectedLetter] = useState('');
   const alphabet = 'abcdefghijklmnoprstuwyz'.split(''); // Used for the alphabetical filter
   const clients = [ //Hard coded clients data 
     {
@@ -93,6 +94,7 @@ function ClientsOverview() {
 
   const totalClients = clients.length;
 
+  // Calculate the data to be displayed based on the array
   const totalActiveProjects = clients.reduce(
     (sum, client) => sum + client.activeProjects,
     0
@@ -104,7 +106,11 @@ function ClientsOverview() {
 
   const averageClientProgress = Math.round(clients.reduce(
       (sum, client) =>  sum + client.progress, 0) / totalClients
-    )
+  );
+
+  const filteredClients = selectedLetter // Display only the clients whose names start with the letter
+    ? clients.filter(client => client.name.toLowerCase().startsWith(selectedLetter))
+    : clients;
 
 
   return (
@@ -136,16 +142,30 @@ function ClientsOverview() {
             <input name="searchbar" id="searchbar" placeholder="Look up company name.." />
           </form>
         </div>
+        
+        <div className="alphabetical-filter">
+          <button
+            key='all'
+            onClick={() => setSelectedLetter('')}
+            className={selectedLetter === '' ? 'active' : ''}
+          >
+            All
+          </button>
+          {alphabet.map(letter => (
+            <button
+              key={letter}
+              onClick={() => setSelectedLetter(letter)}
+              className={selectedLetter === letter ? 'active' : ''}
+            >
+              {letter}
+            </button>
+            )
+          )}
+        </div>
 
-        {alphabet.map(letter => (
-          <div className="alphabetical-filter" key={letter}>
-            <button>{letter}</button>
-          </div>
-        ))}
+        <p>Showing {filteredClients.length} of {totalClients}</p>
 
-        <p>Showing .. of {totalClients}</p>
-
-        {clients.map(client => (
+        {filteredClients.map(client => (
           <div className="card-client">
             <h3>{client.name}</h3>
             <h3>{client.group}</h3>
