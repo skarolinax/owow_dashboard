@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import s from "../styles/Clients.module.scss";
+import s from "../styles/Clients.module.scss"
 import SearchIcon from "../assets/images/search-icon.svg"
+import LinkArrow from "../assets/images/arrow-link.svg"
 
 function ClientsOverview() {
 
@@ -11,7 +12,7 @@ function ClientsOverview() {
     {
       name: "Adidas",
       group: "Sportswear",
-      progress: 72,
+      progress: 12,
       totalProjects: 6,
       activeProjects: 2,
     },
@@ -173,27 +174,41 @@ function ClientsOverview() {
           ))}
         </div>
 
-        <p>Showing {filteredClients.length} of {totalClients}</p>
+        <p className={s.amountIndicator}>Showing {filteredClients.length} of {totalClients}</p>
 
         <div id={s.wrapperCardsClients}>
           {filteredClients.map(client => (
-            <div className={s.cardClient} key={client.name}>
-              <div className={s.letterBox}>
-                {client.name.charAt(0)}
+            <Link
+              to="/projects-overview"
+              state={{client}}
+              key={client.name}
+            >
+              <div className={s.cardClient} key={client.name}>
+                <section className={s.wrapperBtnTopCard}>
+                  <div className={s.letterBox}>
+                    {client.name.charAt(0)}
+                  </div>
+                  <img src={LinkArrow} alt="Arrow icon" />
+                </section>
+                <h3>{client.name}</h3>
+                <h4>{client.group}</h4>
+                <div className={s.progressBarCPcard}>
+                  <p>Progress</p>
+                  <p>{client.progress}%</p>
+                </div>
+                <div className={s.progressBarContainer}>
+                  <div style={{width: `${client.progress || 0}%`}}></div>
+                </div>
+                <div className={s.collectionProjectDescription}>
+                  <p>{client.totalProjects} Projects</p>
+                  <p>{client.activeProjects} Active</p>
+                </div>
               </div>
-              <h3>{client.name}</h3>
-              <h4>{client.group}</h4>
-              <p>{client.progress}</p>
-              <p>{client.totalProjects}</p>
-              <p>{client.activeProjects}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
 
-      <Link to="/projects-overview">
-        <button>Projects Overview</button>
-      </Link>
     </>
   )
 }
