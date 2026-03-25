@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import s from "../styles/Clients.module.scss";
+import SearchIcon from "../assets/images/search-icon.svg"
 
 function ClientsOverview() {
 
@@ -124,22 +125,32 @@ function ClientsOverview() {
 
         <div className={s.sectionCurrentCprojects}>
           <div className={s.currentCprojectsCard}>
-            <p>Total clients</p>
-            <p>{totalClients}</p>
+            <aside className={`${s.boxCprojectsCard} ${s['boxCprojectsCard--orange']}`}></aside>
+            <aside>
+              <p>Total clients</p>
+              <p>{totalClients}</p>
+            </aside>
           </div>
           <div className={s.currentCprojectsCard}>
-            <p>Active projects</p>
-            <p>{totalActiveProjects}/{totalProjects}</p>
+            <aside className={`${s.boxCprojectsCard} ${s['boxCprojectsCard--green']}`}></aside>
+            <aside>
+              <p>Active projects</p>
+              <p>{totalActiveProjects}/{totalProjects}</p>
+            </aside>
           </div>
           <div className={s.currentCprojectsCard}>
-            <p>Average progress</p>
-            <p>{averageClientProgress}%</p>
+            <aside className={`${s.boxCprojectsCard} ${s['boxCprojectsCard--blue']}`}></aside>
+            <aside>
+              <p>Average progress</p>
+              <p>{averageClientProgress}%</p>
+            </aside>
           </div>
         </div>
 
         <div className={s.searchClientOverview}>
           <form>
-            <input name="searchbar" id="searchbar" placeholder="Look up company name.." />
+            <input name="searchbar" id="searchbar" placeholder="Look up company name.." type="search" aria-label="Search clients" />
+            <img src={SearchIcon} alt="Search icon" className={s.searchIcon}/>
           </form>
         </div>
 
@@ -167,11 +178,14 @@ function ClientsOverview() {
         <div id={s.wrapperCardsClients}>
           {filteredClients.map(client => (
             <div className={s.cardClient} key={client.name}>
+              <div className={s.letterBox}>
+                {client.name.charAt(0)}
+              </div>
               <h3>{client.name}</h3>
-              <h3>{client.group}</h3>
-              <h3>{client.progress}</h3>
-              <h3>{client.totalProjects}</h3>
-              <h3>{client.activeProjects}</h3>
+              <h4>{client.group}</h4>
+              <p>{client.progress}</p>
+              <p>{client.totalProjects}</p>
+              <p>{client.activeProjects}</p>
             </div>
           ))}
         </div>

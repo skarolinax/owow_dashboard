@@ -3,6 +3,7 @@
   --accent-card: #1b1b1b;
   --color-text-primary: #f6f6f6;
   --icon-filter: invert(100%);
+  --stroke-color: #2A2A2A;
   --info-1-color: #FEB800;
   --error-color: #ff573b;
   --success-color: #018848;
@@ -14,6 +15,7 @@
   --accent-card: #E2E2E2;
   --color-text-primary: #1b1b1b;
   --icon-filter: none;
+  --stroke-color: #D1D2CC;
   --info-1-color: #FEB800;
   --error-color: #ff573b;
   --success-color: #018848;
