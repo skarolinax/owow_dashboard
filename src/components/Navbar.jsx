@@ -3,17 +3,31 @@ import Logo from '../assets/images/logo.svg'
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import SettingsIcon from '../assets/images/settings.svg'
 import SignOut from '../assets/images/signut.svg'
+import MenuIcon from '../assets/images/menu.svg'
 
 function Navbar({theme, toggleTheme}) {
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+
+  const links = [
+    { to: "/grid-dashboard", label: "Overview" },
+    { to: "/project-status", label: "Status" },
+    { to: "/budget", label: "Budget" },
+    { to: "/risks", label: "Risks" },
+    { to: "/roadmap", label: "Roadmap" },
+    { to: "/updates", label: "Updates" },
+  ];
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false);
       }
     }
 
@@ -34,30 +48,55 @@ function Navbar({theme, toggleTheme}) {
       </Link>
 
       <div className="links-navbar">
-        <NavLink to="/grid-dashboard" className={({ isActive }) => isActive ? 'active' : ''}>
-          Overview
-        </NavLink>
-
-        <NavLink to="/project-status" className={({ isActive }) => isActive ? 'active' : ''}>
-          Status
-        </NavLink>
-
-        <NavLink to="/budget" className={({ isActive }) => isActive ? 'active' : ''}>
-          Budget
-        </NavLink>
-
-        <NavLink to="/risks" className={({ isActive }) => isActive ? 'active' : ''}>
-          Risks
-        </NavLink>
-
-        <NavLink to="/roadmap" className={({ isActive }) => isActive ? 'active' : ''}>
-          Roadmap
-        </NavLink>
-
-        <NavLink to="/updates" className={({ isActive }) => isActive ? 'active' : ''}>
-          Updates
-        </NavLink>
+         {links.map(link => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) => isActive ? 'active' : ''}
+            >
+              {link.label}
+            </NavLink>
+          ))}
       </div>
+
+      <button className="btn-mobile-nav" 
+        aria-label="Toggle menu" 
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}      >
+        <img src={MenuIcon} alt="Menu icon" />
+      </button>
+
+      {isMobileMenuOpen && (
+        <>
+          <div
+            className="overlay"
+            onClick={() => setIsMobileMenuOpen(false)}
+          ></div>
+          <div className="mobile-menu" ref={mobileMenuRef}>
+            <div className="mobile-links-section">
+                {links.map(link => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </NavLink>
+                ))}
+            </div>
+
+            <aside className="btn-section">
+              <button onClick={toggleTheme}>
+                  {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+                </button>
+              <button onClick={handleLogout} className="logout-btn">
+                <img src={SignOut} alt="Signout icon" />
+                Log Out
+              </button>
+            </aside>
+
+          </div>
+        </>
+      )}
 
      <div className="settings-container" ref={dropdownRef}>
         <button className="btn-settings" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
@@ -65,7 +104,9 @@ function Navbar({theme, toggleTheme}) {
         </button>
 
         {isDropdownOpen && (
-          <div className="settings-dropdown">
+          <div className="settings-dropdown"
+            aria-label="Settings options"
+          >
             <button onClick={toggleTheme}>
               {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
             </button>
