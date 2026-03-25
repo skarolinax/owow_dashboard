@@ -1,0 +1,92 @@
+:root[data-theme=dark] {
+  --bg-main: #0A0A0A;
+  --accent-card: #1b1b1b;
+  --color-text-primary: #f6f6f6;
+  --icon-filter: invert(100%);
+  --info-1-color: #FEB800;
+  --error-color: #ff573b;
+  --success-color: #018848;
+  --info-2-color: #0988EF;
+}
+
+:root[data-theme=light] {
+  --bg-main: #F6F6F6;
+  --accent-card: #E2E2E2;
+  --color-text-primary: #1b1b1b;
+  --icon-filter: none;
+  --info-1-color: #FEB800;
+  --error-color: #ff573b;
+  --success-color: #018848;
+  --info-2-color: #0988EF;
+}
+
+@font-face {
+  font-family: "Montreal";
+  src: url("../assets/fonts/PPNeueMontreal-Medium.woff2") format("woff2"), url("../assets/fonts/PPNeueMontreal-Medium.woff") format("woff");
+  font-style: normal;
+}
+@font-face {
+  font-family: "MontrealMono";
+  src: url("../assets/fonts/PPNeueMontrealMono-Medium.woff2") format("woff2"), url("../assets/fonts/PPNeueMontrealMono-Medium.woff") format("woff");
+  font-style: normal;
+}
+#wrapperClientsPage {
+  padding-inline: 120px;
+}
+@media (max-width: 800px) {
+  #wrapperClientsPage {
+    padding-inline: 20px;
+  }
+}
+
+.headingClientsPage {
+  background-color: var(--accent-card);
+  padding: 45px;
+  border-radius: 5px;
+}
+.headingClientsPage h2 {
+  font-weight: 200;
+  font-size: 18px;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+.sectionCurrentCprojects {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 20px;
+  border-radius: 5px;
+  gap: 0.5rem;
+}
+.sectionCurrentCprojects div {
+  background-color: var(--accent-card);
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100px;
+}
+.sectionCurrentCprojects div p:nth-child(1) {
+  opacity: 0.8;
+}
+.sectionCurrentCprojects div p:nth-child(2) {
+  font-size: clamp(24px, 2vw, 32px);
+}
+
+.cardClient {
+  border-radius: 5px;
+  padding: 10px;
+  background-color: var(--accent-card);
+  background-color: var(--accent-card);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#wrapperCardsClients {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}/*# sourceMappingURL=Clients.module.css.map */

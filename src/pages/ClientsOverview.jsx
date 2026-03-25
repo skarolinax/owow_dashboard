@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import s from "../styles/Clients.module.scss";
 
 function ClientsOverview() {
 
@@ -114,40 +115,39 @@ function ClientsOverview() {
 
 
   return (
-    
     <>
-      <div id="wrapper-clients-page">
-        <div className="heading-clients-page">
+      <div id={s.wrapperClientsPage}>
+        <div className={s.headingClientsPage}>
           <h1>Hi OWOW. 👋</h1>
           <h2>Manage and overview your clients in one place.</h2>
         </div>
 
-        <div className="section-current-cprojects">
-          <div className="current-cprojects-card">
+        <div className={s.sectionCurrentCprojects}>
+          <div className={s.currentCprojectsCard}>
             <p>Total clients</p>
             <p>{totalClients}</p>
           </div>
-          <div className="current-cprojects-card">
+          <div className={s.currentCprojectsCard}>
             <p>Active projects</p>
             <p>{totalActiveProjects}/{totalProjects}</p>
           </div>
-          <div className="current-cprojects-card">
+          <div className={s.currentCprojectsCard}>
             <p>Average progress</p>
             <p>{averageClientProgress}%</p>
           </div>
         </div>
 
-        <div className="search-client-overview">
+        <div className={s.searchClientOverview}>
           <form>
             <input name="searchbar" id="searchbar" placeholder="Look up company name.." />
           </form>
         </div>
-        
-        <div className="alphabetical-filter">
+
+        <div className={s.alphabeticalFilter}>
           <button
             key='all'
             onClick={() => setSelectedLetter('')}
-            className={selectedLetter === '' ? 'active' : ''}
+            className={selectedLetter === '' ? s.active : ''}
           >
             All
           </button>
@@ -155,29 +155,29 @@ function ClientsOverview() {
             <button
               key={letter}
               onClick={() => setSelectedLetter(letter)}
-              className={selectedLetter === letter ? 'active' : ''}
+              className={selectedLetter === letter ? s.active : ''}
             >
               {letter}
             </button>
-            )
-          )}
+          ))}
         </div>
 
         <p>Showing {filteredClients.length} of {totalClients}</p>
 
-        {filteredClients.map(client => (
-          <div className="card-client">
-            <h3>{client.name}</h3>
-            <h3>{client.group}</h3>
-            <h3>{client.progress}</h3>
-            <h3>{client.totalProjects}</h3>
-            <h3>{client.activeProjects}</h3>
-          </div>
-        ))
-      }
+        <div id={s.wrapperCardsClients}>
+          {filteredClients.map(client => (
+            <div className={s.cardClient} key={client.name}>
+              <h3>{client.name}</h3>
+              <h3>{client.group}</h3>
+              <h3>{client.progress}</h3>
+              <h3>{client.totalProjects}</h3>
+              <h3>{client.activeProjects}</h3>
+            </div>
+          ))}
+        </div>
       </div>
 
-       <Link to="/projects-overview">
+      <Link to="/projects-overview">
         <button>Projects Overview</button>
       </Link>
     </>

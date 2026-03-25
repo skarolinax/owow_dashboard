@@ -1,0 +1,66 @@
+
+@use 'variables' as *;
+
+#wrapperClientsPage {
+    padding-inline: 120px;
+
+    @media(max-width: 800px) {
+        padding-inline: 20px;
+    }
+        
+}
+
+.headingClientsPage {
+    background-color: var(--accent-card);
+    padding: 45px;
+    border-radius: $card-radius;
+    
+    h2 {
+        font-weight: 200;
+        font-size: 18px;
+        margin-top: 10px;
+        opacity: 0.8;
+    }
+}
+
+.sectionCurrentCprojects {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 20px;
+    border-radius: $card-radius;
+    gap: 0.5rem;
+
+    div {
+        background-color: var(--accent-card);
+        padding: 10px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100px;
+
+        p:nth-child(1) {
+            opacity: 0.8;
+        }
+        p:nth-child(2) {
+            font-size: clamp(24px, 2vw, 32px);
+        }
+    }
+}
+
+.cardClient {
+    border-radius: $card-radius;
+    padding: 10px;
+    background-color: var(--accent-card);
+    background-color: var(--accent-card);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#wrapperCardsClients {
+    display: grid;
+    gap: 1rem; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
