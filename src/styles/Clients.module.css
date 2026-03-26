@@ -33,7 +33,7 @@
   src: url("../assets/fonts/PPNeueMontrealMono-Medium.woff2") format("woff2"), url("../assets/fonts/PPNeueMontrealMono-Medium.woff") format("woff");
   font-style: normal;
 }
-.headingClientsPage, .sectionCurrentCprojects div, .cardClient, .alphabeticalFilter button, .searchClientOverview input {
+.headingClientsPage, .sectionCurrentCprojects div, .cardClient, .alphabeticalFilter button, .searchClientOverview input, .cardProjectSpecific {
   background-color: var(--accent-card);
   border-radius: 5px;
   border: 1px solid var(--stroke-color);

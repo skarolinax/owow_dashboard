@@ -278,3 +278,9 @@
         border-radius: $card-radius;
     }
 }
+
+///////////Client projects overview page ///////////////
+  
+.cardProjectSpecific {
+    @extend %card-style;
+}
