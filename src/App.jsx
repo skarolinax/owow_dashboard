@@ -27,7 +27,7 @@ function AppContent() {
   }, [theme]);
 
   // Hide Navbar on these pages
-  const hideNavbarOn = ['/', '/login', '/projects-overview'];
+  const hideNavbarOn = ['/', '/login'];
   const showNavbar = !hideNavbarOn.includes(location.pathname);
 
   return (

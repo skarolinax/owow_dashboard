@@ -138,6 +138,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  transition: 0.3s ease;
 }
 .cardClient h3 {
   font-weight: 500;
@@ -152,6 +153,13 @@
 .cardClient p {
   opacity: 0.8;
 }
+.cardClient:hover .linkArrowCard {
+  opacity: 1;
+}
+.cardClient:hover .letterBox {
+  background-color: #0A0A0A;
+  color: #f6f6f6;
+}
 
 .letterBox {
   width: 50px;
@@ -162,6 +170,7 @@
   align-items: center;
   border-radius: 3px;
   color: #0A0A0A;
+  transition: background-color 0.3s ease;
 }
 
 .wrapperBtnTopCard {
@@ -172,6 +181,7 @@
 .wrapperBtnTopCard img {
   width: 15px;
   height: 15px;
+  opacity: 0.7;
   filter: var(--icon-filter);
 }
 
@@ -265,11 +275,11 @@
   width: 100%;
   height: 5px;
   margin-block: 10px;
-  background-color: #2A2A2A;
+  background-color: #ffffff;
   border-radius: 5px;
 }
 .progressBarContainer div {
-  background-color: white;
+  background-color: #2A2A2A;
   height: 100%;
   border-radius: 5px;
 }/*# sourceMappingURL=Clients.module.css.map */

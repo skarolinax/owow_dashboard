@@ -188,7 +188,7 @@ function ClientsOverview() {
                   <div className={s.letterBox}>
                     {client.name.charAt(0)}
                   </div>
-                  <img src={LinkArrow} alt="Arrow icon" />
+                  <img src={LinkArrow} alt="Arrow icon" className={s.linkArrowCard} />
                 </section>
                 <h3>{client.name}</h3>
                 <h4>{client.group}</h4>

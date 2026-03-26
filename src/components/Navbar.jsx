@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Logo from '../assets/images/logo.svg'
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate , useLocation} from 'react-router-dom';
 import SettingsIcon from '../assets/images/settings.svg'
 import SignOut from '../assets/images/signut.svg'
 import MenuIcon from '../assets/images/menu.svg'
@@ -11,6 +11,8 @@ function Navbar({theme, toggleTheme}) {
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
   const mobileMenuRef = useRef(null);
+
+  const hideLinks = location.pathname === "/clients" || location.pathname === "/projects-overview";
 
   const links = [
     { to: "/grid-dashboard", label: "Overview" },
@@ -47,17 +49,19 @@ function Navbar({theme, toggleTheme}) {
         <img src={Logo} alt="Logo of the agency" />
       </Link>
 
-      <div className="links-navbar">
-         {links.map(link => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              className={({ isActive }) => isActive ? 'active' : ''}
-            >
-              {link.label}
-            </NavLink>
-          ))}
-      </div>
+      {!hideLinks && (
+          <div className="links-navbar">
+          {links.map(link => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) => isActive ? 'active' : ''}
+              >
+                {link.label}
+              </NavLink>
+            ))}
+        </div>
+      )}
 
       <button className="btn-mobile-nav" 
         aria-label="Toggle menu" 
