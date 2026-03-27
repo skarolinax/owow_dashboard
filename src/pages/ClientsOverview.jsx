@@ -21,27 +21,27 @@ function ClientsOverview() {
         "status": "Active",
         "description": "Redesigning internal dashboard using React and Next.js.",
         "team": 8,
-        "budget": "19%",
+        "budget": 19,
         "risks": 2,
-        "progress": "52%"
+        "progress": 52
       },
       {
         "name": "Mobile App",
         "status": "Planning",
         "description": "Building a new mobile experience for customers.",
         "team": 5,
-        "budget": "10%",
+        "budget": 10,
         "risks": 1,
-        "progress": "20%"
+        "progress": 20
       },
       {
         "name": "Analytics Integration",
         "status": "Active",
         "description": "Integrating analytics tools for better insights.",
         "team": 4,
-        "budget": "25%",
+        "budget": 25,
         "risks": 2,
-        "progress": "60%"
+        "progress": 60
       }
     ]
   },
@@ -57,36 +57,36 @@ function ClientsOverview() {
         "status": "Active",
         "description": "Improving checkout and payment systems.",
         "team": 6,
-        "budget": "30%",
+        "budget": 30,
         "risks": 2,
-        "progress": "70%"
+        "progress": 70
       },
       {
         "name": "Inventory System",
         "status": "Active",
         "description": "Optimizing inventory tracking.",
         "team": 5,
-        "budget": "22%",
+        "budget": 22,
         "risks": 1,
-        "progress": "65%"
+        "progress": 65
       },
       {
         "name": "Marketing Dashboard",
         "status": "Completed",
         "description": "Dashboard for campaign tracking.",
         "team": 3,
-        "budget": "15%",
+        "budget": 15,
         "risks": 0,
-        "progress": "100%"
+        "progress": 100
       },
       {
         "name": "Mobile Optimization",
         "status": "Active",
         "description": "Improving mobile responsiveness.",
         "team": 4,
-        "budget": "18%",
+        "budget": 18,
         "risks": 1,
-        "progress": "55%"
+        "progress": 55
       }
     ]
   },
@@ -102,45 +102,45 @@ function ClientsOverview() {
         "status": "Planning",
         "description": "Concept redesign for iOS interface.",
         "team": 10,
-        "budget": "40%",
+        "budget": 40,
         "risks": 3,
-        "progress": "15%"
+        "progress": 15
       },
       {
         "name": "Cloud Sync",
         "status": "Active",
         "description": "Improving cloud synchronization speed.",
         "team": 7,
-        "budget": "28%",
+        "budget": 28,
         "risks": 2,
-        "progress": "50%"
+        "progress": 50
       },
       {
         "name": "Security Update",
         "status": "Completed",
         "description": "Enhancing device security features.",
         "team": 6,
-        "budget": "20%",
+        "budget": 20,
         "risks": 1,
-        "progress": "100%"
+        "progress": 100
       },
       {
         "name": "AI Assistant",
         "status": "Active",
         "description": "Upgrading AI assistant capabilities.",
         "team": 9,
-        "budget": "35%",
+        "budget": 35,
         "risks": 3,
-        "progress": "45%"
+        "progress": 45
       },
       {
         "name": "Wearable Integration",
         "status": "Planning",
         "description": "Integrating wearable devices with ecosystem.",
         "team": 5,
-        "budget": "18%",
+        "budget": 18,
         "risks": 2,
-        "progress": "25%"
+        "progress": 25
       }
     ]
   },
@@ -156,18 +156,18 @@ function ClientsOverview() {
         "status": "Active",
         "description": "Developing self-driving capabilities.",
         "team": 12,
-        "budget": "50%",
+        "budget": 50,
         "risks": 5,
-        "progress": "75%"
+        "progress": 75
       },
       {
         "name": "Infotainment System",
         "status": "Completed",
         "description": "New in-car entertainment system.",
         "team": 6,
-        "budget": "30%",
+        "budget": 30,
         "risks": 1,
-        "progress": "100%"
+        "progress": 100
       }
     ]
   },
@@ -183,54 +183,54 @@ function ClientsOverview() {
         "status": "Active",
         "description": "Improving search result accuracy.",
         "team": 9,
-        "budget": "35%",
+        "budget": 35,
         "risks": 2,
-        "progress": "72%"
+        "progress": 72
       },
       {
         "name": "Ad Platform Upgrade",
         "status": "Active",
         "description": "Enhancing ad targeting system.",
         "team": 8,
-        "budget": "40%",
+        "budget": 40,
         "risks": 3,
-        "progress": "60%"
+        "progress": 60
       },
       {
         "name": "Maps Redesign",
         "status": "Planning",
         "description": "UI overhaul for maps application.",
         "team": 6,
-        "budget": "20%",
+        "budget": 20,
         "risks": 2,
-        "progress": "30%"
+        "progress": 30
       },
       {
         "name": "AI Research",
         "status": "Active",
         "description": "Developing new AI models.",
         "team": 12,
-        "budget": "50%",
+        "budget": 50,
         "risks": 4,
-        "progress": "55%"
+        "progress": 55
       },
       {
         "name": "Cloud Security",
         "status": "Completed",
         "description": "Improving cloud infrastructure security.",
         "team": 7,
-        "budget": "25%",
+        "budget": 25,
         "risks": 1,
-        "progress": "100%"
+        "progress": 100
       },
       {
         "name": "YouTube Features",
         "status": "Active",
         "description": "Adding new creator tools.",
         "team": 5,
-        "budget": "18%",
+        "budget": 18,
         "risks": 2,
-        "progress": "48%"
+        "progress": 48
       }
     ]
   },
@@ -246,45 +246,45 @@ function ClientsOverview() {
         "status": "Active",
         "description": "Automating warehouse operations.",
         "team": 11,
-        "budget": "45%",
+        "budget": 45,
         "risks": 4,
-        "progress": "66%"
+        "progress": 66
       },
       {
         "name": "Delivery Tracking",
         "status": "Active",
         "description": "Real-time delivery tracking improvements.",
         "team": 6,
-        "budget": "20%",
+        "budget": 20,
         "risks": 2,
-        "progress": "58%"
+        "progress": 58
       },
       {
         "name": "Alexa Upgrade",
         "status": "Planning",
         "description": "Enhancing voice assistant features.",
         "team": 7,
-        "budget": "25%",
+        "budget": 25,
         "risks": 3,
-        "progress": "35%"
+        "progress": 35
       },
       {
         "name": "Prime UI",
         "status": "Completed",
         "description": "Redesigning Prime user interface.",
         "team": 5,
-        "budget": "15%",
+        "budget": 15,
         "risks": 1,
-        "progress": "100%"
+        "progress": 100
       },
       {
         "name": "Recommendation Engine",
         "status": "Active",
         "description": "Improving product recommendations.",
         "team": 8,
-        "budget": "30%",
+        "budget": 30,
         "risks": 2,
-        "progress": "62%"
+        "progress": 62
       }
     ]
   },
@@ -300,27 +300,27 @@ function ClientsOverview() {
         "status": "Active",
         "description": "Improving self-driving algorithms.",
         "team": 10,
-        "budget": "50%",
+        "budget": 50,
         "risks": 5,
-        "progress": "70%"
+        "progress": 70
       },
       {
         "name": "Battery Tech",
         "status": "Planning",
         "description": "Next-gen battery development.",
         "team": 8,
-        "budget": "40%",
+        "budget": 40,
         "risks": 4,
-        "progress": "25%"
+        "progress": 25
       },
       {
         "name": "Charging Network",
         "status": "Completed",
         "description": "Expanding global charging stations.",
         "team": 6,
-        "budget": "30%",
+        "budget": 30,
         "risks": 2,
-        "progress": "100%"
+        "progress": 100
       }
     ]
   },
@@ -336,36 +336,36 @@ function ClientsOverview() {
         "status": "Active",
         "description": "Improving video streaming quality.",
         "team": 7,
-        "budget": "28%",
+        "budget": 28,
         "risks": 2,
-        "progress": "65%"
+        "progress": 65
       },
       {
         "name": "Recommendation AI",
         "status": "Active",
         "description": "Enhancing content recommendations.",
         "team": 9,
-        "budget": "35%",
+        "budget": 35,
         "risks": 3,
-        "progress": "60%"
+        "progress": 60
       },
       {
         "name": "Mobile UX",
         "status": "Planning",
         "description": "Redesigning mobile app experience.",
         "team": 5,
-        "budget": "18%",
+        "budget": 18,
         "risks": 2,
-        "progress": "30%"
+        "progress": 30
       },
       {
         "name": "Content Pipeline",
         "status": "Completed",
         "description": "Optimizing content delivery pipeline.",
         "team": 6,
-        "budget": "22%",
+        "budget": 22,
         "risks": 1,
-        "progress": "100%"
+        "progress": 100
       }
     ]
   }

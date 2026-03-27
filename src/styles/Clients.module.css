@@ -33,7 +33,7 @@
   src: url("../assets/fonts/PPNeueMontrealMono-Medium.woff2") format("woff2"), url("../assets/fonts/PPNeueMontrealMono-Medium.woff") format("woff");
   font-style: normal;
 }
-.headingClientsPage, .sectionCurrentCprojects div, .cardClient, .alphabeticalFilter button, .searchClientOverview input, .cardProjectSpecific {
+.headingClientsPage, .sectionCurrentCprojects div, .cardClient, .alphabeticalFilter button, .searchClientOverview input, .cardProjectSpecific, .headingProjectsPage {
   background-color: var(--accent-card);
   border-radius: 5px;
   border: 1px solid var(--stroke-color);
@@ -282,4 +282,29 @@
   background-color: #2A2A2A;
   height: 100%;
   border-radius: 5px;
+}
+
+.cardProjectSpecific {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapperAllProjects {
+  padding-inline: 120px;
+}
+@media (max-width: 800px) {
+  .wrapperAllProjects {
+    padding-inline: 20px;
+  }
+}
+
+.wrapperCardProject {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  padding-block: 20px;
+}
+
+.headingProjectsPage {
+  display: flex;
 }/*# sourceMappingURL=Clients.module.css.map */

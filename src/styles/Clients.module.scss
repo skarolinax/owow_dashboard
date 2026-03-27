@@ -283,4 +283,25 @@
   
 .cardProjectSpecific {
     @extend %card-style;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapperAllProjects {
+    padding-inline: 120px;
+     @media(max-width: 800px) {
+        padding-inline: 20px;
+    }
+}
+
+.wrapperCardProject {
+    display: grid;
+    gap: 1rem; 
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    padding-block: 20px;
+}
+
+.headingProjectsPage {
+    display: flex;
+    @extend %card-style;
 }
