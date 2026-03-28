@@ -53,6 +53,9 @@ function CProjectsOverview() {
                 <p>{project.status} status</p>
                 <p>{project.budget}% Budget Used</p>
                 <p>{project.progress}% Average Progress</p>
+
+                <button
+                >Go to dashboard</button>
               </div>
             </Link>
           ))}
