@@ -126,6 +126,14 @@
   margin-bottom: 6px;
 }
 
+.update-card__channel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--info-2-color);
+  margin: 0 0 8px;
+  letter-spacing: 0.02em;
+}
+
 .update-card__preview {
   color: var(--updates-muted);
   font-size: 0.95rem;

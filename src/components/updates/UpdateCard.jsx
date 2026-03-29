@@ -54,6 +54,11 @@ export default function UpdateCard({ item }) {
       <div className="update-card__status" aria-hidden="true" />
       <div className="update-card__body">
         <h3 className="update-card__title">{item.title}</h3>
+        {item.channelLabel ? (
+          <p className="update-card__channel" aria-label="Source channel">
+            {item.channelLabel}
+          </p>
+        ) : null}
         <p className="update-card__preview">&ldquo;{item.preview}&rdquo;</p>
       </div>
       <div className="update-card__aside">

@@ -69,6 +69,7 @@ export function groupSlackUpdatesIntoFeed(dtos) {
       source: dto.source,
       slackChannelId: dto.slackChannelId,
       slackMessageTs: dto.slackMessageTs,
+      channelLabel: dto.channelLabel,
     };
 
     if (timeGroup === 'today') today.push(item);
@@ -94,12 +95,38 @@ export function emptyGroupedUpdates() {
   return { today: [], thisWeek: [], earlier: [] };
 }
 
+/**
+ * Cheap stable serialization to skip React state updates when poll returns the same payload.
+ * @param {import('../types/updates.types.js').UpdateFeedItem} item
+ */
+function serializeFeedItem(item) {
+  return [
+    item.id,
+    item.isoTimestamp,
+    item.title,
+    item.preview,
+    item.channelLabel ?? '',
+    item.actionUrl ?? '',
+  ].join('\t');
+}
+
+/**
+ * @param {ReturnType<typeof groupSlackUpdatesIntoFeed>} grouped
+ */
+export function groupedUpdatesSignature(grouped) {
+  return JSON.stringify({
+    t: grouped.today.map(serializeFeedItem),
+    w: grouped.thisWeek.map(serializeFeedItem),
+    e: grouped.earlier.map(serializeFeedItem),
+  });
+}
+
 export function filterGroupedUpdates(grouped, query) {
   const q = query.trim().toLowerCase();
   if (!q) return grouped;
 
   const match = (item) => {
-    const t = `${item.title} ${item.preview}`.toLowerCase();
+    const t = `${item.title} ${item.preview} ${item.channelLabel ?? ''}`.toLowerCase();
     return t.includes(q);
   };
 

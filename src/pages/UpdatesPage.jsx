@@ -11,8 +11,11 @@ import {
 import {
   emptyGroupedUpdates,
   filterGroupedUpdates,
+  groupedUpdatesSignature,
   loadSlackGroupedUpdates,
 } from '../services/updatesService.js';
+
+const POLL_INTERVAL_MS = 12_000;
 
 export default function UpdatesPage() {
   const searchId = useId();
@@ -24,24 +27,42 @@ export default function UpdatesPage() {
   useEffect(() => {
     let cancelled = false;
 
-    (async () => {
-      setLoading(true);
-      setLoadError(false);
+    async function loadFeed(isInitial) {
+      if (isInitial) {
+        setLoading(true);
+        setLoadError(false);
+      }
+
       try {
         const next = await loadSlackGroupedUpdates();
-        if (!cancelled) setGrouped(next);
+        if (cancelled) return;
+
+        setGrouped((prev) => {
+          if (groupedUpdatesSignature(prev) === groupedUpdatesSignature(next)) {
+            return prev;
+          }
+          return next;
+        });
+        setLoadError(false);
       } catch {
-        if (!cancelled) {
-          setLoadError(true);
+        if (cancelled) return;
+        setLoadError(true);
+        if (isInitial) {
           setGrouped(emptyGroupedUpdates());
         }
       } finally {
-        if (!cancelled) setLoading(false);
+        if (!cancelled && isInitial) {
+          setLoading(false);
+        }
       }
-    })();
+    }
+
+    void loadFeed(true);
+    const intervalId = setInterval(() => void loadFeed(false), POLL_INTERVAL_MS);
 
     return () => {
       cancelled = true;
+      clearInterval(intervalId);
     };
   }, []);
 
