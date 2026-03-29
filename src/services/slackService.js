@@ -1,10 +1,15 @@
-export async function fetchChannelMessages(channelId, cursor) {
-  void channelId;
-  void cursor;
-  return [];
-}
+export async function fetchSlackUpdates() {
+  const res = await fetch('/api/updates/slack', {
+    headers: { Accept: 'application/json' },
+  });
 
-export function buildSlackMessagePermalink(params) {
-  void params;
-  return '#';
+  if (!res.ok) {
+    throw new Error(`Slack updates request failed: ${res.status}`);
+  }
+
+  const data = await res.json();
+  if (!data || !Array.isArray(data.items)) {
+    return { items: [] };
+  }
+  return { items: data.items };
 }

@@ -416,6 +416,20 @@
   color: var(--info-1-color);
 }
 
+.updates-status {
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  color: var(--updates-muted);
+}
+
+.updates-status--error {
+  color: color-mix(in srgb, var(--color-text-primary) 85%, var(--info-1-color));
+  border: 1px solid color-mix(in srgb, var(--info-1-color) 35%, transparent);
+  border-radius: var(--updates-radius);
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--info-1-color) 8%, transparent);
+}
+
 .updates-empty {
   padding: 24px;
   border-radius: var(--updates-radius);

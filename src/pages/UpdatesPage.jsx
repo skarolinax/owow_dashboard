@@ -1,4 +1,4 @@
-import { useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useState } from 'react';
 import '../styles/updates.scss';
 import UpdatesSearchBar from '../components/updates/UpdatesSearchBar.jsx';
 import UpdateFeedSection from '../components/updates/UpdateFeedSection.jsx';
@@ -8,16 +8,46 @@ import {
   mockJiraIntegration,
   mockNotificationSettings,
 } from '../data/mockUpdatesData.js';
-import { filterGroupedUpdates, getUpdateFeed } from '../services/updatesService.js';
+import {
+  emptyGroupedUpdates,
+  filterGroupedUpdates,
+  loadSlackGroupedUpdates,
+} from '../services/updatesService.js';
 
 export default function UpdatesPage() {
   const searchId = useId();
   const [query, setQuery] = useState('');
+  const [grouped, setGrouped] = useState(emptyGroupedUpdates);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
-  const baseFeed = useMemo(() => getUpdateFeed(), []);
+  useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
+      setLoading(true);
+      setLoadError(false);
+      try {
+        const next = await loadSlackGroupedUpdates();
+        if (!cancelled) setGrouped(next);
+      } catch {
+        if (!cancelled) {
+          setLoadError(true);
+          setGrouped(emptyGroupedUpdates());
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const filtered = useMemo(
-    () => filterGroupedUpdates(baseFeed, query),
-    [baseFeed, query],
+    () => filterGroupedUpdates(grouped, query),
+    [grouped, query],
   );
 
   const hasAny =
@@ -31,9 +61,26 @@ export default function UpdatesPage() {
         <div>
           <h1 className="updates-main__title">Update Feed</h1>
 
-          {!hasAny && (
+          {loading && (
+            <p className="updates-status" role="status" aria-live="polite">
+              Loading updates…
+            </p>
+          )}
+
+          {loadError && (
+            <p className="updates-status updates-status--error" role="alert">
+              Couldn&apos;t load Slack updates. Showing an empty feed; check the connection
+              and try refreshing the page.
+            </p>
+          )}
+
+          {!loading && !hasAny && (
             <p className="updates-empty" role="status">
-              No updates match &ldquo;{query}&rdquo;. Try a different search.
+              {query.trim()
+                ? `No updates match “${query}”. Try a different search.`
+                : loadError
+                  ? 'No updates to display.'
+                  : 'No updates yet. Post in the connected Slack channel to see them here.'}
             </p>
           )}
 
