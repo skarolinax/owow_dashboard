@@ -1,0 +1,97 @@
+export const mockGroupedUpdates = {
+  today: [
+    {
+      id: 'upd-1',
+      timeGroup: 'today',
+      title: 'Design review feedback',
+      preview: 'Looks great, lets make some final tweaks before we hand off…',
+      relativeTime: '1hr ago',
+      isoTimestamp: '2026-03-27T14:00:00.000Z',
+      actionLabel: 'Open in Slack',
+      actionUrl: 'https://slack.com/app_redirect?channel=mock',
+      sourceKind: 'slack',
+      slackChannelId: 'C0MOCKCLIENT',
+      slackMessageTs: '1712345678.000100',
+    },
+    {
+      id: 'upd-2',
+      timeGroup: 'today',
+      title: 'Milestone approved',
+      preview: 'Launch phase sign-off completed.',
+      relativeTime: '2hr ago',
+      isoTimestamp: '2026-03-27T13:00:00.000Z',
+      actionLabel: 'View milestone',
+      actionUrl: '#',
+      sourceKind: 'milestone',
+    },
+  ],
+  thisWeek: [
+    {
+      id: 'upd-3',
+      timeGroup: 'thisWeek',
+      title: 'Client Q&A',
+      preview: 'We captured the open questions from the workshop session…',
+      relativeTime: '3d ago',
+      isoTimestamp: '2026-03-24T10:00:00.000Z',
+      actionLabel: 'View documents',
+      actionUrl: '#',
+      sourceKind: 'document',
+    },
+    {
+      id: 'upd-4',
+      timeGroup: 'thisWeek',
+      title: 'Jira update',
+      preview: 'PROJ-142 moved to In Review — layout polish.',
+      relativeTime: '4d ago',
+      isoTimestamp: '2026-03-23T09:00:00.000Z',
+      actionLabel: 'Open in Jira',
+      actionUrl: '#',
+      sourceKind: 'jira',
+    },
+  ],
+  earlier: [
+    {
+      id: 'upd-5',
+      timeGroup: 'earlier',
+      title: 'Roadmap published',
+      preview: 'Q2 roadmap highlights are live for stakeholders.',
+      relativeTime: '2w ago',
+      isoTimestamp: '2026-03-13T12:00:00.000Z',
+      actionLabel: 'View roadmap',
+      actionUrl: '/roadmap',
+      sourceKind: 'roadmap',
+    },
+    {
+      id: 'upd-6',
+      timeGroup: 'earlier',
+      title: 'Weekly sync notes',
+      preview: 'Action items: analytics spec, content freeze date…',
+      relativeTime: '3w ago',
+      isoTimestamp: '2026-03-06T15:00:00.000Z',
+      actionLabel: 'View details',
+      actionUrl: '#',
+      sourceKind: 'slack',
+      slackChannelId: 'C0MOCKCLIENT',
+      slackMessageTs: '1709999999.000200',
+    },
+  ],
+};
+
+export const mockNotificationSettings = {
+  slackConnected: true,
+  workspaceLabel: 'OWOW x Nike',
+  channelLabel: '#client-nike',
+  emailNotifications: true,
+  weeklyDigest: true,
+  importantOnly: false,
+};
+
+export const mockJiraIntegration = {
+  connected: true,
+  projectName: 'Dashboard Redesign',
+  recentActivity: [
+    { key: 'PROJ-142', title: 'Update dashboard layout', status: 'inReview' },
+    { key: 'PROJ-141', title: 'Fix navigation bug', status: 'done' },
+    { key: 'PROJ-140', title: 'API endpoint refactor', status: 'inProgress' },
+  ],
+};
