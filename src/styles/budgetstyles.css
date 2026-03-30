@@ -186,11 +186,11 @@
 }
 
 .budget-modules {
-  margin-top: 18px;
+  margin-top: 8px;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  gap: 18px;
+  gap: 7px;
 }
 
 .budget-module {
@@ -231,6 +231,255 @@
   color: var(--color-text-primary);
 }
 
+.hours-tracking {
+  margin-top: 22px;
+  width: 100%;
+}
+
+.hours-tracking__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  background-color: rgba(9, 136, 239, 0.1);
+  color: #f6f6f6;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 12px;
+}
+
+:root[data-theme="light"] .hours-tracking__pill {
+  background-color: #1b1b1b;
+  color: #f6f6f6;
+}
+
+.hours-tracking__pill-icon {
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.hours-tracking__title {
+  margin: 0;
+  padding: 4px 6px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: Montreal, system-ui, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.hours-tracking__card {
+  background-color: var(--accent-card);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 22px 20px 20px;
+  width: 100%;
+}
+
+:root[data-theme="light"] .hours-tracking__card {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.hours-tracking__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.hours-tracking__label {
+  font-family: MontrealMono;
+  font-size: 14px;
+  opacity: 0.55;
+}
+
+.hours-tracking__pct {
+  font-family: MontrealMono;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--info-2-color);
+}
+
+.hours-tracking__track {
+  margin-top: 12px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--bg-main);
+  overflow: hidden;
+}
+
+.hours-tracking__fill {
+  height: 100%;
+  border-radius: 5px;
+  background-color: var(--info-2-color);
+  transition: width 200ms ease;
+}
+
+.hours-tracking__metrics {
+  margin-top: 20px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hours-metric {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--bg-main);
+  border-radius: 5px;
+  border: 1px solid rgba(199, 30, 30, 0.06);
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+:root[data-theme="light"] .hours-metric {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+.hours-metric__label {
+  font-family: MontrealMono;
+  font-size: 13px;
+  opacity: 0.55;
+  margin-bottom: 8px;
+}
+
+.hours-metric__value {
+  font-family: Montreal;
+  font-size: 26px;
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.hours-metric--purchased .hours-metric__value {
+  color: var(--info-2-color);
+}
+
+.hours-metric--spent .hours-metric__value {
+  color: #ff9f43;
+}
+
+.hours-metric--remaining .hours-metric__value {
+  color: var(--success-color);
+}
+
+.budget-breakdown {
+  margin-top: 22px;
+  width: 100%;
+}
+
+.budget-breakdown__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  background-color: #0d0d0d;
+  color: #f6f6f6;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 12px;
+}
+
+:root[data-theme="light"] .budget-breakdown__pill {
+  background-color: #1b1b1b;
+  color: #f6f6f6;
+}
+
+.budget-breakdown__pill-icon {
+  flex-shrink: 0;
+}
+
+.budget-breakdown__title {
+  margin: 0;
+  padding: 4px 6px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: Montreal, system-ui, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.budget-breakdown__card {
+  background-color: var(--accent-card);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 20px 18px;
+  width: 100%;
+}
+
+:root[data-theme="light"] .budget-breakdown__card {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.budget-breakdown__row + .budget-breakdown__row {
+  margin-top: 18px;
+}
+
+.budget-breakdown__row-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.budget-breakdown__name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: Montreal, system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--color-text-primary);
+}
+
+.budget-breakdown__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.budget-breakdown__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.budget-breakdown__amount {
+  font-family: MontrealMono;
+  font-size: 13px;
+  opacity: 0.55;
+}
+
+.budget-breakdown__badge {
+  font-family: MontrealMono;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background-color: var(--bg-main);
+  color: var(--color-text-primary);
+  opacity: 0.85;
+}
+
+.budget-breakdown__track {
+  margin-top: 10px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: var(--bg-main);
+  overflow: hidden;
+}
+
+.budget-breakdown__fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 200ms ease;
+}
+
 @media (max-width: 900px) {
   .budget-modules {
     flex-wrap: wrap;
@@ -238,6 +487,15 @@
 
   .budget-module {
     flex: 1 1 45%;
+  }
+
+  .hours-tracking__metrics {
+    flex-wrap: wrap;
+  }
+
+  .hours-metric {
+    flex: 1 1 100%;
+    min-width: 140px;
   }
 }
 
