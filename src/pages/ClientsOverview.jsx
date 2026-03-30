@@ -10,6 +10,7 @@ function ClientsOverview() {
   const [selectedLetter, setSelectedLetter] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const alphabet = 'abcdefghijklmnoprstuwyz'.split(''); // Used for the alphabetical filter
+  const [visibleClient, setVisibleClient] = useState(8);
   
   const totalClients = clients.length;
 
@@ -110,10 +111,10 @@ function ClientsOverview() {
           ))}
         </div>
 
-        <p className={s.amountIndicator}>Showing {filteredClients.length} of {totalClients}</p>
+        <p className={s.amountIndicator}>Showing {Math.min(visibleClient, filteredClients.length)} of {totalClients}</p>
 
         <div id={s.wrapperCardsClients}>
-          {filteredClients.map(client => (
+          {filteredClients.slice(0, visibleClient).map(client => (
             <Link
               to="/projects-overview"
               state={{client}}
@@ -143,6 +144,12 @@ function ClientsOverview() {
             </Link>
           ))}
         </div>
+        {visibleClient < filteredClients.length && (
+          <button 
+            className={s.loadMoreBtn}
+            onClick={() => setVisibleClient(prev => prev + 8)}
+          >Load more</button>
+        )}
       </div>
 
     </>
