@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import './styles/App.css'; 
-import  Navbar from './components/navbar';
+import './styles/App.css';
+import Navbar from './components/navbar';
 // import { useTheme } from './hooks/useTheme';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 

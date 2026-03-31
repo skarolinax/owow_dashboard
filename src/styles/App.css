@@ -25,11 +25,13 @@
   src: url("../assets/fonts/PPNeueMontreal-Medium.woff2") format("woff2"), url("../assets/fonts/PPNeueMontreal-Medium.woff") format("woff");
   font-style: normal;
 }
+
 @font-face {
   font-family: "MontrealMono";
   src: url("../assets/fonts/PPNeueMontrealMono-Medium.woff2") format("woff2"), url("../assets/fonts/PPNeueMontrealMono-Medium.woff") format("woff");
   font-style: normal;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -45,10 +47,12 @@ body {
 a {
   text-decoration: none;
   color: currentColor;
+  font-size: 13px;
+  width: fit-content;
 }
 
 .navbar {
-  margin: 20px;
+  margin: 0px;
   border-radius: 5px;
   background-color: var(--accent-card);
   display: flex;
@@ -56,38 +60,46 @@ a {
   align-items: center;
   padding-inline: 30px;
 }
+
 .navbar img {
-  width: 100px;
-  height: 100px;
+  width: 145px;
+  height: 65px;
   filter: var(--icon-filter);
 }
+
 .navbar button {
   cursor: pointer;
   color: var(--color-text-primary);
-  font-family: MontrealMono;
+  font-family: Montreal;
+
 }
 
 .links-navbar {
   display: flex;
-  gap: 50px;
   align-items: center;
 }
+
 .links-navbar a {
   display: flex;
-  color: currentColor;
+  color: #686868;
   text-decoration: none;
-  font-family: MontrealMono;
+  font-family: Montreal;
   padding: 10px;
-  border-radius: 20px;
+  height: 35px;
+  border-radius: 4px;
   align-items: center;
   transition: 0.3s ease;
 }
+
 .links-navbar a:hover {
-  opacity: 0.6;
+  color: var(--color-text-primary);
 }
+
 .links-navbar a.active {
-  background-color: var(--bg-main);
+  color: var(--bg-main);
+  background-color: var(--color-text-primary);
 }
+
 @media (max-width: 1000px) {
   .links-navbar {
     display: none;
@@ -101,6 +113,7 @@ a {
   border: none;
   display: flex;
 }
+
 .btn-settings img {
   width: 30px;
   height: 30px;
@@ -115,11 +128,13 @@ a {
   display: none;
   position: relative;
 }
+
 .btn-mobile-nav img {
   width: 30px;
   height: 30px;
   filter: var(--icon-filter);
 }
+
 @media (max-width: 999px) {
   .btn-mobile-nav {
     display: flex;
@@ -129,6 +144,7 @@ a {
 .settings-container {
   position: relative;
 }
+
 @media (max-width: 1000px) {
   .settings-container {
     display: none;
@@ -150,6 +166,7 @@ a {
   padding: 15px;
   animation: slide-in-menu 0.3s ease-out forwards;
 }
+
 .mobile-menu a {
   font-family: MontrealMono;
   font-size: clamp(24px, 3vw, 32px);
@@ -157,6 +174,7 @@ a {
   font-weight: 700;
   position: relative;
 }
+
 .mobile-menu a::after {
   content: "";
   position: absolute;
@@ -171,9 +189,11 @@ a {
   filter: var(--icon-filter);
   background-image: url("../assets/images/arrow-right.svg");
 }
+
 .mobile-menu a:hover {
   opacity: 0.6;
 }
+
 @media (max-width: 1000px) {
   .mobile-menu {
     display: flex;
@@ -184,14 +204,17 @@ a {
   0% {
     transform: translate(-100%);
   }
+
   100% {
     transform: translate(0);
   }
 }
+
 .btn-section {
   display: flex;
   flex-direction: column;
 }
+
 .btn-section button {
   width: 100%;
   padding: 10px;
@@ -203,10 +226,12 @@ a {
   align-items: center;
   display: flex;
 }
+
 .btn-section button:nth-child(2) {
   justify-content: flex-end;
   text-align: right;
 }
+
 .btn-section button img {
   width: 30px;
   height: 30px;
@@ -230,6 +255,7 @@ a {
   z-index: 10;
   display: none;
 }
+
 @media (max-width: 1000px) {
   .overlay {
     display: block;
@@ -251,12 +277,14 @@ a {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .settings-dropdown img {
   width: 20px;
   height: 20px;
   margin-right: 10px;
   filter: var(--icon-filter);
 }
+
 .settings-dropdown button {
   width: 100%;
   padding: 10px;
@@ -270,6 +298,9 @@ a {
   display: flex;
   align-items: center;
 }
+
 .settings-dropdown button:hover {
   background-color: var(--bg-main);
-}/*# sourceMappingURL=App.css.map */
+}
+
+/*# sourceMappingURL=App.css.map */
