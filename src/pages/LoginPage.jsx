@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
 import arrowRight from "../assets/images/arrow-right.svg";
+import clients from "../data/clients.json"
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -71,7 +72,15 @@ function LoginPage() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate("/clients");
+
+    const client = clients.find(c => c.name === "Nike"); // For the client role we just pick random one
+
+    if(role === "employee") {
+      navigate("/clients");
+    } else
+    if(role === "client") {
+      navigate("/projects-overview", {state: {client}});
+    }
   };
 
   return (
