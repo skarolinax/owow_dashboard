@@ -1,8 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import '../styles/RisksPage.css'
 
 function RisksPage() {
-  const navigate = useNavigate();
 
   const risks = [
     {
@@ -28,33 +28,28 @@ function RisksPage() {
   const mediumRisks = risks.filter(r => r.impact === 'medium')
   const lowRisks    = risks.filter(r => r.impact === 'low')
 
-  const goToProjectsOverview = () => {
-    navigate('/projects-overview')
-  }
-  
   return (
-    <div className="budget-page">
-      <div className="budget-top">
-        <nav className="breadcrumb" aria-label="Breadcrumb">
-          <Link className="breadcrumb__link" to="/clients">
-            Clients
-          </Link>
-          <span className="breadcrumb__sep">{'>'}</span>
-          <button className="breadcrumb__link" type="button" onClick={goToProjectsOverview}>
-            Nike
-          </button>
-          <span className="breadcrumb__sep">{'>'}</span>
-          <span className="breadcrumb__current">Dashboard Redesign</span>
-        </nav>
+    <div className="risks-page">
 
-        <button className="btn-back" type="button" onClick={goToProjectsOverview}>
-          <span className="btn-back__icon" aria-hidden="true">
-            ←
-          </span>
-          <span className="btn-back__text">Back to Nike</span>
-        </button>
+      <div className="breadcrumb">
+        <span>Clients</span>
+        <span className="breadcrumb-sep">›</span>
+        <span>Nike</span>
+        <span className="breadcrumb-sep">›</span>
+        <span className="breadcrumb-active">Dashboard Redesign</span>
       </div>
 
+      <button className="back-btn">← Back to Nike</button>
+
+      <div className="risks-header">
+        <div className="risks-title-row">
+          <span className="risks-icon">⚠️</span>
+          <div>
+            <h1 className="risks-title">Risks</h1>
+            <p className="risks-subtitle">Dashboard Redesign</p>
+          </div>
+        </div>
+      </div>
 
      {/* Summary Card */}
 <div className="card summary-card">
