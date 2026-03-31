@@ -79,7 +79,7 @@ function LoginPage() {
       navigate("/clients");
     } else
     if(role === "client") {
-      navigate("/projects-overview", {state: {client}});
+      navigate("/projects-overview", {state: {client, role}});
     }
   };
 

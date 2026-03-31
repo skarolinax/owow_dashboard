@@ -5,6 +5,7 @@ import s from "../styles/Clients.module.scss"
 function CProjectsOverview() {
   const location = useLocation();
   const client = location.state?.client;
+  const role = location.state?.role;
 
   const navigate = useNavigate();
 
@@ -26,15 +27,24 @@ function CProjectsOverview() {
     <>
 
       <div className={s.wrapperAllProjects}>
-        <button onClick={() => navigate(-1)} className={s.btnGoBackClients}>← Back to all clients</button>
+        {role === "client" ? null : ( 
+          <button onClick={() => navigate(-1)} className={s.btnGoBackClients}>← Back to all clients</button>
+        )}
         <div className={s.headingProjectsPage}>
-          <div className={s.letterBox}>
-            {client.name.charAt(0)}
-          </div>
-          <div>
-            <h1>{client.name}</h1>
-            <p>{client.group}</p>
-          </div>
+          {role === "client" ? (
+            <div>
+              <h1>Welcome back, Nike!</h1>
+              <p>Manage your projects today.</p>
+            </div>
+          ) : (
+            <>
+              <div className={s.letterBox}>{client.name.charAt(0)}</div>
+              <div>
+                <h1>{client.name}</h1>
+                <p>{client.group}</p>
+              </div>
+            </>
+          )}
         </div>
 
         <section className={s.wrapperInfoProject}>
