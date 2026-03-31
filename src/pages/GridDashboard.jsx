@@ -1,9 +1,13 @@
-
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import '../styles/budgetstyles.css'
 import '../styles/Griddashboard.css'
 
-
 function GridDashboard() {
+  const navigate = useNavigate()
+
+  const goToProjectsOverview = () => {
+    navigate('/projects-overview')
+  }
 
    // This is our task data - in a real app this would come from a database
   const tasks = [
@@ -17,6 +21,27 @@ function GridDashboard() {
 
 
     <div className="project-view">
+      <nav className="breadcrumb" aria-label="Breadcrumb">
+        <Link className="breadcrumb__link" to="/clients">
+          Clients
+        </Link>
+        <span className="breadcrumb__sep">{'>'}</span>
+        <button className="breadcrumb__link" type="button" onClick={goToProjectsOverview}>
+          Nike
+        </button>
+        <span className="breadcrumb__sep">{'>'}</span>
+        <span className="breadcrumb__current">Dashboard Redesign</span>
+      </nav>
+
+      <div className="budget-top">
+        <button className="btn-back" type="button" onClick={goToProjectsOverview}>
+          <span className="btn-back__icon" aria-hidden="true">
+            ←
+          </span>
+          <span className="btn-back__text">Back to Nike</span>
+        </button>
+      </div>
+
       <div className="page-content">
         <h1 className="page-title">Good morning, OWOW.</h1>
 

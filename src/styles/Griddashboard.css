@@ -34,6 +34,14 @@
   letter-spacing: 0.01em;
 }
 
+/* Breadcrumb sits outside .budget-top; align with budget-top / page padding */
+.project-view > .breadcrumb {
+  max-width: 720px;
+  margin-left: 25px;
+  margin-right: auto;
+  padding-top: 20px;
+}
+
 .page-content {
   padding: 24px;
 }
