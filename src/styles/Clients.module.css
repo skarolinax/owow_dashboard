@@ -1,0 +1,513 @@
+@charset "UTF-8";
+:root[data-theme=dark] {
+  --bg-main: #0A0A0A;
+  --accent-card: #1b1b1b;
+  --color-text-primary: #f6f6f6;
+  --icon-filter: invert(100%);
+  --stroke-color: #2A2A2A;
+  --info-1-color: #FEB800;
+  --error-color: #ff573b;
+  --success-color: #018848;
+  --info-2-color: #0988EF;
+}
+
+:root[data-theme=light] {
+  --bg-main: #F6F6F6;
+  --accent-card: #E2E2E2;
+  --color-text-primary: #1b1b1b;
+  --icon-filter: none;
+  --stroke-color: #D1D2CC;
+  --info-1-color: #FEB800;
+  --error-color: #ff573b;
+  --success-color: #018848;
+  --info-2-color: #0988EF;
+}
+
+@font-face {
+  font-family: "Montreal";
+  src: url("../assets/fonts/PPNeueMontreal-Medium.woff2") format("woff2"), url("../assets/fonts/PPNeueMontreal-Medium.woff") format("woff");
+  font-style: normal;
+}
+@font-face {
+  font-family: "MontrealMono";
+  src: url("../assets/fonts/PPNeueMontrealMono-Medium.woff2") format("woff2"), url("../assets/fonts/PPNeueMontrealMono-Medium.woff") format("woff");
+  font-style: normal;
+}
+.headingClientsPage, .sectionCurrentCprojects div, .cardClient, .alphabeticalFilter button, .searchClientOverview input, .cardProjectSpecific, .cardProjectSpecific button, .cardExtraPDetails div, .headingProjectsPage, .btnGoBackClients, .wrapperInfoProject .card, .loadMoreBtn {
+  background-color: var(--accent-card);
+  border-radius: 5px;
+  border: 1px solid var(--stroke-color);
+}
+
+#wrapperClientsPage {
+  padding-inline: 120px;
+}
+@media (max-width: 800px) {
+  #wrapperClientsPage {
+    padding-inline: 20px;
+  }
+}
+
+.headingClientsPage {
+  padding: 45px;
+}
+.headingClientsPage h2 {
+  font-weight: 200;
+  font-size: 16px;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+.sectionCurrentCprojects {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 20px;
+  border-radius: 5px;
+  gap: 0.5rem;
+}
+.sectionCurrentCprojects div {
+  padding: 10px 20px;
+  flex: 1;
+  display: flex;
+  min-height: 150px;
+  align-items: center;
+}
+@media (max-width: 800px) {
+  .sectionCurrentCprojects div {
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+  }
+}
+.sectionCurrentCprojects div p:nth-child(1) {
+  opacity: 0.8;
+}
+.sectionCurrentCprojects div p:nth-child(2) {
+  font-size: clamp(24px, 2vw, 32px);
+}
+
+.currentCprojectsCard aside:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.boxCprojectsCard {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+@media (max-width: 800px) {
+  .boxCprojectsCard {
+    margin-right: 0;
+  }
+}
+.boxCprojectsCard::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.boxCprojectsCard--orange {
+  background-color: rgba(254, 184, 0, 0.2);
+}
+.boxCprojectsCard--orange::before {
+  background-color: var(--info-1-color);
+}
+.boxCprojectsCard--green {
+  background-color: rgba(1, 136, 72, 0.2);
+}
+.boxCprojectsCard--green::before {
+  background-color: var(--success-color);
+}
+.boxCprojectsCard--blue {
+  background-color: rgba(9, 136, 239, 0.2);
+}
+.boxCprojectsCard--blue::before {
+  background-color: var(--info-2-color);
+}
+
+.cardClient {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: opacity 0.3s ease;
+  transform-style: preserve-3d;
+}
+.cardClient h3 {
+  font-weight: 500;
+  font-size: 18px;
+  margin-top: 20px;
+}
+.cardClient h4 {
+  opacity: 0.8;
+  font-weight: 200;
+  font-size: 14px;
+}
+.cardClient p {
+  opacity: 0.8;
+}
+.cardClient:hover .linkArrowCard {
+  opacity: 1;
+}
+.cardClient:hover .letterBox {
+  background-color: #0A0A0A;
+  color: #f6f6f6;
+}
+
+.letterBox {
+  width: 50px;
+  height: 50px;
+  background-color: #F6F6F6;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  color: #0A0A0A;
+  transition: background-color 0.3s ease;
+}
+
+.wrapperBtnTopCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wrapperBtnTopCard img {
+  width: 15px;
+  height: 15px;
+  opacity: 0.7;
+  filter: var(--icon-filter);
+}
+
+#wrapperCardsClients {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  padding-block: 20px;
+}
+
+.alphabeticalFilter {
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-block: 20px;
+}
+.alphabeticalFilter button {
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  padding: 10px;
+  font-size: 16px;
+  opacity: 0.8;
+  flex: 1;
+  cursor: pointer;
+  font-family: MontrealMono;
+  transition: 0.3s ease;
+}
+@media (max-width: 700px) {
+  .alphabeticalFilter button {
+    flex: 0;
+  }
+}
+.alphabeticalFilter button:hover {
+  opacity: 0.6;
+}
+.alphabeticalFilter button.active {
+  background-color: gray;
+}
+@media (max-width: 800px) {
+  .alphabeticalFilter {
+    margin-bottom: 1rem;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
+  .alphabeticalFilter::-webkit-scrollbar {
+    height: 6px;
+  }
+  .alphabeticalFilter::-webkit-scrollbar-track {
+    background-color: var(--stroke-color);
+    border-radius: 3px;
+  }
+  .alphabeticalFilter::-webkit-scrollbar-thumb {
+    background-color: var(--color-text-primary);
+    border-radius: 3px;
+  }
+}
+
+.searchClientOverview {
+  position: relative;
+}
+.searchClientOverview input {
+  color: var(--color-text-primary);
+  font-size: 16px;
+  padding: 10px 10px 10px 40px;
+  width: 50%;
+  min-height: 50px;
+}
+@media (max-width: 900px) {
+  .searchClientOverview input {
+    width: 100%;
+  }
+}
+.searchClientOverview .searchIcon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  filter: var(--icon-filter);
+}
+
+.collectionProjectDescription {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.collectionProjectDescription p {
+  font-size: 14px;
+}
+.collectionProjectDescription p:nth-child(2) {
+  background-color: rgba(1, 136, 72, 0.2);
+  color: var(--success-color);
+  border-radius: 1px;
+  padding: 3px;
+}
+.collectionProjectDescription p:nth-child(1)::before {
+  content: "📁";
+  font-size: inherit;
+  margin-right: 3px;
+}
+
+.progressBarCPcard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progressBarContainer {
+  width: 100%;
+  height: 5px;
+  margin-block: 10px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+.progressBarContainer div {
+  background-color: #2A2A2A;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.cardProjectSpecific {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 15px;
+}
+.cardProjectSpecific:hover button {
+  opacity: 0.8;
+}
+.cardProjectSpecific .progressBarContainer {
+  margin: 0 0 10px 0;
+}
+.cardProjectSpecific button {
+  color: var(--color-text-primary);
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  background-color: var(--stroke-color);
+}
+.cardProjectSpecific button:hover {
+  opacity: 0.8;
+}
+.cardProjectSpecific div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.membersCardText::before {
+  content: "\f500";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 600;
+  margin-right: 0.4rem;
+  color: var(--color-text-primary);
+}
+
+.budgetCardText::before {
+  content: "$";
+  margin-right: 0.4rem;
+}
+
+.risksCardText::before {
+  content: "⚠";
+  margin-right: 0.4rem;
+}
+
+.risksCardNumber--highRisk {
+  color: var(--error-color);
+}
+
+.cardProjectName {
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.cardProjectDescription, .cardProgressData p {
+  opacity: 0.8;
+}
+
+.cardProjectStatus {
+  padding: 5px;
+  border-radius: 2px;
+  font-size: 0.7rem;
+}
+
+.cardProjectStatus--active {
+  color: var(--success-color);
+  background-color: rgba(1, 136, 72, 0.2);
+}
+
+.cardProjectStatus--completed {
+  color: gray;
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+.cardProjectStatus--planning {
+  color: orange;
+  background-color: rgba(255, 165, 0, 0.2);
+}
+
+.wrapperAllProjects {
+  padding-inline: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media (max-width: 800px) {
+  .wrapperAllProjects {
+    padding-inline: 20px;
+  }
+}
+.wrapperAllProjects .letterBox {
+  width: 80px;
+  height: 80px;
+  background-color: var(--stroke-color);
+  color: var(--color-text-primary);
+}
+
+.cardExtraPDetails {
+  gap: 0.5rem;
+}
+.cardExtraPDetails div {
+  background-color: var(--stroke-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  min-height: 80px;
+}
+.cardExtraPDetails div p:first-child {
+  opacity: 0.8;
+  font-size: 0.8rem;
+}
+
+.wrapperCardProject {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  margin-bottom: 80px;
+}
+@media (max-width: 700px) {
+  .wrapperCardProject {
+    grid-template-columns: 1fr;
+  }
+}
+
+.headingProjectsPage {
+  display: flex;
+  padding: 2.5rem;
+  align-items: center;
+  gap: 20px;
+}
+.headingProjectsPage p {
+  opacity: 0.8;
+}
+
+.btnGoBackClients {
+  color: var(--color-text-primary);
+  padding: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  align-self: self-start;
+}
+.btnGoBackClients:hover {
+  opacity: 0.8;
+}
+
+.wrapperInfoProject {
+  display: flex;
+  gap: 15px;
+}
+.wrapperInfoProject .card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 15px;
+  justify-content: space-between;
+}
+.wrapperInfoProject .card p:first-child {
+  opacity: 0.8;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.wrapperInfoProject .card p:nth-child(2) {
+  font-size: 32px;
+}
+.wrapperInfoProject .card--success p:nth-child(2) {
+  color: var(--success-color);
+}
+.wrapperInfoProject .card--success p:nth-child(1)::before {
+  content: "\f274";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 600;
+  color: var(--success-color);
+  margin-right: 0.5rem;
+}
+.wrapperInfoProject .card--info1 p:nth-child(2) {
+  color: var(--info-1-color);
+}
+.wrapperInfoProject .card--info1 p:nth-child(1)::before {
+  content: "\e098";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 600;
+  color: var(--info-1-color);
+  margin-right: 0.5rem;
+}
+.wrapperInfoProject .card--info2 p:nth-child(2) {
+  color: var(--info-2-color);
+}
+.wrapperInfoProject .card--info2 p:nth-child(1)::before {
+  content: "$";
+  color: var(--info-2-color);
+  margin-right: 0.5rem;
+}
+
+.loadMoreBtn {
+  color: var(--color-text-primary);
+  padding: 1rem;
+  cursor: pointer;
+  float: right;
+  margin-bottom: 2rem;
+}
+.loadMoreBtn:hover {
+  opacity: 0.8;
+}/*# sourceMappingURL=Clients.module.css.map */

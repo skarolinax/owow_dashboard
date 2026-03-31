@@ -1,0 +1,489 @@
+[
+  {
+    "name": "Adidas",
+    "group": "Sportswear",
+    "progress": 12,
+    "totalProjects": 3,
+    "activeProjects": 2,
+    "projects": [
+      {
+        "name": "Dashboard Redesign",
+        "status": "Active",
+        "description": "Redesigning internal dashboard using React and Next.js.",
+        "team": 8,
+        "budget": 19,
+        "risks": 2,
+        "progress": 52
+      },
+      {
+        "name": "Mobile App",
+        "status": "Planning",
+        "description": "Building a new mobile experience for customers.",
+        "team": 5,
+        "budget": 10,
+        "risks": 1,
+        "progress": 20
+      },
+      {
+        "name": "Analytics Integration",
+        "status": "Active",
+        "description": "Integrating analytics tools for better insights.",
+        "team": 4,
+        "budget": 25,
+        "risks": 2,
+        "progress": 60
+      }
+    ]
+  },
+  {
+    "name": "Nike",
+    "group": "Sport",
+    "progress": 85,
+    "totalProjects": 4,
+    "activeProjects": 3,
+    "projects": [
+      {
+        "name": "E-commerce Upgrade",
+        "status": "Active",
+        "description": "Improving checkout and payment systems.",
+        "team": 6,
+        "budget": 30,
+        "risks": 2,
+        "progress": 70
+      },
+      {
+        "name": "Inventory System",
+        "status": "Active",
+        "description": "Optimizing inventory tracking.",
+        "team": 5,
+        "budget": 22,
+        "risks": 1,
+        "progress": 65
+      },
+      {
+        "name": "Marketing Dashboard",
+        "status": "Completed",
+        "description": "Dashboard for campaign tracking.",
+        "team": 3,
+        "budget": 15,
+        "risks": 0,
+        "progress": 100
+      },
+      {
+        "name": "Mobile Optimization",
+        "status": "Active",
+        "description": "Improving mobile responsiveness.",
+        "team": 4,
+        "budget": 18,
+        "risks": 1,
+        "progress": 55
+      }
+    ]
+  },
+  {
+    "name": "Apple",
+    "group": "Technology",
+    "progress": 64,
+    "totalProjects": 5,
+    "activeProjects": 2,
+    "projects": [
+      {
+        "name": "iOS Redesign",
+        "status": "Planning",
+        "description": "Concept redesign for iOS interface.",
+        "team": 10,
+        "budget": 40,
+        "risks": 3,
+        "progress": 15
+      },
+      {
+        "name": "Cloud Sync",
+        "status": "Active",
+        "description": "Improving cloud synchronization speed.",
+        "team": 7,
+        "budget": 28,
+        "risks": 2,
+        "progress": 50
+      },
+      {
+        "name": "Security Update",
+        "status": "Completed",
+        "description": "Enhancing device security features.",
+        "team": 6,
+        "budget": 20,
+        "risks": 1,
+        "progress": 100
+      },
+      {
+        "name": "AI Assistant",
+        "status": "Active",
+        "description": "Upgrading AI assistant capabilities.",
+        "team": 9,
+        "budget": 35,
+        "risks": 3,
+        "progress": 45
+      },
+      {
+        "name": "Wearable Integration",
+        "status": "Planning",
+        "description": "Integrating wearable devices with ecosystem.",
+        "team": 5,
+        "budget": 18,
+        "risks": 2,
+        "progress": 25
+      }
+    ]
+  },
+  {
+    "name": "BMW",
+    "group": "Automotive",
+    "progress": 91,
+    "totalProjects": 2,
+    "activeProjects": 1,
+    "projects": [
+      {
+        "name": "Autonomous Driving",
+        "status": "Active",
+        "description": "Developing self-driving capabilities.",
+        "team": 12,
+        "budget": 50,
+        "risks": 5,
+        "progress": 75
+      },
+      {
+        "name": "Infotainment System",
+        "status": "Completed",
+        "description": "New in-car entertainment system.",
+        "team": 6,
+        "budget": 30,
+        "risks": 1,
+        "progress": 100
+      }
+    ]
+  },
+  {
+    "name": "Google",
+    "group": "Technology",
+    "progress": 88,
+    "totalProjects": 6,
+    "activeProjects": 4,
+    "projects": [
+      {
+        "name": "Search Optimization",
+        "status": "Active",
+        "description": "Improving search result accuracy.",
+        "team": 9,
+        "budget": 35,
+        "risks": 2,
+        "progress": 72
+      },
+      {
+        "name": "Ad Platform Upgrade",
+        "status": "Active",
+        "description": "Enhancing ad targeting system.",
+        "team": 8,
+        "budget": 40,
+        "risks": 3,
+        "progress": 60
+      },
+      {
+        "name": "Maps Redesign",
+        "status": "Planning",
+        "description": "UI overhaul for maps application.",
+        "team": 6,
+        "budget": 20,
+        "risks": 2,
+        "progress": 30
+      },
+      {
+        "name": "AI Research",
+        "status": "Active",
+        "description": "Developing new AI models.",
+        "team": 12,
+        "budget": 50,
+        "risks": 4,
+        "progress": 55
+      },
+      {
+        "name": "Cloud Security",
+        "status": "Completed",
+        "description": "Improving cloud infrastructure security.",
+        "team": 7,
+        "budget": 25,
+        "risks": 1,
+        "progress": 100
+      },
+      {
+        "name": "YouTube Features",
+        "status": "Active",
+        "description": "Adding new creator tools.",
+        "team": 5,
+        "budget": 18,
+        "risks": 2,
+        "progress": 48
+      }
+    ]
+  },
+  {
+    "name": "Amazon",
+    "group": "E-commerce",
+    "progress": 79,
+    "totalProjects": 5,
+    "activeProjects": 3,
+    "projects": [
+      {
+        "name": "Warehouse Automation",
+        "status": "Active",
+        "description": "Automating warehouse operations.",
+        "team": 11,
+        "budget": 45,
+        "risks": 4,
+        "progress": 66
+      },
+      {
+        "name": "Delivery Tracking",
+        "status": "Active",
+        "description": "Real-time delivery tracking improvements.",
+        "team": 6,
+        "budget": 20,
+        "risks": 2,
+        "progress": 58
+      },
+      {
+        "name": "Alexa Upgrade",
+        "status": "Planning",
+        "description": "Enhancing voice assistant features.",
+        "team": 7,
+        "budget": 25,
+        "risks": 3,
+        "progress": 35
+      },
+      {
+        "name": "Prime UI",
+        "status": "Completed",
+        "description": "Redesigning Prime user interface.",
+        "team": 5,
+        "budget": 15,
+        "risks": 1,
+        "progress": 100
+      },
+      {
+        "name": "Recommendation Engine",
+        "status": "Active",
+        "description": "Improving product recommendations.",
+        "team": 8,
+        "budget": 30,
+        "risks": 2,
+        "progress": 62
+      }
+    ]
+  },
+  {
+    "name": "Tesla",
+    "group": "Automotive",
+    "progress": 83,
+    "totalProjects": 3,
+    "activeProjects": 2,
+    "projects": [
+      {
+        "name": "Autopilot AI",
+        "status": "Active",
+        "description": "Improving self-driving algorithms.",
+        "team": 10,
+        "budget": 50,
+        "risks": 5,
+        "progress": 70
+      },
+      {
+        "name": "Battery Tech",
+        "status": "Planning",
+        "description": "Next-gen battery development.",
+        "team": 8,
+        "budget": 40,
+        "risks": 4,
+        "progress": 25
+      },
+      {
+        "name": "Charging Network",
+        "status": "Completed",
+        "description": "Expanding global charging stations.",
+        "team": 6,
+        "budget": 30,
+        "risks": 2,
+        "progress": 100
+      }
+    ]
+  },
+  {
+    "name": "Netflix",
+    "group": "Entertainment",
+    "progress": 74,
+    "totalProjects": 4,
+    "activeProjects": 2,
+    "projects": [
+      {
+        "name": "Streaming Optimization",
+        "status": "Active",
+        "description": "Improving video streaming quality.",
+        "team": 7,
+        "budget": 28,
+        "risks": 2,
+        "progress": 65
+      },
+      {
+        "name": "Recommendation AI",
+        "status": "Active",
+        "description": "Enhancing content recommendations.",
+        "team": 9,
+        "budget": 35,
+        "risks": 3,
+        "progress": 60
+      },
+      {
+        "name": "Mobile UX",
+        "status": "Planning",
+        "description": "Redesigning mobile app experience.",
+        "team": 5,
+        "budget": 18,
+        "risks": 2,
+        "progress": 30
+      },
+      {
+        "name": "Content Pipeline",
+        "status": "Completed",
+        "description": "Optimizing content delivery pipeline.",
+        "team": 6,
+        "budget": 22,
+        "risks": 1,
+        "progress": 100
+      }
+    ]
+  },
+  {
+    "name": "Microsoft",
+    "group": "Technology",
+    "progress": 82,
+    "totalProjects": 5,
+    "activeProjects": 3,
+    "projects": [
+      { "name": "Azure Upgrade", "status": "Active", "description": "Improving cloud services.", "team": 10, "budget": 45, "risks": 3, "progress": 70 },
+      { "name": "Office Redesign", "status": "Completed", "description": "UI overhaul for Office apps.", "team": 6, "budget": 30, "risks": 1, "progress": 100 },
+      { "name": "AI Copilot", "status": "Active", "description": "Enhancing AI assistant.", "team": 12, "budget": 50, "risks": 4, "progress": 60 },
+      { "name": "Security Patch", "status": "Completed", "description": "System-wide security improvements.", "team": 5, "budget": 20, "risks": 1, "progress": 100 },
+      { "name": "Cloud Sync", "status": "Planning", "description": "New sync architecture.", "team": 7, "budget": 25, "risks": 2, "progress": 30 }
+    ]
+  },
+  {
+    "name": "Spotify",
+    "group": "Entertainment",
+    "progress": 76,
+    "totalProjects": 4,
+    "activeProjects": 2,
+    "projects": [
+      { "name": "Playlist AI", "status": "Active", "description": "AI-generated playlists.", "team": 6, "budget": 28, "risks": 2, "progress": 65 },
+      { "name": "Podcast Expansion", "status": "Planning", "description": "Growing podcast platform.", "team": 8, "budget": 35, "risks": 3, "progress": 40 },
+      { "name": "Mobile UI", "status": "Completed", "description": "Redesign mobile experience.", "team": 5, "budget": 20, "risks": 1, "progress": 100 },
+      { "name": "Ad Platform", "status": "Active", "description": "Improving ad targeting.", "team": 7, "budget": 30, "risks": 2, "progress": 55 }
+    ]
+  },
+  {
+    "name": "Uber",
+    "group": "Transport",
+    "progress": 69,
+    "totalProjects": 3,
+    "activeProjects": 2,
+    "projects": [
+      { "name": "Driver App", "status": "Active", "description": "Improving driver experience.", "team": 6, "budget": 22, "risks": 2, "progress": 60 },
+      { "name": "Pricing AI", "status": "Active", "description": "Dynamic pricing model.", "team": 9, "budget": 40, "risks": 3, "progress": 55 },
+      { "name": "Safety Features", "status": "Completed", "description": "New safety tools.", "team": 5, "budget": 18, "risks": 1, "progress": 100 }
+    ]
+  },
+  {
+    "name": "Airbnb",
+    "group": "Hospitality",
+    "progress": 71,
+    "totalProjects": 4,
+    "activeProjects": 2,
+    "projects": [
+      { "name": "Booking Flow", "status": "Active", "description": "Improving booking UX.", "team": 7, "budget": 25, "risks": 2, "progress": 62 },
+      { "name": "Host Tools", "status": "Active", "description": "Better tools for hosts.", "team": 6, "budget": 20, "risks": 2, "progress": 58 },
+      { "name": "Mobile Redesign", "status": "Completed", "description": "Updated mobile UI.", "team": 5, "budget": 18, "risks": 1, "progress": 100 },
+      { "name": "Review System", "status": "Planning", "description": "Improving reviews.", "team": 4, "budget": 15, "risks": 2, "progress": 35 }
+    ]
+  },
+  {
+    "name": "Samsung",
+    "group": "Technology",
+    "progress": 80,
+    "totalProjects": 5,
+    "activeProjects": 3,
+    "projects": [
+      { "name": "Galaxy UI", "status": "Active", "description": "New UI for devices.", "team": 9, "budget": 35, "risks": 2, "progress": 68 },
+      { "name": "Camera AI", "status": "Active", "description": "Enhancing camera software.", "team": 7, "budget": 30, "risks": 3, "progress": 60 },
+      { "name": "Battery Tech", "status": "Planning", "description": "New battery research.", "team": 8, "budget": 40, "risks": 4, "progress": 25 },
+      { "name": "Smart Home", "status": "Completed", "description": "IoT ecosystem expansion.", "team": 6, "budget": 22, "risks": 1, "progress": 100 },
+      { "name": "Foldable UX", "status": "Active", "description": "Optimizing foldable devices.", "team": 5, "budget": 18, "risks": 2, "progress": 55 }
+    ]
+  },
+  {
+    "name": "Sony",
+    "group": "Entertainment",
+    "progress": 67,
+    "totalProjects": 3,
+    "activeProjects": 1,
+    "projects": [
+      { "name": "PlayStation UI", "status": "Active", "description": "Console interface update.", "team": 8, "budget": 32, "risks": 2, "progress": 58 },
+      { "name": "VR Expansion", "status": "Planning", "description": "New VR features.", "team": 6, "budget": 28, "risks": 3, "progress": 35 },
+      { "name": "Streaming Platform", "status": "Completed", "description": "Improved streaming services.", "team": 5, "budget": 20, "risks": 1, "progress": 100 }
+    ]
+  },
+  {
+    "name": "Meta",
+    "group": "Technology",
+    "progress": 73,
+    "totalProjects": 4,
+    "activeProjects": 2,
+    "projects": [
+      { "name": "Metaverse", "status": "Active", "description": "Virtual world expansion.", "team": 15, "budget": 60, "risks": 5, "progress": 50 },
+      { "name": "Ad System", "status": "Active", "description": "Improving ad algorithms.", "team": 9, "budget": 40, "risks": 3, "progress": 65 },
+      { "name": "Privacy Tools", "status": "Completed", "description": "User privacy improvements.", "team": 6, "budget": 25, "risks": 2, "progress": 100 },
+      { "name": "Messaging Merge", "status": "Planning", "description": "Unified messaging system.", "team": 7, "budget": 30, "risks": 3, "progress": 30 }
+    ]
+  },
+  {
+    "name": "PayPal",
+    "group": "Finance",
+    "progress": 78,
+    "totalProjects": 3,
+    "activeProjects": 2,
+    "projects": [
+      { "name": "Checkout UX", "status": "Active", "description": "Improving checkout flow.", "team": 6, "budget": 20, "risks": 2, "progress": 60 },
+      { "name": "Fraud Detection", "status": "Active", "description": "AI fraud prevention.", "team": 8, "budget": 35, "risks": 3, "progress": 70 },
+      { "name": "Mobile App", "status": "Completed", "description": "New mobile redesign.", "team": 5, "budget": 18, "risks": 1, "progress": 100 }
+    ]
+  },
+  {
+    "name": "Stripe",
+    "group": "Finance",
+    "progress": 84,
+    "totalProjects": 2,
+    "activeProjects": 1,
+    "projects": [
+      { "name": "API Upgrade", "status": "Active", "description": "Improving API performance.", "team": 7, "budget": 30, "risks": 2, "progress": 75 },
+      { "name": "Dashboard UI", "status": "Completed", "description": "Admin dashboard redesign.", "team": 5, "budget": 20, "risks": 1, "progress": 100 }
+    ]
+  },
+  {
+    "name": "Slack",
+    "group": "Communication",
+    "progress": 72,
+    "totalProjects": 3,
+    "activeProjects": 2,
+    "projects": [
+      { "name": "Chat AI", "status": "Active", "description": "Smart chat features.", "team": 6, "budget": 25, "risks": 2, "progress": 65 },
+      { "name": "Integrations", "status": "Active", "description": "New integrations.", "team": 7, "budget": 28, "risks": 2, "progress": 60 },
+      { "name": "Mobile App", "status": "Completed", "description": "Improved mobile UI.", "team": 4, "budget": 18, "risks": 1, "progress": 100 }
+    ]
+  }
+
+]
