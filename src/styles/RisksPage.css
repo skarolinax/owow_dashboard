@@ -1,0 +1,322 @@
+/* src/styles/RisksPage.css */
+
+.risks-page {
+  background-color: #111111;
+  min-height: 100vh;
+  color: white;
+  font-family: sans-serif;
+  padding: 24px 32px;
+  max-width: 1200px;  /* ← add this */
+  margin: 0 auto;     /* ← add this */
+}
+
+/* Reusing same breadcrumb pattern as the other page */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.breadcrumb-sep    { color: #555; }
+.breadcrumb-active { color: white; }
+
+.back-btn {
+  background: #1a1a1a;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.back-btn:hover { background: #222; }
+
+/* Page title area */
+.risks-header {
+  margin-bottom: 24px;
+}
+
+.risks-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.risks-icon { font-size: 24px; }
+
+.risks-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.risks-subtitle {
+  font-size: 13px;
+  color: #888;
+  margin: 4px 0 0 0;
+}
+
+/* Card base - same pattern as before */
+.card {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+/* ---- Summary card ---- */
+.summary-card {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 16px;
+  max-width: 700px; /* ← add this to stop it stretching full width */
+}
+
+/* ---- Donut chart (made with CSS!) ---- */
+.donut-chart {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  /* This creates the donut ring using conic-gradient */
+  background: conic-gradient(
+    #f97316 0% 50%,   /* orange - medium risks */
+    #333 50% 100%     /* grey - remaining */
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.donut-inner {
+  width: 90px;
+  height: 90px;
+  background: #1a1a1a;  /* same as card bg - creates the hole */
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut-number {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.donut-label {
+  font-size: 11px;
+  color: #888;
+}
+
+/* ---- Impact rows ---- */
+.summary-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.impact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.impact-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.impact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.impact-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.impact-desc {
+  font-size: 12px;
+  color: #888;
+}
+
+.impact-count {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.impact-count.high   { color: #f87171; }
+.impact-count.medium { color: #f97316; }
+.impact-count.low    { color: #888; }
+
+/* ---- Three status boxes ---- */
+.status-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.status-box {
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Stop status boxes stretching full width */
+.status-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+  max-width: 700px; /* ← add this */
+}
+
+/* Stop risk cards stretching full width */
+.risk-card {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 8px;
+  border-left: 3px solid transparent;
+  max-width: 700px; /* ← add this */
+}
+
+/* Stop risk group header stretching */
+.risk-group-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  background: #1a1a1a;
+  padding: 10px 16px;
+  border-radius: 8px;
+  width: fit-content;
+  max-width: 700px; /* ← add this */
+}
+
+.status-box.at-risk    { background: #2a0a0a; }
+.status-box.monitoring { background: #2a1a0a; }
+.status-box.resolved   { background: #0a2a0a; }
+
+.status-box-label {
+  font-size: 13px;
+}
+
+.status-box-count {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.status-box.at-risk .status-box-label,
+.status-box.at-risk .status-box-count    { color: #f87171; }
+
+.status-box.monitoring .status-box-label,
+.status-box.monitoring .status-box-count { color: #f97316; }
+
+.status-box.resolved .status-box-label,
+.status-box.resolved .status-box-count  { color: #22c55e; }
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .summary-card {
+    flex-direction: column;
+  }
+
+  .status-boxes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---- Risk groups ---- */
+.risk-group {
+  margin-bottom: 24px;
+}
+
+.risk-group-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  background: #1a1a1a;
+  padding: 10px 16px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.risk-group-icon { font-size: 16px; }
+
+.risk-group-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.risk-group-count {
+  background: #333;
+  color: #888;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+/* ---- Individual risk cards ---- */
+.risk-card {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 8px;
+  /* Coloured left border to show impact level */
+  border-left: 3px solid transparent;
+}
+
+.risk-card.medium { border-left-color: #f97316; }
+.risk-card.low    { border-left-color: #60a5fa; }
+
+.risk-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.risk-card-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.risk-card-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.risk-card-tag.at-risk    { background: #450a0a; color: #f87171; }
+.risk-card-tag.monitoring { background: #1a2e05; color: #86efac; }
+.risk-card-tag.resolved   { background: #14532d; color: #22c55e; }
+
+.risk-card-desc {
+  font-size: 13px;
+  color: #888;
+  margin: 0 0 6px 0;
+}
+
+.risk-card-impact {
+  font-size: 12px;
+  color: #555;
+  margin: 0;
+}
