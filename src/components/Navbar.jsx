@@ -43,11 +43,17 @@ function Navbar({theme, toggleTheme}) {
     navigate('/login');
   }
 
+  const disableLinks = location.pathname === "/clients" || location.pathname === "/projects-overview";
+
   return (
     <nav className="navbar">
-      <Link to="/grid-dashboard">
+      {disableLinks ? (
         <img src={Logo} alt="Logo of the agency" />
-      </Link>
+      ) : (
+        <Link to="/grid-dashboard">
+          <img src={Logo} alt="Logo of the agency" />
+        </Link>
+      )}
 
       {!hideLinks && (
           <div className="links-navbar">
