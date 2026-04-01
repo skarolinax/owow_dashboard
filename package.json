@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "install": "npm install --legacy-peer-deps && npm run build",
+    "install": "npm install --legacy-peer-deps",
     "dev": "concurrently -k \"npm run dev:api\" \"npm run dev:vite\"",
     "dev:vite": "vite",
     "dev:api": "node server/index.js",
