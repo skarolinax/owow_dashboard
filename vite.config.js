@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      id: '/',
       registerType: 'autoUpdate',  
       manifest: {
         name: 'OWOW Project Dashboard',  // Full app name
@@ -24,7 +25,14 @@ export default defineConfig({
             src: '/png2.png', 
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable'  
+          }
+        ],
+        screenshots: [
+          {
+            src: '/dashboard.png',
+            sizes: '1280x720',
+            type: 'image/png',
+            "form_factor": "wide"
           }
         ]
       }
