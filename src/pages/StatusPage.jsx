@@ -1,7 +1,9 @@
 import { useMemo, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import "../styles/budgetstyles.css";
 
 function StatusPage() {
+  const navigate = useNavigate();
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -14,6 +16,10 @@ function StatusPage() {
   const isMobile = screenWidth <= 768;
 
   const progress = 52;
+
+  const goToProjectsOverview = () => {
+    navigate("/projects-overview");
+  };
 
   const topStats = useMemo(
     () => [
@@ -107,291 +113,300 @@ function StatusPage() {
   );
 
   return (
-    <div
-      style={{
-        ...styles.page,
-        ...(isMobile ? styles.pageMobile : {}),
-      }}
-    >
+    <div className="budget-page">
+      {/* SAME TOP SECTION AS BUDGET PAGE */}
+      <div className="budget-top">
+        <nav className="breadcrumb" aria-label="Breadcrumb">
+          <Link className="breadcrumb__link" to="/clients">
+            Clients
+          </Link>
+
+          <span className="breadcrumb__sep">{">"}</span>
+
+          <button
+            className="breadcrumb__link"
+            type="button"
+            onClick={goToProjectsOverview}
+          >
+            Nike
+          </button>
+
+          <span className="breadcrumb__sep">{">"}</span>
+
+          <span className="breadcrumb__current">Dashboard Redesign</span>
+        </nav>
+
+        <button className="btn-back" type="button" onClick={goToProjectsOverview}>
+          <span className="btn-back__icon" aria-hidden="true">
+            ←
+          </span>
+          <span className="btn-back__text">Back to Nike</span>
+        </button>
+      </div>
+
+      {/* STATUS CONTENT */}
       <div
         style={{
-          ...styles.container,
-          ...(isTablet ? styles.containerTablet : {}),
-          ...(isMobile ? styles.containerMobile : {}),
+          ...styles.page,
+          ...(isMobile ? styles.pageMobile : {}),
         }}
       >
         <div
           style={{
-            ...styles.breadcrumb,
-            ...(isMobile ? styles.breadcrumbMobile : {}),
+            ...styles.container,
+            ...(isTablet ? styles.containerTablet : {}),
+            ...(isMobile ? styles.containerMobile : {}),
           }}
         >
-          <span style={styles.breadcrumbMuted}>Clients</span>
-          <span style={styles.breadcrumbDivider}>&gt;</span>
-          <span style={styles.breadcrumbMuted}>Nike</span>
-          <span style={styles.breadcrumbDivider}>&gt;</span>
-          <span style={styles.breadcrumbActive}>Dashboard Redesign</span>
-        </div>
-
-        <Link
-          to="/clients"
-          style={{
-            ...styles.backButton,
-            ...(isMobile ? styles.backButtonMobile : {}),
-          }}
-        >
-          <span style={styles.backArrow}>←</span>
-          <span>Back to Nike</span>
-        </Link>
-
-        <div
-          style={{
-            ...styles.badge,
-            ...(isMobile ? styles.badgeMobile : {}),
-          }}
-        >
-          <div style={styles.badgeIcon}></div>
-          <div>
-            <div
-              style={{
-                ...styles.badgeTitle,
-                ...(isMobile ? styles.badgeTitleMobile : {}),
-              }}
-            >
-              Status
-            </div>
-            <div
-              style={{
-                ...styles.badgeSub,
-                ...(isMobile ? styles.badgeSubMobile : {}),
-              }}
-            >
-              Dashboard Redesign
-            </div>
-          </div>
-        </div>
-
-        <div
-          style={{
-            ...styles.progressCard,
-            ...(isMobile ? styles.progressCardMobile : {}),
-          }}
-        >
-          <div style={styles.progressTop}>
+          <div
+            style={{
+              ...styles.badge,
+              ...(isMobile ? styles.badgeMobile : {}),
+            }}
+          >
+            <div style={styles.badgeIcon}></div>
             <div>
-              <h2
-                style={{
-                  ...styles.progressTitle,
-                  ...(isMobile ? styles.progressTitleMobile : {}),
-                }}
-              >
-                Overall progress
-              </h2>
-              <p
-                style={{
-                  ...styles.progressSub,
-                  ...(isMobile ? styles.progressSubMobile : {}),
-                }}
-              >
-                Project is on track
-              </p>
-            </div>
-
-            <div
-              style={{
-                ...styles.progressPercent,
-                ...(isMobile ? styles.progressPercentMobile : {}),
-              }}
-            >
-              {progress}%
-            </div>
-          </div>
-
-          <div style={styles.progressTrack}>
-            <div style={{ ...styles.progressFill, width: `${progress}%` }} />
-          </div>
-        </div>
-
-        <div
-          style={{
-            ...styles.topStatsGrid,
-            ...(isTablet ? styles.topStatsGridTablet : {}),
-            ...(isMobile ? styles.topStatsGridMobile : {}),
-          }}
-        >
-          {topStats.map((item) => (
-            <div
-              key={item.label}
-              style={{
-                ...styles.statCard,
-                ...(isMobile ? styles.statCardMobile : {}),
-              }}
-            >
               <div
                 style={{
-                  ...styles.cardLabel,
-                  ...(isMobile ? styles.cardLabelMobile : {}),
+                  ...styles.badgeTitle,
+                  ...(isMobile ? styles.badgeTitleMobile : {}),
                 }}
               >
-                ◔ {item.label}
+                Status
               </div>
-
               <div
                 style={{
-                  ...styles.cardValue,
-                  ...(isMobile ? styles.cardValueMobile : {}),
+                  ...styles.badgeSub,
+                  ...(isMobile ? styles.badgeSubMobile : {}),
                 }}
               >
-                {item.value}
-              </div>
-
-              <div
-                style={{
-                  ...styles.cardSub,
-                  ...(isMobile ? styles.cardSubMobile : {}),
-                }}
-              >
-                {item.sub}
+                Dashboard Redesign
               </div>
             </div>
-          ))}
-        </div>
-
-        <div
-          style={{
-            ...styles.lowerStatsGrid,
-            ...(isMobile ? styles.lowerStatsGridMobile : {}),
-          }}
-        >
-          {lowerStats.map((item) => (
-            <div
-              key={item.label}
-              style={{
-                ...styles.lowerCard,
-                ...(isMobile ? styles.lowerCardMobile : {}),
-              }}
-            >
-              <div
-                style={{
-                  ...styles.lowerLabel,
-                  ...(isMobile ? styles.lowerLabelMobile : {}),
-                }}
-              >
-                {item.label}
-              </div>
-
-              <div>{item.value}</div>
-            </div>
-          ))}
-        </div>
-
-        <div
-          style={{
-            ...styles.milestonesHeaderWrap,
-            ...(isMobile ? styles.milestonesHeaderWrapMobile : {}),
-          }}
-        >
-          <div style={styles.milestonesHeader}>
-            <span style={styles.milestonesHeaderIcon}>🎯</span>
-            <span
-              style={{
-                ...styles.milestonesTitle,
-                ...(isMobile ? styles.milestonesTitleMobile : {}),
-              }}
-            >
-              Project Milestones
-            </span>
           </div>
 
           <div
             style={{
-              ...styles.milestonesSub,
-              ...(isMobile ? styles.milestonesSubMobile : {}),
+              ...styles.progressCard,
+              ...(isMobile ? styles.progressCardMobile : {}),
             }}
           >
-            2 of 4 completed
-          </div>
-        </div>
+            <div style={styles.progressTop}>
+              <div>
+                <h2
+                  style={{
+                    ...styles.progressTitle,
+                    ...(isMobile ? styles.progressTitleMobile : {}),
+                  }}
+                >
+                  Overall progress
+                </h2>
+                <p
+                  style={{
+                    ...styles.progressSub,
+                    ...(isMobile ? styles.progressSubMobile : {}),
+                  }}
+                >
+                  Project is on track
+                </p>
+              </div>
 
-        <div style={styles.milestoneList}>
-          {milestones.map((milestone) => (
-            <div
-              key={milestone.number}
-              style={{
-                ...styles.milestoneCard,
-                ...(isMobile ? styles.milestoneCardMobile : {}),
-              }}
-            >
               <div
                 style={{
-                  ...styles.milestoneLeft,
-                  ...(isMobile ? styles.milestoneLeftMobile : {}),
+                  ...styles.progressPercent,
+                  ...(isMobile ? styles.progressPercentMobile : {}),
+                }}
+              >
+                {progress}%
+              </div>
+            </div>
+
+            <div style={styles.progressTrack}>
+              <div style={{ ...styles.progressFill, width: `${progress}%` }} />
+            </div>
+          </div>
+
+          <div
+            style={{
+              ...styles.topStatsGrid,
+              ...(isTablet ? styles.topStatsGridTablet : {}),
+              ...(isMobile ? styles.topStatsGridMobile : {}),
+            }}
+          >
+            {topStats.map((item) => (
+              <div
+                key={item.label}
+                style={{
+                  ...styles.statCard,
+                  ...(isMobile ? styles.statCardMobile : {}),
                 }}
               >
                 <div
                   style={{
-                    ...styles.milestoneNumber,
-                    ...(milestone.statusType === "progress"
-                      ? styles.milestoneNumberProgress
-                      : {}),
-                    ...(milestone.statusType === "upcoming"
-                      ? styles.milestoneNumberUpcoming
-                      : {}),
-                    ...(isMobile ? styles.milestoneNumberMobile : {}),
+                    ...styles.cardLabel,
+                    ...(isMobile ? styles.cardLabelMobile : {}),
                   }}
                 >
-                  {milestone.number}
+                  ◔ {item.label}
                 </div>
 
-                <div style={styles.milestoneTextWrap}>
-                  <div
-                    style={{
-                      ...styles.milestoneTitle,
-                      ...(isMobile ? styles.milestoneTitleMobile : {}),
-                    }}
-                  >
-                    {milestone.title}
-                  </div>
+                <div
+                  style={{
+                    ...styles.cardValue,
+                    ...(isMobile ? styles.cardValueMobile : {}),
+                  }}
+                >
+                  {item.value}
+                </div>
 
-                  <div
-                    style={{
-                      ...styles.milestoneDescription,
-                      ...(isMobile ? styles.milestoneDescriptionMobile : {}),
-                    }}
-                  >
-                    {milestone.description}
-                  </div>
-
-                  <div
-                    style={{
-                      ...styles.milestoneDate,
-                      ...(isMobile ? styles.milestoneDateMobile : {}),
-                    }}
-                  >
-                    ▦ {milestone.date}
-                  </div>
+                <div
+                  style={{
+                    ...styles.cardSub,
+                    ...(isMobile ? styles.cardSubMobile : {}),
+                  }}
+                >
+                  {item.sub}
                 </div>
               </div>
+            ))}
+          </div>
 
+          <div
+            style={{
+              ...styles.lowerStatsGrid,
+              ...(isMobile ? styles.lowerStatsGridMobile : {}),
+            }}
+          >
+            {lowerStats.map((item) => (
               <div
+                key={item.label}
                 style={{
-                  ...styles.statusPill,
-                  ...(milestone.statusType === "completed"
-                    ? styles.statusPillCompleted
-                    : {}),
-                  ...(milestone.statusType === "progress"
-                    ? styles.statusPillProgress
-                    : {}),
-                  ...(milestone.statusType === "upcoming"
-                    ? styles.statusPillUpcoming
-                    : {}),
-                  ...(isMobile ? styles.statusPillMobile : {}),
+                  ...styles.lowerCard,
+                  ...(isMobile ? styles.lowerCardMobile : {}),
                 }}
               >
-                {milestone.status}
+                <div
+                  style={{
+                    ...styles.lowerLabel,
+                    ...(isMobile ? styles.lowerLabelMobile : {}),
+                  }}
+                >
+                  {item.label}
+                </div>
+
+                <div>{item.value}</div>
               </div>
+            ))}
+          </div>
+
+          <div
+            style={{
+              ...styles.milestonesHeaderWrap,
+              ...(isMobile ? styles.milestonesHeaderWrapMobile : {}),
+            }}
+          >
+            <div style={styles.milestonesHeader}>
+              <span style={styles.milestonesHeaderIcon}>🎯</span>
+              <span
+                style={{
+                  ...styles.milestonesTitle,
+                  ...(isMobile ? styles.milestonesTitleMobile : {}),
+                }}
+              >
+                Project Milestones
+              </span>
             </div>
-          ))}
+
+            <div
+              style={{
+                ...styles.milestonesSub,
+                ...(isMobile ? styles.milestonesSubMobile : {}),
+              }}
+            >
+              2 of 4 completed
+            </div>
+          </div>
+
+          <div style={styles.milestoneList}>
+            {milestones.map((milestone) => (
+              <div
+                key={milestone.number}
+                style={{
+                  ...styles.milestoneCard,
+                  ...(isMobile ? styles.milestoneCardMobile : {}),
+                }}
+              >
+                <div
+                  style={{
+                    ...styles.milestoneLeft,
+                    ...(isMobile ? styles.milestoneLeftMobile : {}),
+                  }}
+                >
+                  <div
+                    style={{
+                      ...styles.milestoneNumber,
+                      ...(milestone.statusType === "progress"
+                        ? styles.milestoneNumberProgress
+                        : {}),
+                      ...(milestone.statusType === "upcoming"
+                        ? styles.milestoneNumberUpcoming
+                        : {}),
+                      ...(isMobile ? styles.milestoneNumberMobile : {}),
+                    }}
+                  >
+                    {milestone.number}
+                  </div>
+
+                  <div style={styles.milestoneTextWrap}>
+                    <div
+                      style={{
+                        ...styles.milestoneTitle,
+                        ...(isMobile ? styles.milestoneTitleMobile : {}),
+                      }}
+                    >
+                      {milestone.title}
+                    </div>
+
+                    <div
+                      style={{
+                        ...styles.milestoneDescription,
+                        ...(isMobile ? styles.milestoneDescriptionMobile : {}),
+                      }}
+                    >
+                      {milestone.description}
+                    </div>
+
+                    <div
+                      style={{
+                        ...styles.milestoneDate,
+                        ...(isMobile ? styles.milestoneDateMobile : {}),
+                      }}
+                    >
+                      ▦ {milestone.date}
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    ...styles.statusPill,
+                    ...(milestone.statusType === "completed"
+                      ? styles.statusPillCompleted
+                      : {}),
+                    ...(milestone.statusType === "progress"
+                      ? styles.statusPillProgress
+                      : {}),
+                    ...(milestone.statusType === "upcoming"
+                      ? styles.statusPillUpcoming
+                      : {}),
+                    ...(isMobile ? styles.statusPillMobile : {}),
+                  }}
+                >
+                  {milestone.status}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -404,17 +419,17 @@ const styles = {
     backgroundColor: "#000000",
     color: "#ffffff",
     fontFamily: "Montreal",
-    padding: "20px 18px 28px",
+    padding: "0 18px 28px",
     boxSizing: "border-box",
   },
 
   pageMobile: {
-    padding: "16px 12px 22px",
+    padding: "0 12px 22px",
   },
 
   container: {
     width: "100%",
-    maxWidth: "920px",
+    maxWidth: "700px",
     margin: "0 auto",
   },
 
@@ -424,60 +439,6 @@ const styles = {
 
   containerMobile: {
     maxWidth: "100%",
-  },
-
-  breadcrumb: {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    fontSize: "15px",
-    marginBottom: "18px",
-    fontFamily: "MontrealMono",
-  },
-
-  breadcrumbMobile: {
-    fontSize: "12px",
-    gap: "5px",
-    marginBottom: "12px",
-    flexWrap: "wrap",
-  },
-
-  breadcrumbMuted: {
-    color: "#7A7A81",
-  },
-
-  breadcrumbDivider: {
-    color: "#7A7A81",
-  },
-
-  breadcrumbActive: {
-    color: "#EDEDED",
-  },
-
-  backButton: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "8px",
-    padding: "12px 16px",
-    borderRadius: "6px",
-    border: "1px solid #242426",
-    backgroundColor: "#121214",
-    color: "#d7d7db",
-    textDecoration: "none",
-    fontWeight: 500,
-    fontSize: "14px",
-    marginBottom: "18px",
-  },
-
-  backButtonMobile: {
-    padding: "10px 14px",
-    fontSize: "13px",
-    marginBottom: "14px",
-  },
-
-  backArrow: {
-    fontSize: "18px",
-    lineHeight: 1,
   },
 
   badge: {
@@ -507,13 +468,13 @@ const styles = {
   },
 
   badgeTitle: {
-    fontSize: "28px",
+    fontSize: "15px",
     lineHeight: 1,
     marginBottom: "4px",
   },
 
   badgeTitleMobile: {
-    fontSize: "20px",
+    fontSize: "15px",
     marginBottom: "3px",
   },
 
@@ -528,7 +489,7 @@ const styles = {
   },
 
   progressCard: {
-    background: "#171719",
+    background: "#191717",
     border: "1px solid #242426",
     borderRadius: "8px",
     padding: "22px 24px",
@@ -550,13 +511,13 @@ const styles = {
 
   progressTitle: {
     margin: 0,
-    fontSize: "32px",
+    fontSize: "25px",
     fontWeight: 500,
     lineHeight: 1,
   },
 
   progressTitleMobile: {
-    fontSize: "24px",
+    fontSize: "20px",
   },
 
   progressSub: {
@@ -572,7 +533,7 @@ const styles = {
   },
 
   progressPercent: {
-    fontSize: "48px",
+    fontSize: "32px",
     lineHeight: 1,
     fontWeight: 500,
     color: "#22a652",
@@ -580,7 +541,7 @@ const styles = {
   },
 
   progressPercentMobile: {
-    fontSize: "32px",
+    fontSize: "28px",
   },
 
   progressTrack: {
@@ -642,7 +603,7 @@ const styles = {
   },
 
   cardValue: {
-    fontSize: "20px",
+    fontSize: "16px",
     marginBottom: "14px",
   },
 
@@ -689,13 +650,13 @@ const styles = {
 
   greenNumber: {
     color: "#22a652",
-    fontSize: "38px",
+    fontSize: "32px",
     lineHeight: 1,
     fontWeight: 500,
   },
 
   greenSmall: {
-    color: "#22a652",
+    color: "#ffffff",
     fontFamily: "MontrealMono",
     fontSize: "14px",
   },
@@ -747,7 +708,7 @@ const styles = {
     display: "block",
     textAlign: "center",
     color: "#F4F4F6",
-    fontSize: "36px",
+    fontSize: "30px",
     lineHeight: 1,
     fontWeight: 500,
   },
@@ -756,7 +717,7 @@ const styles = {
     display: "block",
     textAlign: "center",
     color: "#22a652",
-    fontSize: "36px",
+    fontSize: "30px",
     lineHeight: 1,
     fontWeight: 500,
   },
@@ -765,7 +726,7 @@ const styles = {
     display: "block",
     textAlign: "center",
     color: "#ff4f43",
-    fontSize: "36px",
+    fontSize: "30px",
     lineHeight: 1,
     fontWeight: 500,
   },
