@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Logo from '../assets/images/logo.svg'
-import { Link, NavLink, useNavigate , useLocation} from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import SettingsIcon from '../assets/images/settings.svg'
 import SignOut from '../assets/images/signut.svg'
 import MenuIcon from '../assets/images/menu.svg'
