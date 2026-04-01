@@ -44,6 +44,7 @@ function Navbar({theme, toggleTheme}) {
   }
 
   const disableLinks = location.pathname === "/clients" || location.pathname === "/projects-overview";
+  const hideMobileLinks = location.pathname === "/clients" || location.pathname === "/projects-overview";
 
   return (
     <nav className="navbar">
@@ -82,7 +83,8 @@ function Navbar({theme, toggleTheme}) {
             onClick={() => setIsMobileMenuOpen(false)}
           ></div>
           <div className="mobile-menu" ref={mobileMenuRef}>
-            <div className="mobile-links-section">
+            {!hideMobileLinks && (
+              <div className="mobile-links-section">
                 {links.map(link => (
                   <NavLink
                     key={link.to}
@@ -92,7 +94,8 @@ function Navbar({theme, toggleTheme}) {
                     {link.label}
                   </NavLink>
                 ))}
-            </div>
+              </div>
+            )}
 
             <aside className="btn-section">
               <button onClick={toggleTheme}>
