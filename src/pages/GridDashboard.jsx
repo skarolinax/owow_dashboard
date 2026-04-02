@@ -1,12 +1,62 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useMemo } from 'react'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import clients from '../data/clients.json'
 import '../styles/budgetstyles.css'
 import '../styles/Griddashboard.css'
 
+/**
+ * Prefer router state (from project cards). If missing, resolve from ?client=&project= against clients.json.
+ */
+function resolveClientAndProject(clientsData, location) {
+  const { state, search } = location
+  if (state?.client && state?.project) {
+    return { client: state.client, project: state.project }
+  }
+  const params = new URLSearchParams(search)
+  const clientName = params.get('client')
+  const projectName = params.get('project')
+  if (clientName && projectName) {
+    const client = clientsData.find((c) => c.name === clientName)
+    const project = client?.projects.find((p) => p.name === projectName)
+    if (client && project) return { client, project }
+  }
+  return { client: null, project: null }
+}
+
 function GridDashboard() {
+  const location = useLocation()
   const navigate = useNavigate()
+  const [, setSearchParams] = useSearchParams()
+
+  const { client, project } = useMemo(
+    () => resolveClientAndProject(clients, location),
+    [location.state, location.search],
+  )
+
+  /** After navigation from projects overview, mirror selection in the URL so refresh keeps context. */
+  useEffect(() => {
+    const st = location.state
+    if (!st?.client?.name || !st?.project?.name) return
+    const params = new URLSearchParams(location.search)
+    if (
+      params.get('client') === st.client.name &&
+      params.get('project') === st.project.name
+    ) {
+      return
+    }
+    setSearchParams(
+      { client: st.client.name, project: st.project.name },
+      { replace: true },
+    )
+  }, [location.state, location.search, setSearchParams])
+
+  const clientLabel = client?.name ?? 'Client'
+  const projectLabel = project?.name ?? 'Project'
+
+  const projectsOverviewState = client ? { client } : undefined
 
   const goToProjectsOverview = () => {
-    navigate('/projects-overview')
+    navigate('/projects-overview', { state: projectsOverviewState, replace: true })
   }
 
    // This is our task data - in a real app this would come from a database
@@ -27,19 +77,19 @@ function GridDashboard() {
         </Link>
         <span className="breadcrumb__sep">{'>'}</span>
         <button className="breadcrumb__link" type="button" onClick={goToProjectsOverview}>
-          Nike
+          {clientLabel}
         </button>
         <span className="breadcrumb__sep">{'>'}</span>
-        <span className="breadcrumb__current">Dashboard Redesign</span>
+        <span className="breadcrumb__current">{projectLabel}</span>
       </nav>
 
       <div className="budget-top">
-        <button className="btn-back" type="button" onClick={goToProjectsOverview}>
+        <Link className="btn-back" to="/projects-overview" state={projectsOverviewState}>
           <span className="btn-back__icon" aria-hidden="true">
             ←
           </span>
-          <span className="btn-back__text">Back to Nike</span>
-        </button>
+          <span className="btn-back__text">Back to {clientLabel}</span>
+        </Link>
       </div>
 
       <div className="page-content">
