@@ -42,7 +42,7 @@
   font-family: "MontrealMono", monospace !important;
 }
 
-/* Large titles use mono */
+
 .risks-title,
 .risk-group-title,
 .risk-card-name,
@@ -51,7 +51,6 @@
   font-family: "MontrealMono", monospace;
 }
 
-/* Small text / numeric supporting info use Montreal */
 .risks-subtitle,
 .impact-name,
 .impact-desc,
@@ -63,7 +62,7 @@
   font-family: "Montreal", sans-serif;
 }
 
-/* Reusing same breadcrumb pattern as the other page */
+
 .breadcrumb {
   display: flex;
   align-items: center;
@@ -114,7 +113,6 @@
   margin: 4px 0 0 0;
 }
 
-/* Card base - same pattern as before */
 .card {
   background-color: #1a1a1a;
   border-radius: 12px;
@@ -127,18 +125,18 @@
   gap: 32px;
   align-items: center;
   margin-bottom: 16px;
-  max-width: 700px; /* ← add this to stop it stretching full width */
+  max-width: 700px; 
 }
 
-/* ---- Donut chart (made with CSS!) ---- */
+/* ---- Donut chart  ---- */
 .donut-chart {
   width: 140px;
   height: 140px;
   border-radius: 50%;
   /* This creates the donut ring using conic-gradient */
   background: conic-gradient(
-    #f97316 0% 50%,   /* orange - medium risks */
-    #333 50% 100%     /* grey - remaining */
+    #f97316 0% 50%,  
+    #333 50% 100%     
   );
   display: flex;
   align-items: center;
@@ -149,7 +147,7 @@
 .donut-inner {
   width: 90px;
   height: 90px;
-  background: #1a1a1a;  /* same as card bg - creates the hole */
+  background: #1a1a1a;  
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -333,7 +331,7 @@
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 8px;
-  /* Coloured left border to show impact level */
+ 
   border-left: 3px solid transparent;
 }
 
@@ -376,16 +374,16 @@
 
 .risks-content {
   max-width: 700px;
-  margin: 0 auto;  /* this centers it */
+  margin: 0 auto; 
 }
 
-/* Remove max-width from these - let risks-content control the width */
+
 .summary-card {
   display: flex;
   gap: 32px;
   align-items: center;
   margin-bottom: 16px;
-  /* DELETE max-width: 700px from here */
+ 
 }
 
 .status-boxes {
@@ -393,7 +391,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-bottom: 24px;
-  /* DELETE max-width: 700px from here */
+  
 }
 
 .risk-card {
@@ -402,7 +400,7 @@
   padding: 16px;
   margin-bottom: 8px;
   border-left: 3px solid transparent;
-  /* DELETE max-width: 700px from here */
+  
 }
 
 .risk-group-header {
@@ -414,5 +412,5 @@
   padding: 10px 16px;
   border-radius: 8px;
   width: fit-content;
-  /* DELETE max-width: 700px from here */
+  
 }
