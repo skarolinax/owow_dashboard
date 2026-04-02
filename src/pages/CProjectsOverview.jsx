@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import s from "../styles/Clients.module.scss"
 
@@ -27,7 +26,7 @@ function CProjectsOverview() {
     <>
 
       <div className={s.wrapperAllProjects}>
-        {role === "client" ? null : ( 
+        {role === "client" ? null : (
           <button onClick={() => navigate(-1)} className={s.btnGoBackClients}>← Back to all clients</button>
         )}
         <div className={s.headingProjectsPage}>
@@ -132,3 +131,7 @@ function CProjectsOverview() {
 }
 
 export default CProjectsOverview
+
+
+
+
