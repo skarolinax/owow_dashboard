@@ -114,7 +114,10 @@ function ClientsOverview() {
         <p className={s.amountIndicator}>Showing {Math.min(visibleClient, filteredClients.length)} of {totalClients}</p>
 
         <div id={s.wrapperCardsClients}>
-          {filteredClients.slice(0, visibleClient).map(client => (
+          {filteredClients.length === 0 ? ( 
+            <p className={s.noResults}>No clients found. Try a different search or filter.</p> 
+          ) : (
+          filteredClients.slice(0, visibleClient).map(client => (
             <Link
               to="/projects-overview"
               state={{client}}
@@ -142,7 +145,8 @@ function ClientsOverview() {
                 </div>
               </div>
             </Link>
-          ))}
+          ))
+        )}
         </div>
         {visibleClient < filteredClients.length && (
           <button 

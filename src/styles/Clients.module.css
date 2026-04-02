@@ -303,6 +303,13 @@
   border-radius: 5px;
 }
 
+.noResults {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
 .cardProjectSpecific {
   display: flex;
   flex-direction: column;
