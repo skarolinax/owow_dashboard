@@ -14,6 +14,7 @@ import {
   groupedUpdatesSignature,
   loadSlackGroupedUpdates,
 } from '../services/updatesService.js';
+import Breadcrumbs from '../components/Breadcrumbs.jsx';
 
 const POLL_INTERVAL_MS = 12_000;
 
@@ -78,6 +79,7 @@ export default function UpdatesPage() {
 
   return (
     <main className="updates-page">
+      <Breadcrumbs />
       <div className="updates-layout">
         <div>
           <h1 className="updates-main__title">Update Feed</h1>

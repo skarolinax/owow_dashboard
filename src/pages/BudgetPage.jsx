@@ -1,5 +1,6 @@
 import { useNavigate, Link } from 'react-router-dom'
 import '../styles/budgetstyles.css'
+import Breadcrumbs from '../components/Breadcrumbs'
 
 function StopwatchIcon() {
   return (
@@ -63,34 +64,10 @@ function BudgetPage() {
     { name: 'Design', amount: 20000, percent: 16, color: '#0988EF' },
     { name: 'Testing', amount: 15000, percent: 12, color: '#018848' },
   ]
-
-  const goToProjectsOverview = () => {
-    navigate('/projects-overview')
-  }
   
   return (
     <div className="budget-page">
-      <div className="budget-top">
-        <nav className="breadcrumb" aria-label="Breadcrumb">
-          <Link className="breadcrumb__link" to="/clients">
-            Clients
-          </Link>
-          <span className="breadcrumb__sep">{'>'}</span>
-          <button className="breadcrumb__link" type="button" onClick={goToProjectsOverview}>
-            Nike
-          </button>
-          <span className="breadcrumb__sep">{'>'}</span>
-          <span className="breadcrumb__current">Dashboard Redesign</span>
-        </nav>
-
-        <button className="btn-back" type="button" onClick={goToProjectsOverview}>
-          <span className="btn-back__icon" aria-hidden="true">
-            ←
-          </span>
-          <span className="btn-back__text">Back to Nike</span>
-        </button>
-      </div>
-
+      <Breadcrumbs />
 
       <div className="budget-layout">
         <header className="budget-header" aria-label="Budget page header">

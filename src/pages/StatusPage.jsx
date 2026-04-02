@@ -1,6 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import "../styles/budgetstyles.css";
+import Breadcrumbs from "../components/Breadcrumbs.jsx";
 
 function StatusPage() {
   const navigate = useNavigate();
@@ -16,10 +17,6 @@ function StatusPage() {
   const isMobile = screenWidth <= 768;
 
   const progress = 52;
-
-  const goToProjectsOverview = () => {
-    navigate("/projects-overview");
-  };
 
   const topStats = useMemo(
     () => [
@@ -115,34 +112,7 @@ function StatusPage() {
   return (
     <div className="budget-page">
       {/* SAME TOP SECTION AS BUDGET PAGE */}
-      <div className="budget-top">
-        <nav className="breadcrumb" aria-label="Breadcrumb">
-          <Link className="breadcrumb__link" to="/clients">
-            Clients
-          </Link>
-
-          <span className="breadcrumb__sep">{">"}</span>
-
-          <button
-            className="breadcrumb__link"
-            type="button"
-            onClick={goToProjectsOverview}
-          >
-            Nike
-          </button>
-
-          <span className="breadcrumb__sep">{">"}</span>
-
-          <span className="breadcrumb__current">Dashboard Redesign</span>
-        </nav>
-
-        <button className="btn-back" type="button" onClick={goToProjectsOverview}>
-          <span className="btn-back__icon" aria-hidden="true">
-            ←
-          </span>
-          <span className="btn-back__text">Back to Nike</span>
-        </button>
-      </div>
+      <Breadcrumbs />
 
       {/* STATUS CONTENT */}
       <div
@@ -424,7 +394,7 @@ const styles = {
   },
 
   pageMobile: {
-    padding: "0 12px 22px",
+    padding: "0",
   },
 
   container: {
