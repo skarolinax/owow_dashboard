@@ -386,8 +386,7 @@ function StatusPage() {
 const styles = {
   page: {
     minHeight: "100vh",
-    backgroundColor: "#000000",
-    color: "#ffffff",
+    color: "var(--color-text-primary)",
     fontFamily: "Montreal",
     padding: "0 18px 28px",
     boxSizing: "border-box",
@@ -416,9 +415,10 @@ const styles = {
     alignItems: "center",
     gap: "12px",
     background:
-      "linear-gradient(180deg, rgba(4,33,18,1) 0%, rgba(4,24,14,1) 100%)",
+      "var(--accent-card)",
     borderRadius: "12px",
     padding: "12px 18px",
+    color: "var(--color-text-primary)",
     marginBottom: "14px",
   },
 
@@ -459,8 +459,9 @@ const styles = {
   },
 
   progressCard: {
-    background: "#191717",
-    border: "1px solid #242426",
+    background: "var(--accent-card)",
+    color: "var(--color-text-primary)",
+    border: "1px solid var(--stroke-color)",
     borderRadius: "8px",
     padding: "22px 24px",
     marginBottom: "16px",
@@ -547,8 +548,9 @@ const styles = {
   },
 
   statCard: {
-    background: "#171719",
-    border: "1px solid #242426",
+    background: "var(--accent-card)",
+    color: "var(--color-text-primary)",
+    border: "1px solid var(--stroke-color)",
     borderRadius: "8px",
     padding: "18px 18px",
     minHeight: "130px",
@@ -626,7 +628,7 @@ const styles = {
   },
 
   greenSmall: {
-    color: "#ffffff",
+    color: "var(--color-text-primary)",
     fontFamily: "MontrealMono",
     fontSize: "14px",
   },
@@ -645,8 +647,9 @@ const styles = {
   },
 
   lowerCard: {
-    background: "#171719",
-    border: "1px solid #242426",
+    background: "var(--accent-card)",
+    border: "1px solid var(--stroke-color)",
+    color: "var(--color-text-primary)",
     borderRadius: "8px",
     padding: "18px 18px",
     minHeight: "110px",
@@ -677,7 +680,7 @@ const styles = {
   largeWhiteCenter: {
     display: "block",
     textAlign: "center",
-    color: "#F4F4F6",
+    color: "var(--color-text-primary)",
     fontSize: "30px",
     lineHeight: 1,
     fontWeight: 500,
@@ -715,8 +718,9 @@ const styles = {
     gap: "10px",
     padding: "10px 16px",
     borderRadius: "14px",
-    backgroundColor: "#0f1014",
+    backgroundColor: "var(--accent-card)",
     marginBottom: "10px",
+    color: "var(--color-text-primary)",
   },
 
   milestonesHeaderIcon: {
@@ -749,8 +753,8 @@ const styles = {
   },
 
   milestoneCard: {
-    background: "#171719",
-    border: "1px solid #242426",
+    background: "var(--accent-card)",
+    border: "1px solid var(--stroke-color)",
     borderRadius: "8px",
     padding: "16px 18px",
     display: "flex",
