@@ -1,14 +1,66 @@
 /* src/styles/RisksPage.css */
 
+/* ---- Fonts ---- */
+@font-face {
+  font-family: "Montreal";
+  src: url("../assets/fonts/PPNeueMontreal-Medium.woff2") format("woff2"),
+       url("../assets/fonts/PPNeueMontreal-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MontrealMono";
+  src: url("../assets/fonts/PPNeueMontrealMono-Medium.woff2") format("woff2"),
+       url("../assets/fonts/PPNeueMontrealMono-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+
 .risks-page {
  
   min-height: 100vh;
   color: white;
-  font-family: sans-serif;
+  font-family: "Montreal", sans-serif;
   padding: 24px 32px;
   max-width: 1200px;  
   margin: 0 auto;    
   
+}
+
+.risks-page, .risks-page * {
+  font-family: "Montreal", sans-serif !important;
+}
+
+.risks-page .risks-title,
+.risks-page .risk-group-title,
+.risks-page .risk-card-name,
+.risks-page .status-box-count,
+.risks-page .donut-number {
+  font-family: "MontrealMono", monospace !important;
+}
+
+/* Large titles use mono */
+.risks-title,
+.risk-group-title,
+.risk-card-name,
+.status-box-count,
+.donut-number {
+  font-family: "MontrealMono", monospace;
+}
+
+/* Small text / numeric supporting info use Montreal */
+.risks-subtitle,
+.impact-name,
+.impact-desc,
+.impact-count,
+.donut-label,
+.status-box-label,
+.risk-card-tag,
+.risk-card-impact {
+  font-family: "Montreal", sans-serif;
 }
 
 /* Reusing same breadcrumb pattern as the other page */
