@@ -1,8 +1,43 @@
 import { useMemo, useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import clients from "../data/clients.json";
 import "../styles/budgetstyles.css";
 
+/**
+ * This page supports 3 cases:
+ * 1. Best case: another page navigates here with router state:
+ *    state: { client, project }
+ *
+ * 2. Refresh-safe case: URL has query params:
+ *    /project-status?client=Tesla&project=Dashboard%20Redesign
+ *
+ * 3. Fallback case: if neither exists yet, it shows generic labels.
+ */
+function resolveClientAndProject(clientsData, location) {
+  const { state, search } = location;
+
+  if (state?.client && state?.project) {
+    return { client: state.client, project: state.project };
+  }
+
+  const params = new URLSearchParams(search);
+  const clientName = params.get("client");
+  const projectName = params.get("project");
+
+  if (clientName && projectName) {
+    const client = clientsData.find((c) => c.name === clientName);
+    const project = client?.projects?.find((p) => p.name === projectName);
+
+    if (client && project) {
+      return { client, project };
+    }
+  }
+
+  return { client: null, project: null };
+}
+
 function StatusPage() {
+  const location = useLocation();
   const navigate = useNavigate();
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -15,11 +50,21 @@ function StatusPage() {
   const isTablet = screenWidth <= 1100;
   const isMobile = screenWidth <= 768;
 
-  const progress = 52;
+  const { client, project } = useMemo(
+    () => resolveClientAndProject(clients, location),
+    [location.state, location.search]
+  );
+
+  const clientLabel = client?.name ?? "Client";
+  const projectLabel = project?.name ?? "Project";
+
+  const projectsOverviewState = client ? { client } : undefined;
 
   const goToProjectsOverview = () => {
-    navigate("/projects-overview");
+    navigate("/projects-overview", { state: projectsOverviewState });
   };
+
+  const progress = 52;
 
   const topStats = useMemo(
     () => [
@@ -114,37 +159,41 @@ function StatusPage() {
 
   return (
     <div className="budget-page">
-      {/* SAME TOP SECTION AS BUDGET PAGE */}
-      <div className="budget-top">
-        <nav className="breadcrumb" aria-label="Breadcrumb">
-          <Link className="breadcrumb__link" to="/clients">
-            Clients
-          </Link>
+      {/* Top breadcrumb and back button */}
+      <nav
+        className="breadcrumb"
+        aria-label="Breadcrumb"
+        style={isMobile ? styles.breadcrumbMobile : undefined}
+      >
+        <Link className="breadcrumb__link" to="/clients">
+          Clients
+        </Link>
 
-          <span className="breadcrumb__sep">{">"}</span>
+        <span className="breadcrumb__sep">{">"}</span>
 
-          <button
-            className="breadcrumb__link"
-            type="button"
-            onClick={goToProjectsOverview}
-          >
-            Nike
-          </button>
+        <button
+          className="breadcrumb__link"
+          type="button"
+          onClick={goToProjectsOverview}
+        >
+          {clientLabel}
+        </button>
 
-          <span className="breadcrumb__sep">{">"}</span>
+        <span className="breadcrumb__sep">{">"}</span>
 
-          <span className="breadcrumb__current">Dashboard Redesign</span>
-        </nav>
+        <span className="breadcrumb__current">{projectLabel}</span>
+      </nav>
 
+      <div className="budget-top" style={isMobile ? styles.budgetTopMobile : undefined}>
         <button className="btn-back" type="button" onClick={goToProjectsOverview}>
           <span className="btn-back__icon" aria-hidden="true">
             ←
           </span>
-          <span className="btn-back__text">Back to Nike</span>
+          <span className="btn-back__text">Back to {clientLabel}</span>
         </button>
       </div>
 
-      {/* STATUS CONTENT */}
+      {/* Status content */}
       <div
         style={{
           ...styles.page,
@@ -180,7 +229,7 @@ function StatusPage() {
                   ...(isMobile ? styles.badgeSubMobile : {}),
                 }}
               >
-                Dashboard Redesign
+                {projectLabel}
               </div>
             </div>
           </div>
@@ -191,7 +240,12 @@ function StatusPage() {
               ...(isMobile ? styles.progressCardMobile : {}),
             }}
           >
-            <div style={styles.progressTop}>
+            <div
+              style={{
+                ...styles.progressTop,
+                ...(isMobile ? styles.progressTopMobile : {}),
+              }}
+            >
               <div>
                 <h2
                   style={{
@@ -416,8 +470,7 @@ function StatusPage() {
 const styles = {
   page: {
     minHeight: "100vh",
-    backgroundColor: "#000000",
-    color: "#ffffff",
+    color: "var(--color-text-primary)",
     fontFamily: "Montreal",
     padding: "0 18px 28px",
     boxSizing: "border-box",
@@ -425,6 +478,18 @@ const styles = {
 
   pageMobile: {
     padding: "0 12px 22px",
+  },
+
+  budgetTopMobile: {
+    marginLeft: "12px",
+    marginRight: "12px",
+  },
+
+  breadcrumbMobile: {
+    marginLeft: "12px",
+    marginRight: "12px",
+    gap: "6px",
+    flexWrap: "wrap",
   },
 
   container: {
@@ -445,10 +510,10 @@ const styles = {
     display: "inline-flex",
     alignItems: "center",
     gap: "12px",
-    background:
-      "linear-gradient(180deg, rgba(4,33,18,1) 0%, rgba(4,24,14,1) 100%)",
+    background: "var(--accent-card)",
     borderRadius: "12px",
     padding: "12px 18px",
+    color: "var(--color-text-primary)",
     marginBottom: "14px",
   },
 
@@ -489,8 +554,9 @@ const styles = {
   },
 
   progressCard: {
-    background: "#191717",
-    border: "1px solid #242426",
+    background: "var(--accent-card)",
+    color: "var(--color-text-primary)",
+    border: "1px solid var(--stroke-color)",
     borderRadius: "8px",
     padding: "22px 24px",
     marginBottom: "16px",
@@ -507,6 +573,11 @@ const styles = {
     alignItems: "flex-start",
     gap: "16px",
     marginBottom: "18px",
+  },
+
+  progressTopMobile: {
+    flexDirection: "column",
+    gap: "10px",
   },
 
   progressTitle: {
@@ -577,8 +648,9 @@ const styles = {
   },
 
   statCard: {
-    background: "#171719",
-    border: "1px solid #242426",
+    background: "var(--accent-card)",
+    color: "var(--color-text-primary)",
+    border: "1px solid var(--stroke-color)",
     borderRadius: "8px",
     padding: "18px 18px",
     minHeight: "130px",
@@ -656,7 +728,7 @@ const styles = {
   },
 
   greenSmall: {
-    color: "#ffffff",
+    color: "var(--color-text-primary)",
     fontFamily: "MontrealMono",
     fontSize: "14px",
   },
@@ -675,8 +747,9 @@ const styles = {
   },
 
   lowerCard: {
-    background: "#171719",
-    border: "1px solid #242426",
+    background: "var(--accent-card)",
+    border: "1px solid var(--stroke-color)",
+    color: "var(--color-text-primary)",
     borderRadius: "8px",
     padding: "18px 18px",
     minHeight: "110px",
@@ -707,7 +780,7 @@ const styles = {
   largeWhiteCenter: {
     display: "block",
     textAlign: "center",
-    color: "#F4F4F6",
+    color: "var(--color-text-primary)",
     fontSize: "30px",
     lineHeight: 1,
     fontWeight: 500,
@@ -745,8 +818,9 @@ const styles = {
     gap: "10px",
     padding: "10px 16px",
     borderRadius: "14px",
-    backgroundColor: "#0f1014",
+    backgroundColor: "var(--accent-card)",
     marginBottom: "10px",
+    color: "var(--color-text-primary)",
   },
 
   milestonesHeaderIcon: {
@@ -779,8 +853,8 @@ const styles = {
   },
 
   milestoneCard: {
-    background: "#171719",
-    border: "1px solid #242426",
+    background: "var(--accent-card)",
+    border: "1px solid var(--stroke-color)",
     borderRadius: "8px",
     padding: "16px 18px",
     display: "flex",
