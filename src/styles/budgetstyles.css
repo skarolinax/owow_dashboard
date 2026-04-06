@@ -132,7 +132,7 @@
   background-color: var(--accent-card);
   border: none;
   border-radius: var(--budget-radius);
-  padding: 50px 35px;
+  padding: 24px 22px;
   width: 100%;
 }
 
@@ -144,10 +144,11 @@
 }
 
 .budget-card__label {
-  font-family: MontrealMono;
-  font-size: 20px;
-  font-weight: 400;
-  margin-bottom: 6px;
+  margin: 0 0 6px;
+  font-family: Montreal, system-ui, sans-serif;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1;
 }
 
 .budget-card__amounts {
@@ -477,6 +478,12 @@
   height: 100%;
   border-radius: var(--budget-radius);
   transition: width 200ms ease;
+}
+
+@media (max-width: 768px) {
+  .budget-card__label {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 900px) {
