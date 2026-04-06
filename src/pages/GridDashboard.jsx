@@ -54,6 +54,7 @@ function GridDashboard() {
   const projectLabel = project?.name ?? 'Project'
 
   const projectsOverviewState = client ? { client } : undefined
+  const projectPageState = client && project ? { client, project } : undefined
 
   const goToProjectsOverview = () => {
     navigate('/projects-overview', { state: projectsOverviewState, replace: true })
@@ -104,7 +105,7 @@ function GridDashboard() {
             <div className="card">
               <div className="card-header">
                 <h3 className="card-title">📊 Status</h3>
-               <Link to="/project-status" className="view-details">View details →</Link>
+               <Link to="/project-status" state={projectPageState} className="view-details">View details →</Link>
               </div>
               <div className="progress-section">
                 <div className="progress-top">
@@ -141,7 +142,7 @@ function GridDashboard() {
 
   <div className="card-header">
     <h3 className="card-title">📋 Project Roadmap</h3>
-     <Link to="/roadmap" className="view-details">View details →</Link>
+     <Link to="/roadmap" state={projectPageState} className="view-details">View details →</Link>
   </div>
 
   {/* Completed / Remaining / Total count */}
@@ -214,7 +215,7 @@ function GridDashboard() {
 
   <div className="card-header">
     <h3 className="card-title">💰 Budget</h3>
-    <Link to="/budget" className="view-details">View details →</Link>
+    <Link to="/budget" state={projectPageState} className="view-details">View details →</Link>
   </div>
 
   {/* Total budget amount */}
@@ -254,7 +255,7 @@ function GridDashboard() {
 
   <div className="card-header">
     <h3 className="card-title">⚠️ Risks</h3>
-   <Link to="/risks" className="view-details">View details →</Link>
+   <Link to="/risks" state={projectPageState} className="view-details">View details →</Link>
   </div>
 
   {/* Severity summary badges */}
@@ -292,7 +293,7 @@ function GridDashboard() {
 
   <div className="card-header">
     <h3 className="card-title">🎯 Milestones</h3>
-    <Link to="/updates" className="view-details">View details →</Link>
+    <Link to="/updates" state={projectPageState} className="view-details">View details →</Link>
   </div>
 
   <div className="milestone-list">
