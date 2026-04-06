@@ -556,7 +556,7 @@ const styles = {
   progressCard: {
     background: "var(--accent-card)",
     color: "var(--color-text-primary)",
-    border: "1px solid var(--stroke-color)",
+    border: "none",
     borderRadius: "8px",
     padding: "22px 24px",
     marginBottom: "16px",
@@ -650,7 +650,7 @@ const styles = {
   statCard: {
     background: "var(--accent-card)",
     color: "var(--color-text-primary)",
-    border: "1px solid var(--stroke-color)",
+    border: "none",
     borderRadius: "8px",
     padding: "18px 18px",
     minHeight: "130px",
@@ -748,7 +748,7 @@ const styles = {
 
   lowerCard: {
     background: "var(--accent-card)",
-    border: "1px solid var(--stroke-color)",
+    border: "none",
     color: "var(--color-text-primary)",
     borderRadius: "8px",
     padding: "18px 18px",
@@ -854,7 +854,7 @@ const styles = {
 
   milestoneCard: {
     background: "var(--accent-card)",
-    border: "1px solid var(--stroke-color)",
+    border: "none",
     borderRadius: "8px",
     padding: "16px 18px",
     display: "flex",
