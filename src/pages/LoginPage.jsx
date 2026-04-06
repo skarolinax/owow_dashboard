@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
 import arrowRight from "../assets/images/arrow-right.svg";
-import clients from "../data/clients.json"
+import clients from "../data/clients.json";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -13,8 +13,13 @@ function LoginPage() {
   const [role, setRole] = useState("employee");
   const [showPassword, setShowPassword] = useState(false);
 
-  // screen size state for responsiveness
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  const [isLoginHovered, setIsLoginHovered] = useState(false);
+  const [isForgotHovered, setIsForgotHovered] = useState(false);
+  const [isEmployeeHovered, setIsEmployeeHovered] = useState(false);
+  const [isClientHovered, setIsClientHovered] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   const isMobile = screenWidth <= 768;
   const isTablet = screenWidth <= 1100;
@@ -73,7 +78,7 @@ function LoginPage() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    const client = clients.find(c => c.name === "Nike"); // For the client role we just pick random one
+    const client = clients.find((c) => c.name === "Nike");
 
     localStorage.setItem("owowRole", role);
 
@@ -84,6 +89,26 @@ function LoginPage() {
       localStorage.removeItem("owowClient");
       navigate("/clients");
     }
+  };
+
+  const getRoleButtonStyle = (buttonRole, isHovered) => {
+    const isActive = role === buttonRole;
+
+    if (buttonRole === "employee") {
+      return {
+        ...styles.roleButton,
+        ...(isMobile ? styles.roleButtonMobile : {}),
+        ...(isActive ? styles.roleButtonEmployeeActive : {}),
+        ...(isHovered && !isActive ? styles.roleButtonHover : {}),
+      };
+    }
+
+    return {
+      ...styles.roleButton,
+      ...(isMobile ? styles.roleButtonMobile : {}),
+      ...(isActive ? styles.roleButtonClientActive : {}),
+      ...(isHovered && !isActive ? styles.roleButtonClientHover : {}),
+    };
   };
 
   return (
@@ -249,9 +274,12 @@ function LoginPage() {
 
                 <button
                   type="button"
+                  onMouseEnter={() => setIsForgotHovered(true)}
+                  onMouseLeave={() => setIsForgotHovered(false)}
                   style={{
                     ...styles.linkButton,
                     ...(isMobile ? styles.linkButtonMobile : {}),
+                    ...(isForgotHovered ? styles.linkButtonHover : {}),
                   }}
                 >
                   Forgot Your Password?
@@ -267,11 +295,9 @@ function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setRole("employee")}
-                  style={{
-                    ...styles.roleButton,
-                    ...(role === "employee" ? styles.roleButtonActive : {}),
-                    ...(isMobile ? styles.roleButtonMobile : {}),
-                  }}
+                  onMouseEnter={() => setIsEmployeeHovered(true)}
+                  onMouseLeave={() => setIsEmployeeHovered(false)}
+                  style={getRoleButtonStyle("employee", isEmployeeHovered)}
                 >
                   <span style={styles.roleIcon}>
                     <svg
@@ -296,11 +322,9 @@ function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setRole("client")}
-                  style={{
-                    ...styles.roleButton,
-                    ...(role === "client" ? styles.roleButtonActive : {}),
-                    ...(isMobile ? styles.roleButtonMobile : {}),
-                  }}
+                  onMouseEnter={() => setIsClientHovered(true)}
+                  onMouseLeave={() => setIsClientHovered(false)}
+                  style={getRoleButtonStyle("client", isClientHovered)}
                 >
                   <span style={styles.roleIcon}>
                     <svg
@@ -323,9 +347,12 @@ function LoginPage() {
 
               <button
                 type="submit"
+                onMouseEnter={() => setIsLoginHovered(true)}
+                onMouseLeave={() => setIsLoginHovered(false)}
                 style={{
                   ...styles.loginButton,
                   ...(isMobile ? styles.loginButtonMobile : {}),
+                  ...(isLoginHovered ? styles.loginButtonHover : {}),
                 }}
               >
                 <span>Log in</span>
@@ -335,6 +362,7 @@ function LoginPage() {
                   style={{
                     ...styles.arrowIcon,
                     ...(isMobile ? styles.arrowIconMobile : {}),
+                    ...(isLoginHovered ? styles.arrowIconHover : {}),
                   }}
                 />
               </button>
@@ -401,6 +429,9 @@ function LoginPage() {
               }}
             >
               <FeatureCard
+                id="analytics"
+                hoveredCard={hoveredCard}
+                setHoveredCard={setHoveredCard}
                 isMobile={isMobile}
                 bg="rgba(228, 154, 47, 0.12)"
                 title="Real-time Analytics"
@@ -424,6 +455,9 @@ function LoginPage() {
               />
 
               <FeatureCard
+                id="management"
+                hoveredCard={hoveredCard}
+                setHoveredCard={setHoveredCard}
                 isMobile={isMobile}
                 bg="rgba(20, 151, 86, 0.12)"
                 title="Project Management"
@@ -445,6 +479,9 @@ function LoginPage() {
               />
 
               <FeatureCard
+                id="risks"
+                hoveredCard={hoveredCard}
+                setHoveredCard={setHoveredCard}
                 isMobile={isMobile}
                 bg="rgba(225, 90, 61, 0.12)"
                 title="Risk Assessment"
@@ -472,12 +509,26 @@ function LoginPage() {
   );
 }
 
-function FeatureCard({ icon, title, description, bg, isMobile }) {
+function FeatureCard({
+  id,
+  icon,
+  title,
+  description,
+  bg,
+  isMobile,
+  hoveredCard,
+  setHoveredCard,
+}) {
+  const isHovered = hoveredCard === id;
+
   return (
     <div
+      onMouseEnter={() => setHoveredCard(id)}
+      onMouseLeave={() => setHoveredCard(null)}
       style={{
         ...styles.featureCard,
         ...(isMobile ? styles.featureCardMobile : {}),
+        ...(isHovered ? styles.featureCardHover : {}),
       }}
     >
       <div
@@ -519,57 +570,62 @@ const styles = {
     boxSizing: "border-box",
     fontFamily: "Montreal",
     color: "#ffffff",
-    overflow: "hidden",
+    display: "flex",
+    alignItems: "stretch",
+    justifyContent: "center",
   },
 
   pageMobile: {
     minHeight: "100vh",
     height: "auto",
-    overflow: "auto",
     padding: "16px",
+    overflow: "visible",
   },
 
   wrapper: {
     display: "grid",
     gridTemplateColumns: "1.04fr 0.96fr",
-    height: "100%",
-    gap: "24px",
+    width: "100%",
+    maxWidth: "1680px",
+    minHeight: "calc(100vh - 40px)",
+    gap: "28px",
     alignItems: "stretch",
   },
 
   wrapperTablet: {
     gridTemplateColumns: "1fr 1fr",
     gap: "18px",
+    minHeight: "calc(100vh - 40px)",
   },
 
   wrapperMobile: {
     gridTemplateColumns: "1fr",
+    minHeight: "auto",
     height: "auto",
     gap: "16px",
   },
 
   leftPanel: {
     backgroundColor: "#000000",
-    padding: "34px 40px 22px 40px",
+    padding: "34px 32px 26px 32px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
   },
 
   leftPanelTablet: {
-    padding: "28px 28px 20px 28px",
+    padding: "28px 20px 20px 20px",
   },
 
   leftPanelMobile: {
-    padding: "12px 8px 0 8px",
+    padding: "10px 4px 0 4px",
   },
 
   logo: {
     width: "128px",
     height: "auto",
     display: "block",
-    marginBottom: "60px",
-    filter: "brightness(0) invert(1)",
+    marginBottom: "56px",
   },
 
   logoTablet: {
@@ -583,7 +639,8 @@ const styles = {
   },
 
   leftContent: {
-    maxWidth: "560px",
+    width: "100%",
+    maxWidth: "520px",
   },
 
   leftContentMobile: {
@@ -617,7 +674,7 @@ const styles = {
     color: "#7B7B82",
     fontSize: "16px",
     lineHeight: 1.5,
-    marginBottom: "42px",
+    marginBottom: "38px",
     maxWidth: "430px",
     fontFamily: "MontrealMono",
   },
@@ -671,6 +728,7 @@ const styles = {
     fontSize: "14px",
     outline: "none",
     fontFamily: "MontrealMono",
+    transition: "border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
   },
 
   inputTablet: {
@@ -698,6 +756,7 @@ const styles = {
     fontSize: "14px",
     outline: "none",
     fontFamily: "MontrealMono",
+    transition: "border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
   },
 
   eyeButton: {
@@ -712,6 +771,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    transition: "opacity 0.2s ease, transform 0.2s ease",
   },
 
   optionsRow: {
@@ -765,10 +825,16 @@ const styles = {
     fontSize: "14px",
     padding: 0,
     fontFamily: "Montreal",
+    transition: "opacity 0.2s ease, transform 0.2s ease, color 0.2s ease",
   },
 
   linkButtonMobile: {
     fontSize: "13px",
+  },
+
+  linkButtonHover: {
+    color: "#E49A2F",
+    transform: "translateY(-1px)",
   },
 
   roleSwitch: {
@@ -798,6 +864,7 @@ const styles = {
     justifyContent: "center",
     gap: "10px",
     fontFamily: "Montreal",
+    transition: "all 0.22s ease",
   },
 
   roleButtonMobile: {
@@ -806,9 +873,26 @@ const styles = {
     gap: "8px",
   },
 
-  roleButtonActive: {
+  roleButtonEmployeeActive: {
     backgroundColor: "#F3F3F3",
     color: "#101010",
+    boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.08)",
+  },
+
+  roleButtonClientActive: {
+    backgroundColor: "#E49A2F",
+    color: "#101010",
+    boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.08)",
+  },
+
+  roleButtonHover: {
+    backgroundColor: "rgba(255,255,255,0.05)",
+    color: "#F3F3F3",
+  },
+
+  roleButtonClientHover: {
+    backgroundColor: "rgba(228, 154, 47, 0.18)",
+    color: "#F3F3F3",
   },
 
   roleIcon: {
@@ -831,6 +915,7 @@ const styles = {
     justifyContent: "center",
     gap: "10px",
     fontFamily: "Montreal",
+    transition: "transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease",
   },
 
   loginButtonMobile: {
@@ -839,14 +924,25 @@ const styles = {
     gap: "8px",
   },
 
+  loginButtonHover: {
+    transform: "translateY(-2px)",
+    boxShadow: "0 14px 30px rgba(255,255,255,0.08)",
+    filter: "brightness(0.96)",
+  },
+
   arrowIcon: {
     width: "16px",
     height: "16px",
+    transition: "transform 0.22s ease",
   },
 
   arrowIconMobile: {
     width: "14px",
     height: "14px",
+  },
+
+  arrowIconHover: {
+    transform: "translateX(4px)",
   },
 
   rightPanel: {
@@ -855,20 +951,21 @@ const styles = {
     background: "linear-gradient(135deg, #171719 0%, #1C1C1F 100%)",
     border: "1px solid rgba(255,255,255,0.04)",
     borderRadius: "2px",
-    padding: "42px 36px 24px 36px",
+    padding: "40px 34px 26px 34px",
     display: "flex",
     alignItems: "flex-start",
+    justifyContent: "flex-start",
     boxSizing: "border-box",
-    height: "100%",
+    minHeight: "100%",
   },
 
   rightPanelTablet: {
-    padding: "32px 24px 20px 24px",
+    padding: "30px 22px 20px 22px",
   },
 
   rightPanelMobile: {
     minHeight: "auto",
-    padding: "28px 20px 18px 20px",
+    padding: "28px 18px 18px 18px",
     height: "auto",
   },
 
@@ -876,7 +973,7 @@ const styles = {
     position: "relative",
     zIndex: 2,
     width: "100%",
-    maxWidth: "620px",
+    maxWidth: "600px",
   },
 
   rightContentMobile: {
@@ -884,11 +981,11 @@ const styles = {
   },
 
   rightHeading: {
-    fontSize: "52px",
+    fontSize: "50px",
     lineHeight: 1.06,
-    letterSpacing: "-1.4px",
+    letterSpacing: "-1.3px",
     fontWeight: 500,
-    margin: "0 0 20px 0",
+    margin: "0 0 18px 0",
     maxWidth: "500px",
   },
 
@@ -909,8 +1006,8 @@ const styles = {
     fontSize: "16px",
     color: "#8A8A91",
     lineHeight: 1.6,
-    marginBottom: "50px",
-    maxWidth: "560px",
+    marginBottom: "44px",
+    maxWidth: "540px",
     fontFamily: "MontrealMono",
   },
 
@@ -948,11 +1045,18 @@ const styles = {
     borderRadius: "4px",
     width: "100%",
     boxSizing: "border-box",
+    transition: "transform 0.22s ease, border-color 0.22s ease, background 0.22s ease",
   },
 
   featureCardMobile: {
     padding: "14px 14px",
     gap: "12px",
+  },
+
+  featureCardHover: {
+    transform: "translateY(-2px)",
+    background: "rgba(255,255,255,0.05)",
+    borderColor: "rgba(255,255,255,0.14)",
   },
 
   featureIconBox: {
