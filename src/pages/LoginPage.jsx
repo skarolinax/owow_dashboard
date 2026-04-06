@@ -621,12 +621,13 @@ const styles = {
     padding: "10px 4px 0 4px",
   },
 
-  logo: {
-    width: "128px",
-    height: "auto",
-    display: "block",
-    marginBottom: "56px",
-  },
+logo: {
+  width: "128px",
+  height: "auto",
+  display: "block",
+  marginBottom: "56px",
+  filter: "brightness(0) invert(1) contrast(1.2)",
+},
 
   logoTablet: {
     width: "118px",
