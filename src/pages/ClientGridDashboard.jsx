@@ -29,6 +29,14 @@ function ClientGridDashboard() {
   const navigate = useNavigate()
   const [, setSearchParams] = useSearchParams()
 
+  const role = localStorage.getItem("owowRole") || "employee";
+
+  useEffect(() => {
+    if (role === 'employee') {
+      navigate('/grid-dashboard' + location.search);
+    }
+  }, [role, navigate, location.search]);
+
   const { client, project } = useMemo(
     () => resolveClientAndProject(clients, location),
     [location],
@@ -219,19 +227,47 @@ function ClientGridDashboard() {
     <h3 className="card-title">📞 Contact OWOW Team</h3>
   </div>
 
-  {/* Contact details */}
-  <div className="contact-list">
-    <div className="contact-item">
-      <span className="contact-name">Project Manager</span>
-      <span className="contact-info">John Doe - john@owow.com</span>
+  <div className="contact-summary-card">
+    <div className="contact-summary-title">
+      <div className="contact-avatar">👨‍💼</div>
+      <div className="contact-summary-info">
+        <div>
+          <span className="contact-name">Project Manager</span>
+          <h4 className="contact-person">Sarah Lee</h4>
+        </div>
+        <span className="contact-email">sarah@owow.com</span>
+      </div>
     </div>
-    <div className="contact-item">
-      <span className="contact-name">Designer</span>
-      <span className="contact-info">Jane Smith - jane@owow.com</span>
-    </div>
-    <div className="contact-item">
-      <span className="contact-name">Developer</span>
-      <span className="contact-info">Mike Johnson - mike@owow.com</span>
+
+    <div className="contact-actions-grid">
+      <a href="mailto:sarah@owow.com" className="contact-action-card">
+        <span className="contact-action-icon">✉️</span>
+        <div>
+          <p className="contact-action-title">Email</p>
+          <p className="contact-action-text">sarah@owow.com</p>
+        </div>
+      </a>
+      <a href="tel:+31612345678" className="contact-action-card">
+        <span className="contact-action-icon">📞</span>
+        <div>
+          <p className="contact-action-title">Call</p>
+          <p className="contact-action-text">+31 6 1234 5678</p>
+        </div>
+      </a>
+      <a href="https://calendly.com/" target="_blank" rel="noreferrer" className="contact-action-card">
+        <span className="contact-action-icon">📅</span>
+        <div>
+          <p className="contact-action-title">Schedule a call</p>
+          <p className="contact-action-text">Book time with Sarah</p>
+        </div>
+      </a>
+      <a href="https://slack.com/" target="_blank" rel="noreferrer" className="contact-action-card">
+        <span className="contact-action-icon">💬</span>
+        <div>
+          <p className="contact-action-title">Message on Slack</p>
+          <p className="contact-action-text">@sarah_owow</p>
+        </div>
+      </a>
     </div>
   </div>
 

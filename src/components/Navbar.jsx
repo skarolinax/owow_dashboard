@@ -13,6 +13,7 @@ import MenuIcon from "../assets/images/menu.svg";
 function Navbar({ theme, toggleTheme }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [role, setRole] = useState(() => localStorage.getItem("owowRole") || "employee");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,12 +35,15 @@ function Navbar({ theme, toggleTheme }) {
 
   // Keep current ?client=...&project=... when moving between project pages
   const currentSearch = location.search || "";
+  const isClient = role === "client";
 
   const links = [
-    { to: `/grid-dashboard${currentSearch}`, label: "Overview" },
+    { to: `${isClient ? '/client-grid-dashboard' : '/grid-dashboard'}${currentSearch}`, label: "Overview" },
     { to: `/project-status${currentSearch}`, label: "Status" },
-    { to: `/budget${currentSearch}`, label: "Budget" },
-    { to: `/risks${currentSearch}`, label: "Risks" },
+    ...(!isClient ? [
+      { to: `/budget${currentSearch}`, label: "Budget" },
+      { to: `/risks${currentSearch}`, label: "Risks" },
+    ] : []),
     { to: `/roadmap${currentSearch}`, label: "Roadmap" },
     { to: `/updates${currentSearch}`, label: "Updates" },
   ];
@@ -63,6 +67,9 @@ function Navbar({ theme, toggleTheme }) {
   }, []);
 
   function handleLogout() {
+    localStorage.removeItem("owowRole");
+    localStorage.removeItem("owowClient");
+    setRole("employee");
     navigate("/login");
   }
 
@@ -71,7 +78,7 @@ function Navbar({ theme, toggleTheme }) {
       {disableLinks ? (
         <img src={Logo} alt="Logo of the agency" />
       ) : (
-        <Link to={`/grid-dashboard${currentSearch}`}>
+        <Link to={`${isClient ? '/client-grid-dashboard' : '/grid-dashboard'}${currentSearch}`}>
           <img src={Logo} alt="Logo of the agency" />
         </Link>
       )}

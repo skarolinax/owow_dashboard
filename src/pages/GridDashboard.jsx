@@ -29,6 +29,14 @@ function GridDashboard() {
   const navigate = useNavigate()
   const [, setSearchParams] = useSearchParams()
 
+  const role = localStorage.getItem("owowRole") || "employee";
+
+  useEffect(() => {
+    if (role === 'client') {
+      navigate('/client-grid-dashboard' + location.search);
+    }
+  }, [role, navigate, location.search]);
+
   const { client, project } = useMemo(
     () => resolveClientAndProject(clients, location),
     [location],
@@ -143,7 +151,7 @@ function GridDashboard() {
 
   <div className="card-header">
     <h3 className="card-title">📋 Project Roadmap</h3>
-     <Link to="/roadmap" state={projectPageState} className="view-details">View details →</Link>
+     <Link to="/roadmap" className="view-details">View details →</Link>
   </div>
 
   {/* Completed / Remaining / Total count */}
@@ -216,7 +224,7 @@ function GridDashboard() {
 
   <div className="card-header">
     <h3 className="card-title">💰 Budget</h3>
-    <Link to="/budget" state={projectPageState} className="view-details">View details →</Link>
+    <Link to="/budget" className="view-details">View details →</Link>
   </div>
 
   {/* Total budget amount */}
@@ -256,7 +264,7 @@ function GridDashboard() {
 
   <div className="card-header">
     <h3 className="card-title">⚠️ Risks</h3>
-   <Link to="/risks" className="view-details">View details →</Link>
+    <Link to="/risks" state={projectPageState} className="view-details">View details →</Link>
   </div>
   {/* Severity summary badges */}
   <div className="risk-summary">

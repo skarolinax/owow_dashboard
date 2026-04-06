@@ -75,11 +75,14 @@ function LoginPage() {
 
     const client = clients.find(c => c.name === "Nike"); // For the client role we just pick random one
 
-    if(role === "employee") {
+    localStorage.setItem("owowRole", role);
+
+    if (role === "client") {
+      localStorage.setItem("owowClient", JSON.stringify(client));
+      navigate("/projects-overview", { state: { client, role } });
+    } else {
+      localStorage.removeItem("owowClient");
       navigate("/clients");
-    } else
-    if(role === "client") {
-      navigate("/projects-overview", {state: {client, role}});
     }
   };
 
