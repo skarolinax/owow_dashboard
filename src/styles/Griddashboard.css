@@ -15,6 +15,9 @@
   color: white;
   font-family: "Montreal", "Inter", system-ui, -apple-system, sans-serif;
   letter-spacing: 0.01em;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 16px;
 }
 
 /* Breadcrumb sits outside .budget-top; align with budget-top / page padding */

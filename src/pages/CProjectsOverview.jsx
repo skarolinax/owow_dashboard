@@ -72,7 +72,7 @@ function CProjectsOverview() {
         <div className={s.wrapperCardProject}>
           {client.projects.map(project => (
             <Link
-              to="/grid-dashboard"
+              to={role === "client" ? "/client-grid-dashboard" : "/grid-dashboard"}
               state={{project, client}}
               key={project.name}
             >
