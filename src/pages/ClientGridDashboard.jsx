@@ -24,7 +24,7 @@ function resolveClientAndProject(clientsData, location) {
   return { client: null, project: null }
 }
 
-function GridDashboard() {
+function ClientGridDashboard() {
   const location = useLocation()
   const navigate = useNavigate()
   const [, setSearchParams] = useSearchParams()
@@ -32,8 +32,8 @@ function GridDashboard() {
   const role = localStorage.getItem("owowRole") || "employee";
 
   useEffect(() => {
-    if (role === 'client') {
-      navigate('/client-grid-dashboard' + location.search);
+    if (role === 'employee') {
+      navigate('/grid-dashboard' + location.search);
     }
   }, [role, navigate, location.search]);
 
@@ -78,6 +78,7 @@ function GridDashboard() {
   ]
 
   return (
+
 
 
     <div className="project-view">
@@ -219,81 +220,56 @@ function GridDashboard() {
 
           {/* Right column */}
           <div className="right-column">
-           {/* Budget Card */}
+           {/* Contact Card */}
 <div className="card">
 
   <div className="card-header">
-    <h3 className="card-title">💰 Budget</h3>
-    <Link to="/budget" className="view-details">View details →</Link>
+    <h3 className="card-title">📞 Contact OWOW Team</h3>
   </div>
 
-  {/* Total budget amount */}
-  <p className="budget-label">Total budget</p>
-  <p className="budget-total">$125,000</p>
-
-  {/* Spent progress bar */}
-  <div className="budget-bar-row">
-    <span className="budget-bar-label">Spent</span>
-    <span className="budget-bar-percent">19%</span>
-  </div>
-  <div className="progress-bar-bg">
-    <div className="progress-bar-fill orange" style={{ width: '19%' }}></div>
-  </div>
-
-  {/* Spent vs Remaining boxes */}
-  <div className="budget-boxes">
-    <div className="budget-box">
-      <p className="budget-box-label">Spent</p>
-      <p className="budget-box-value">$24k</p>
-    </div>
-    <div className="budget-box">
-      <p className="budget-box-label">Remaining</p>
-      <p className="budget-box-value">$101k</p>
-    </div>
-  </div>
-
-  {/* Hours row */}
-  <div className="budget-hours">
-    <span className="budget-box-label">⏱ Hours</span>
-    <span className="budget-box-label">50h / 100h</span>
-  </div>
-
-</div>
-            {/* Risks Card */}
-<div className="card">
-
-  <div className="card-header">
-    <h3 className="card-title">⚠️ Risks</h3>
-    <Link to="/risks" state={projectPageState} className="view-details">View details →</Link>
-  </div>
-  {/* Severity summary badges */}
-  <div className="risk-summary">
-    <span className="risk-severity medium">1 Medium</span>
-    <span className="risk-severity low">1 Low</span>
-  </div>
-
-  {/* Risk items */}
-  <div className="risk-list">
-
-    <div className="risk-item">
-      <div className="risk-item-top">
-        <span className="risk-name">Designer approval delay</span>
-        <span className="risk-tag at-risk">at-risk</span>
+  <div className="contact-summary-card">
+    <div className="contact-summary-title">
+      <div className="contact-avatar">👨‍💼</div>
+      <div className="contact-summary-info">
+        <div>
+          <span className="contact-name">Project Manager</span>
+          <h4 className="contact-person">Sarah Lee</h4>
+        </div>
+        <span className="contact-email">sarah@owow.com</span>
       </div>
-      <p className="risk-desc">Waiting for client feedback on new UI mockups</p>
     </div>
 
-    <div className="risk-item">
-      <div className="risk-item-top">
-        <span className="risk-name">API rate limit</span>
-        <span className="risk-tag monitoring">monitoring</span>
-      </div>
-      <p className="risk-desc">Possible traffic issues during launch</p>
+    <div className="contact-actions-grid">
+      <a href="mailto:sarah@owow.com" className="contact-action-card">
+        <span className="contact-action-icon">✉️</span>
+        <div>
+          <p className="contact-action-title">Email</p>
+          <p className="contact-action-text">sarah@owow.com</p>
+        </div>
+      </a>
+      <a href="tel:+31612345678" className="contact-action-card">
+        <span className="contact-action-icon">📞</span>
+        <div>
+          <p className="contact-action-title">Call</p>
+          <p className="contact-action-text">+31 6 1234 5678</p>
+        </div>
+      </a>
+      <a href="https://calendly.com/" target="_blank" rel="noreferrer" className="contact-action-card">
+        <span className="contact-action-icon">📅</span>
+        <div>
+          <p className="contact-action-title">Schedule a call</p>
+          <p className="contact-action-text">Book time with Sarah</p>
+        </div>
+      </a>
+      <a href="https://slack.com/" target="_blank" rel="noreferrer" className="contact-action-card">
+        <span className="contact-action-icon">💬</span>
+        <div>
+          <p className="contact-action-title">Message on Slack</p>
+          <p className="contact-action-text">@sarah_owow</p>
+        </div>
+      </a>
     </div>
-
   </div>
-
-  <p className="risk-total">Total: 2</p>
 
 </div>
            {/* Milestones Card */}
@@ -346,4 +322,4 @@ function GridDashboard() {
 }
 
 
-export default GridDashboard
+export default ClientGridDashboard

@@ -9,6 +9,7 @@ import BudgetPage from './pages/BudgetPage';
 import ClientsOverview from './pages/ClientsOverview';
 import CProjectsOverview from './pages/CProjectsOverview';
 import GridDashboard from './pages/GridDashboard';
+import ClientGridDashboard from './pages/ClientGridDashboard';
 import LoginPage from './pages/LoginPage';
 import StatusPage from './pages/StatusPage';
 import RoadmapPage from './pages/Roadmap';
@@ -38,6 +39,7 @@ function AppContent() {
         <Route path="/clients" element={<ClientsOverview />} />
         <Route path="/projects-overview" element={<CProjectsOverview />} />
         <Route path="/grid-dashboard" element={<GridDashboard />} />
+        <Route path="/client-grid-dashboard" element={<ClientGridDashboard />} />
         <Route path="/budget" element={<BudgetPage />} />
         <Route path="/roadmap" element={<RoadmapPage />} />
         <Route path="/project-status" element={<StatusPage />} />

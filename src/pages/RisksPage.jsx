@@ -39,7 +39,7 @@ function RisksPage() {
 
   const { client, project } = useMemo(
     () => resolveClientAndProject(clients, location),
-    [location.state, location.search]
+    [location]
   );
 
   const clientLabel = client?.name ?? "Client";
