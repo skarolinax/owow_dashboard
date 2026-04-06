@@ -143,7 +143,7 @@ function GridDashboard() {
 
   <div className="card-header">
     <h3 className="card-title">📋 Project Roadmap</h3>
-     <Link to="/roadmap" className="view-details">View details →</Link>
+     <Link to="/roadmap" state={projectPageState} className="view-details">View details →</Link>
   </div>
 
   {/* Completed / Remaining / Total count */}
@@ -216,7 +216,7 @@ function GridDashboard() {
 
   <div className="card-header">
     <h3 className="card-title">💰 Budget</h3>
-    <Link to="/budget" className="view-details">View details →</Link>
+    <Link to="/budget" state={projectPageState} className="view-details">View details →</Link>
   </div>
 
   {/* Total budget amount */}
@@ -256,7 +256,7 @@ function GridDashboard() {
 
   <div className="card-header">
     <h3 className="card-title">⚠️ Risks</h3>
-    <Link to="/risks" state={projectPageState} className="view-details">View details →</Link>
+   <Link to="/risks" className="view-details">View details →</Link>
   </div>
   {/* Severity summary badges */}
   <div className="risk-summary">

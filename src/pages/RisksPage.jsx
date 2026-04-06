@@ -34,22 +34,8 @@ function resolveClientAndProject(clientsData, location) {
 }
 
 function RisksPage() {
-  const location = useLocation();
-  const navigate = useNavigate();
 
-  const { client, project } = useMemo(
-    () => resolveClientAndProject(clients, location),
-    [location]
-  );
-
-  const clientLabel = client?.name ?? "Client";
-  const projectLabel = project?.name ?? "Project";
-
-  const projectsOverviewState = client ? { client } : undefined;
-
-  const goToProjectsOverview = () => {
-    navigate("/projects-overview", { state: projectsOverviewState });
-  };
+  const navigate = useNavigate()
 
   const risks = [
     {
