@@ -1,6 +1,36 @@
-import { useNavigate, Link } from 'react-router-dom'
-import '../styles/budgetstyles.css'
-import Breadcrumbs from '../components/Breadcrumbs'
+import { useEffect, useMemo } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import clients from "../data/clients.json";
+import "../styles/budgetstyles.css";
+
+/**
+ * Supports:
+ * 1. router state: { client, project }
+ * 2. query params: ?client=Tesla&project=Dashboard%20Redesign
+ * 3. fallback labels if neither exists yet
+ */
+function resolveClientAndProject(clientsData, location) {
+  const { state, search } = location;
+
+  if (state?.client && state?.project) {
+    return { client: state.client, project: state.project };
+  }
+
+  const params = new URLSearchParams(search);
+  const clientName = params.get("client");
+  const projectName = params.get("project");
+
+  if (clientName && projectName) {
+    const client = clientsData.find((c) => c.name === clientName);
+    const project = client?.projects?.find((p) => p.name === projectName);
+
+    if (client && project) {
+      return { client, project };
+    }
+  }
+
+  return { client: null, project: null };
+}
 
 function StopwatchIcon() {
   return (
@@ -22,7 +52,7 @@ function StopwatchIcon() {
       />
       <path d="M12 15l3.5-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
-  )
+  );
 }
 
 function BudgetBreakdownChartIcon() {
@@ -39,35 +69,77 @@ function BudgetBreakdownChartIcon() {
       <rect x="10" y="8" width="4" height="12" rx="1" fill="#0988EF" />
       <rect x="16" y="10" width="4" height="10" rx="1" fill="#e85d9a" />
     </svg>
-  )
+  );
 }
 
 function BudgetPage() {
-  const navigate = useNavigate()
-  const totalBudgetAmount = 125000
-  const spentAmount = 24000
-  const remainingAmount = totalBudgetAmount - spentAmount
-  const dailyBurnAmount = 1443
-  const budgetUsedPercent = Math.round((spentAmount / totalBudgetAmount) * 100)
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const hoursPurchased = 100
-  const hoursSpent = 50
-  const remainingHours = hoursPurchased - hoursSpent
-  const hoursUsedPercent = Math.round((hoursSpent / hoursPurchased) * 100)
+  const { client, project } = useMemo(
+    () => resolveClientAndProject(clients, location),
+    [location.state, location.search]
+  );
+
+  const clientLabel = client?.name ?? "Client";
+  const projectLabel = project?.name ?? "Project";
+
+  const projectsOverviewState = client ? { client } : undefined;
+
+  const goToProjectsOverview = () => {
+    navigate("/projects-overview", { state: projectsOverviewState });
+  };
+
+  const totalBudgetAmount = 125000;
+  const spentAmount = 24000;
+  const remainingAmount = totalBudgetAmount - spentAmount;
+  const dailyBurnAmount = 1443;
+  const budgetUsedPercent = Math.round((spentAmount / totalBudgetAmount) * 100);
+
+  const hoursPurchased = 100;
+  const hoursSpent = 50;
+  const remainingHours = hoursPurchased - hoursSpent;
+  const hoursUsedPercent = Math.round((hoursSpent / hoursPurchased) * 100);
+
   const formatBudgetAmount = (amount) =>
-    amount >= 1000
-      ? `$${(amount / 1000).toFixed(0)}k`
-      : `$${amount.toLocaleString()}`
+    amount >= 1000 ? `$${(amount / 1000).toFixed(0)}k` : `$${amount.toLocaleString()}`;
 
   const budgetBreakdownRows = [
-    { name: 'Development', amount: 80000, percent: 64, color: '#ff9f43' },
-    { name: 'Design', amount: 20000, percent: 16, color: '#0988EF' },
-    { name: 'Testing', amount: 15000, percent: 12, color: '#018848' },
-  ]
-  
+    { name: "Development", amount: 80000, percent: 64, color: "#ff9f43" },
+    { name: "Design", amount: 20000, percent: 16, color: "#0988EF" },
+    { name: "Testing", amount: 15000, percent: 12, color: "#018848" },
+  ];
+
   return (
     <div className="budget-page">
-      <Breadcrumbs />
+      <nav className="breadcrumb" aria-label="Breadcrumb">
+        <Link className="breadcrumb__link" to="/clients">
+          Clients
+        </Link>
+
+        <span className="breadcrumb__sep">{">"}</span>
+
+        <button
+          className="breadcrumb__link"
+          type="button"
+          onClick={goToProjectsOverview}
+        >
+          {clientLabel}
+        </button>
+
+        <span className="breadcrumb__sep">{">"}</span>
+
+        <span className="breadcrumb__current">{projectLabel}</span>
+      </nav>
+
+      <div className="budget-top">
+        <button className="btn-back" type="button" onClick={goToProjectsOverview}>
+          <span className="btn-back__icon" aria-hidden="true">
+            ←
+          </span>
+          <span className="btn-back__text">Back to {clientLabel}</span>
+        </button>
+      </div>
 
       <div className="budget-layout">
         <header className="budget-header" aria-label="Budget page header">
@@ -76,7 +148,7 @@ function BudgetPage() {
           </div>
           <div className="budget-header__text">
             <h1 className="budget-header__title">Budget</h1>
-            <p className="budget-header__subtitle">Dashboard Redesign</p>
+            <p className="budget-header__subtitle">{projectLabel}</p>
           </div>
         </header>
 
@@ -92,6 +164,7 @@ function BudgetPage() {
             </div>
             <div className="budget-card__percent">{budgetUsedPercent}%</div>
           </div>
+
           <div
             className="budget-card__track"
             role="progressbar"
@@ -138,6 +211,7 @@ function BudgetPage() {
               <span className="hours-tracking__label">Hours used</span>
               <span className="hours-tracking__pct">{hoursUsedPercent}%</span>
             </div>
+
             <div
               className="hours-tracking__track"
               role="progressbar"
@@ -157,10 +231,12 @@ function BudgetPage() {
                 <div className="hours-metric__label">Purchased</div>
                 <div className="hours-metric__value">{hoursPurchased}h</div>
               </div>
+
               <div className="hours-metric hours-metric--spent">
                 <div className="hours-metric__label">Spent</div>
                 <div className="hours-metric__value">{hoursSpent}h</div>
               </div>
+
               <div className="hours-metric hours-metric--remaining">
                 <div className="hours-metric__label">Remaining</div>
                 <div className="hours-metric__value">{remainingHours}h</div>
@@ -188,6 +264,7 @@ function BudgetPage() {
                     />
                     <span>{row.name}</span>
                   </div>
+
                   <div className="budget-breakdown__meta">
                     <span className="budget-breakdown__amount">
                       ${row.amount.toLocaleString()}
@@ -195,6 +272,7 @@ function BudgetPage() {
                     <span className="budget-breakdown__badge">{row.percent}%</span>
                   </div>
                 </div>
+
                 <div
                   className="budget-breakdown__track"
                   role="progressbar"
@@ -216,9 +294,8 @@ function BudgetPage() {
           </div>
         </section>
       </div>
-
     </div>
-  )
+  );
 }
 
-export default BudgetPage
+export default BudgetPage;
