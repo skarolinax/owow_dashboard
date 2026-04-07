@@ -97,12 +97,12 @@ function RisksPage() {
       </nav>
 
       <div className="budget-top">
-        <button className="btn-back" type="button" onClick={goToProjectsOverview}>
+        {/* <button className="btn-back" type="button" onClick={goToProjectsOverview}>
           <span className="btn-back__icon" aria-hidden="true">
             ←
           </span>
           <span className="btn-back__text">Back to {clientLabel}</span>
-        </button>
+        </button> */}
       </div>
 
       <div className="risks-content">

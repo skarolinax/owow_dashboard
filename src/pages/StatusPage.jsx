@@ -185,12 +185,12 @@ function StatusPage() {
       </nav>
 
       <div className="budget-top" style={isMobile ? styles.budgetTopMobile : undefined}>
-        <button className="btn-back" type="button" onClick={goToProjectsOverview}>
+        {/* <button className="btn-back" type="button" onClick={goToProjectsOverview}>
           <span className="btn-back__icon" aria-hidden="true">
             ←
           </span>
           <span className="btn-back__text">Back to {clientLabel}</span>
-        </button>
+        </button> */}
       </div>
 
       {/* Status content */}

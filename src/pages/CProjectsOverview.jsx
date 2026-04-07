@@ -27,7 +27,7 @@ function CProjectsOverview() {
 
       <div className={s.wrapperAllProjects}>
         {role === "client" ? null : (
-          <button onClick={() => navigate(-1)} className={s.btnGoBackClients}>← Back to all clients</button>
+          <button onClick={() => navigate('/clients')} className={s.btnGoBackClients}>← Back to all clients</button>
         )}
         <div className={s.headingProjectsPage}>
           {role === "client" ? (
