@@ -20,6 +20,7 @@ function LoginPage() {
   const [isEmployeeHovered, setIsEmployeeHovered] = useState(false);
   const [isClientHovered, setIsClientHovered] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [isTickerHovered, setIsTickerHovered] = useState(false);
 
   const isMobile = screenWidth <= 768;
   const isTablet = screenWidth <= 1100;
@@ -111,6 +112,19 @@ function LoginPage() {
     };
   };
 
+  const tickerItems = [
+    "ATTEND THE EVENT!",
+    "OWOW.IO",
+    "AI BEYOND THE BULLSHIT",
+    "DIGITAL EXPERIENCES",
+    "BRANDING",
+    "WEB DESIGN",
+    "OWOW.IO",
+    "ATTEND THE EVENT!",
+    "FINANCE EDITION.",
+    "CREATIVE TECHNOLOGY",
+  ];
+
   return (
     <div
       style={{
@@ -118,390 +132,446 @@ function LoginPage() {
         ...(isMobile ? styles.pageMobile : {}),
       }}
     >
+      <style>
+        {`
+          @keyframes owowTickerScroll {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+        `}
+      </style>
+
       <div
         style={{
-          ...styles.wrapper,
-          ...(isTablet ? styles.wrapperTablet : {}),
-          ...(isMobile ? styles.wrapperMobile : {}),
+          ...styles.pageShell,
+          ...(isMobile ? styles.pageShellMobile : {}),
         }}
       >
         <div
           style={{
-            ...styles.leftPanel,
-            ...(isTablet ? styles.leftPanelTablet : {}),
-            ...(isMobile ? styles.leftPanelMobile : {}),
+            ...styles.wrapper,
+            ...(isTablet ? styles.wrapperTablet : {}),
+            ...(isMobile ? styles.wrapperMobile : {}),
           }}
         >
-          <img
-            src={logo}
-            alt="OWOW logo"
-            style={{
-              ...styles.logo,
-              ...(isTablet ? styles.logoTablet : {}),
-              ...(isMobile ? styles.logoMobile : {}),
-            }}
-          />
-
           <div
             style={{
-              ...styles.leftContent,
-              ...(isMobile ? styles.leftContentMobile : {}),
+              ...styles.leftPanel,
+              ...(isTablet ? styles.leftPanelTablet : {}),
+              ...(isMobile ? styles.leftPanelMobile : {}),
             }}
           >
-            <h1
+            <img
+              src={logo}
+              alt="OWOW logo"
               style={{
-                ...styles.heading,
-                ...(isTablet ? styles.headingTablet : {}),
-                ...(isMobile ? styles.headingMobile : {}),
+                ...styles.logo,
+                ...(isTablet ? styles.logoTablet : {}),
+                ...(isMobile ? styles.logoMobile : {}),
               }}
-              onMouseEnter={runScrambleAnimation}
-            >
-              {displayHeading}
-            </h1>
+            />
 
-            <p
+            <div
               style={{
-                ...styles.subText,
-                ...(isTablet ? styles.subTextTablet : {}),
-                ...(isMobile ? styles.subTextMobile : {}),
+                ...styles.leftContent,
+                ...(isMobile ? styles.leftContentMobile : {}),
               }}
             >
-              Enter your email and password to access your account
-            </p>
-
-            <form style={styles.form} onSubmit={handleLogin}>
-              <div
+              <h1
                 style={{
-                  ...styles.fieldGroup,
-                  ...(isMobile ? styles.fieldGroupMobile : {}),
+                  ...styles.heading,
+                  ...(isTablet ? styles.headingTablet : {}),
+                  ...(isMobile ? styles.headingMobile : {}),
+                }}
+                onMouseEnter={runScrambleAnimation}
+              >
+                {displayHeading}
+              </h1>
+
+              <p
+                style={{
+                  ...styles.subText,
+                  ...(isTablet ? styles.subTextTablet : {}),
+                  ...(isMobile ? styles.subTextMobile : {}),
                 }}
               >
-                <label
+                Enter your email and password to access your account
+              </p>
+
+              <form style={styles.form} onSubmit={handleLogin}>
+                <div
                   style={{
-                    ...styles.label,
-                    ...(isMobile ? styles.labelMobile : {}),
+                    ...styles.fieldGroup,
+                    ...(isMobile ? styles.fieldGroupMobile : {}),
                   }}
                 >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  placeholder="imyourclient@owow.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  style={{
-                    ...styles.input,
-                    ...(isTablet ? styles.inputTablet : {}),
-                    ...(isMobile ? styles.inputMobile : {}),
-                  }}
-                />
-              </div>
-
-              <div
-                style={{
-                  ...styles.fieldGroup,
-                  ...(isMobile ? styles.fieldGroupMobile : {}),
-                }}
-              >
-                <label
-                  style={{
-                    ...styles.label,
-                    ...(isMobile ? styles.labelMobile : {}),
-                  }}
-                >
-                  Password
-                </label>
-
-                <div style={styles.passwordWrapper}>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="***********"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                  <label
                     style={{
-                      ...styles.passwordInput,
+                      ...styles.label,
+                      ...(isMobile ? styles.labelMobile : {}),
+                    }}
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="imyourclient@owow.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    style={{
+                      ...styles.input,
                       ...(isTablet ? styles.inputTablet : {}),
                       ...(isMobile ? styles.inputMobile : {}),
                     }}
                   />
+                </div>
+
+                <div
+                  style={{
+                    ...styles.fieldGroup,
+                    ...(isMobile ? styles.fieldGroupMobile : {}),
+                  }}
+                >
+                  <label
+                    style={{
+                      ...styles.label,
+                      ...(isMobile ? styles.labelMobile : {}),
+                    }}
+                  >
+                    Password
+                  </label>
+
+                  <div style={styles.passwordWrapper}>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="***********"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      style={{
+                        ...styles.passwordInput,
+                        ...(isTablet ? styles.inputTablet : {}),
+                        ...(isMobile ? styles.inputMobile : {}),
+                      }}
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      style={styles.eyeButton}
+                      aria-label="Toggle password visibility"
+                    >
+                      <svg
+                        width={isMobile ? "20" : "22"}
+                        height={isMobile ? "20" : "22"}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#6F6F76"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    ...styles.optionsRow,
+                    ...(isMobile ? styles.optionsRowMobile : {}),
+                  }}
+                >
+                  <label
+                    style={{
+                      ...styles.checkboxLabel,
+                      ...(isMobile ? styles.checkboxLabelMobile : {}),
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={() => setRememberMe(!rememberMe)}
+                      style={{
+                        ...styles.checkbox,
+                        ...(isMobile ? styles.checkboxMobile : {}),
+                      }}
+                    />
+                    Remember Me
+                  </label>
 
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    style={styles.eyeButton}
-                    aria-label="Toggle password visibility"
+                    onMouseEnter={() => setIsForgotHovered(true)}
+                    onMouseLeave={() => setIsForgotHovered(false)}
+                    style={{
+                      ...styles.linkButton,
+                      ...(isMobile ? styles.linkButtonMobile : {}),
+                      ...(isForgotHovered ? styles.linkButtonHover : {}),
+                    }}
                   >
+                    Forgot Your Password?
+                  </button>
+                </div>
+
+                <div
+                  style={{
+                    ...styles.roleSwitch,
+                    ...(isMobile ? styles.roleSwitchMobile : {}),
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setRole("employee")}
+                    onMouseEnter={() => setIsEmployeeHovered(true)}
+                    onMouseLeave={() => setIsEmployeeHovered(false)}
+                    style={getRoleButtonStyle("employee", isEmployeeHovered)}
+                  >
+                    <span style={styles.roleIcon}>
+                      <svg
+                        width={isMobile ? "14" : "16"}
+                        height={isMobile ? "14" : "16"}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke={role === "employee" ? "#111111" : "#7A7A81"}
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="10" cy="7" r="4" />
+                        <path d="M20 8v6" />
+                        <path d="M23 11h-6" />
+                      </svg>
+                    </span>
+                    Employee
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setRole("client")}
+                    onMouseEnter={() => setIsClientHovered(true)}
+                    onMouseLeave={() => setIsClientHovered(false)}
+                    style={getRoleButtonStyle("client", isClientHovered)}
+                  >
+                    <span style={styles.roleIcon}>
+                      <svg
+                        width={isMobile ? "14" : "16"}
+                        height={isMobile ? "14" : "16"}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke={role === "client" ? "#111111" : "#7A7A81"}
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    </span>
+                    Client
+                  </button>
+                </div>
+
+                <button
+                  type="submit"
+                  onMouseEnter={() => setIsLoginHovered(true)}
+                  onMouseLeave={() => setIsLoginHovered(false)}
+                  style={{
+                    ...styles.loginButton,
+                    ...(isMobile ? styles.loginButtonMobile : {}),
+                    ...(isLoginHovered ? styles.loginButtonHover : {}),
+                  }}
+                >
+                  <span>Log in</span>
+                  <img
+                    src={arrowRight}
+                    alt=""
+                    style={{
+                      ...styles.arrowIcon,
+                      ...(isMobile ? styles.arrowIconMobile : {}),
+                      ...(isLoginHovered ? styles.arrowIconHover : {}),
+                    }}
+                  />
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div
+            style={{
+              ...styles.rightPanel,
+              ...(isTablet ? styles.rightPanelTablet : {}),
+              ...(isMobile ? styles.rightPanelMobile : {}),
+            }}
+          >
+            <div
+              style={{
+                ...styles.orangeGlow,
+                ...(isMobile ? styles.orangeGlowMobile : {}),
+              }}
+            ></div>
+            <div
+              style={{
+                ...styles.greenGlow,
+                ...(isMobile ? styles.greenGlowMobile : {}),
+              }}
+            ></div>
+            <div
+              style={{
+                ...styles.blueGlow,
+                ...(isMobile ? styles.blueGlowMobile : {}),
+              }}
+            ></div>
+
+            <div
+              style={{
+                ...styles.rightContent,
+                ...(isMobile ? styles.rightContentMobile : {}),
+              }}
+            >
+              <h2
+                style={{
+                  ...styles.rightHeading,
+                  ...(isTablet ? styles.rightHeadingTablet : {}),
+                  ...(isMobile ? styles.rightHeadingMobile : {}),
+                }}
+              >
+                Easily manage all client projects.
+              </h2>
+
+              <p
+                style={{
+                  ...styles.rightSubText,
+                  ...(isTablet ? styles.rightSubTextTablet : {}),
+                  ...(isMobile ? styles.rightSubTextMobile : {}),
+                }}
+              >
+                Log in to access dashboards, budgets, risks, and team performance.
+              </p>
+
+              <div
+                style={{
+                  ...styles.cards,
+                  ...(isMobile ? styles.cardsMobile : {}),
+                }}
+              >
+                <FeatureCard
+                  id="analytics"
+                  hoveredCard={hoveredCard}
+                  setHoveredCard={setHoveredCard}
+                  isMobile={isMobile}
+                  bg="rgba(228, 154, 47, 0.12)"
+                  title="Real-time Analytics"
+                  description="Track progress and KPIs live"
+                  icon={
                     <svg
                       width={isMobile ? "20" : "22"}
                       height={isMobile ? "20" : "22"}
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#6F6F76"
+                      stroke="#E49A2F"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
-                      <circle cx="12" cy="12" r="3" />
+                      <line x1="12" y1="20" x2="12" y2="10" />
+                      <line x1="18" y1="20" x2="18" y2="4" />
+                      <line x1="6" y1="20" x2="6" y2="16" />
                     </svg>
-                  </button>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  ...styles.optionsRow,
-                  ...(isMobile ? styles.optionsRowMobile : {}),
-                }}
-              >
-                <label
-                  style={{
-                    ...styles.checkboxLabel,
-                    ...(isMobile ? styles.checkboxLabelMobile : {}),
-                  }}
-                >
-                  <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={() => setRememberMe(!rememberMe)}
-                    style={{
-                      ...styles.checkbox,
-                      ...(isMobile ? styles.checkboxMobile : {}),
-                    }}
-                  />
-                  Remember Me
-                </label>
-
-                <button
-                  type="button"
-                  onMouseEnter={() => setIsForgotHovered(true)}
-                  onMouseLeave={() => setIsForgotHovered(false)}
-                  style={{
-                    ...styles.linkButton,
-                    ...(isMobile ? styles.linkButtonMobile : {}),
-                    ...(isForgotHovered ? styles.linkButtonHover : {}),
-                  }}
-                >
-                  Forgot Your Password?
-                </button>
-              </div>
-
-              <div
-                style={{
-                  ...styles.roleSwitch,
-                  ...(isMobile ? styles.roleSwitchMobile : {}),
-                }}
-              >
-                <button
-                  type="button"
-                  onClick={() => setRole("employee")}
-                  onMouseEnter={() => setIsEmployeeHovered(true)}
-                  onMouseLeave={() => setIsEmployeeHovered(false)}
-                  style={getRoleButtonStyle("employee", isEmployeeHovered)}
-                >
-                  <span style={styles.roleIcon}>
-                    <svg
-                      width={isMobile ? "14" : "16"}
-                      height={isMobile ? "14" : "16"}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke={role === "employee" ? "#111111" : "#7A7A81"}
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                      <circle cx="10" cy="7" r="4" />
-                      <path d="M20 8v6" />
-                      <path d="M23 11h-6" />
-                    </svg>
-                  </span>
-                  Employee
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setRole("client")}
-                  onMouseEnter={() => setIsClientHovered(true)}
-                  onMouseLeave={() => setIsClientHovered(false)}
-                  style={getRoleButtonStyle("client", isClientHovered)}
-                >
-                  <span style={styles.roleIcon}>
-                    <svg
-                      width={isMobile ? "14" : "16"}
-                      height={isMobile ? "14" : "16"}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke={role === "client" ? "#111111" : "#7A7A81"}
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
-                  </span>
-                  Client
-                </button>
-              </div>
-
-              <button
-                type="submit"
-                onMouseEnter={() => setIsLoginHovered(true)}
-                onMouseLeave={() => setIsLoginHovered(false)}
-                style={{
-                  ...styles.loginButton,
-                  ...(isMobile ? styles.loginButtonMobile : {}),
-                  ...(isLoginHovered ? styles.loginButtonHover : {}),
-                }}
-              >
-                <span>Log in</span>
-                <img
-                  src={arrowRight}
-                  alt=""
-                  style={{
-                    ...styles.arrowIcon,
-                    ...(isMobile ? styles.arrowIconMobile : {}),
-                    ...(isLoginHovered ? styles.arrowIconHover : {}),
-                  }}
+                  }
                 />
-              </button>
-            </form>
+
+                <FeatureCard
+                  id="management"
+                  hoveredCard={hoveredCard}
+                  setHoveredCard={setHoveredCard}
+                  isMobile={isMobile}
+                  bg="rgba(20, 151, 86, 0.12)"
+                  title="Project Management"
+                  description="All projects in one dashboard"
+                  icon={
+                    <svg
+                      width={isMobile ? "20" : "22"}
+                      height={isMobile ? "20" : "22"}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#149756"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
+                    </svg>
+                  }
+                />
+
+                <FeatureCard
+                  id="risks"
+                  hoveredCard={hoveredCard}
+                  setHoveredCard={setHoveredCard}
+                  isMobile={isMobile}
+                  bg="rgba(225, 90, 61, 0.12)"
+                  title="Risk Assessment"
+                  description="Identify & mitigate risks early"
+                  icon={
+                    <svg
+                      width={isMobile ? "20" : "22"}
+                      height={isMobile ? "20" : "22"}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#E15A3D"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                  }
+                />
+              </div>
+            </div>
           </div>
         </div>
 
         <div
           style={{
-            ...styles.rightPanel,
-            ...(isTablet ? styles.rightPanelTablet : {}),
-            ...(isMobile ? styles.rightPanelMobile : {}),
+            ...styles.tickerWrap,
+            ...(isMobile ? styles.tickerWrapMobile : {}),
           }}
+          onMouseEnter={() => setIsTickerHovered(true)}
+          onMouseLeave={() => setIsTickerHovered(false)}
         >
-          <div
-            style={{
-              ...styles.orangeGlow,
-              ...(isMobile ? styles.orangeGlowMobile : {}),
-            }}
-          ></div>
-          <div
-            style={{
-              ...styles.greenGlow,
-              ...(isMobile ? styles.greenGlowMobile : {}),
-            }}
-          ></div>
-          <div
-            style={{
-              ...styles.blueGlow,
-              ...(isMobile ? styles.blueGlowMobile : {}),
-            }}
-          ></div>
+          <div style={styles.tickerFadeLeft} />
+          <div style={styles.tickerFadeRight} />
 
           <div
             style={{
-              ...styles.rightContent,
-              ...(isMobile ? styles.rightContentMobile : {}),
+              ...styles.tickerTrack,
+              animationPlayState: isTickerHovered ? "paused" : "running",
             }}
           >
-            <h2
-              style={{
-                ...styles.rightHeading,
-                ...(isTablet ? styles.rightHeadingTablet : {}),
-                ...(isMobile ? styles.rightHeadingMobile : {}),
-              }}
-            >
-              Easily manage all client projects.
-            </h2>
-
-            <p
-              style={{
-                ...styles.rightSubText,
-                ...(isTablet ? styles.rightSubTextTablet : {}),
-                ...(isMobile ? styles.rightSubTextMobile : {}),
-              }}
-            >
-              Log in to access dashboards, budgets, risks, and team performance.
-            </p>
-
-            <div
-              style={{
-                ...styles.cards,
-                ...(isMobile ? styles.cardsMobile : {}),
-              }}
-            >
-              <FeatureCard
-                id="analytics"
-                hoveredCard={hoveredCard}
-                setHoveredCard={setHoveredCard}
-                isMobile={isMobile}
-                bg="rgba(228, 154, 47, 0.12)"
-                title="Real-time Analytics"
-                description="Track progress and KPIs live"
-                icon={
-                  <svg
-                    width={isMobile ? "20" : "22"}
-                    height={isMobile ? "20" : "22"}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#E49A2F"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <line x1="12" y1="20" x2="12" y2="10" />
-                    <line x1="18" y1="20" x2="18" y2="4" />
-                    <line x1="6" y1="20" x2="6" y2="16" />
-                  </svg>
-                }
-              />
-
-              <FeatureCard
-                id="management"
-                hoveredCard={hoveredCard}
-                setHoveredCard={setHoveredCard}
-                isMobile={isMobile}
-                bg="rgba(20, 151, 86, 0.12)"
-                title="Project Management"
-                description="All projects in one dashboard"
-                icon={
-                  <svg
-                    width={isMobile ? "20" : "22"}
-                    height={isMobile ? "20" : "22"}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#149756"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
-                  </svg>
-                }
-              />
-
-              <FeatureCard
-                id="risks"
-                hoveredCard={hoveredCard}
-                setHoveredCard={setHoveredCard}
-                isMobile={isMobile}
-                bg="rgba(225, 90, 61, 0.12)"
-                title="Risk Assessment"
-                description="Identify & mitigate risks early"
-                icon={
-                  <svg
-                    width={isMobile ? "20" : "22"}
-                    height={isMobile ? "20" : "22"}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#E15A3D"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  </svg>
-                }
-              />
-            </div>
+            {[...tickerItems, ...tickerItems].map((item, index) => (
+              <a
+                key={`ticker-a-${index}`}
+                href="https://owow.io"
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  ...styles.tickerLink,
+                  ...(index % 3 === 0 ? styles.tickerLinkAccent : {}),
+                  ...(isMobile ? styles.tickerLinkMobile : {}),
+                }}
+              >
+                <span>{item}</span>
+                <span style={styles.tickerArrow}>↗</span>
+              </a>
+            ))}
           </div>
         </div>
       </div>
@@ -563,17 +633,26 @@ function FeatureCard({
 }
 
 const styles = {
-  page: {
-    minHeight: "100vh",
-    backgroundColor: "#000000",
-    padding: "20px",
-    boxSizing: "border-box",
-    fontFamily: "Montreal",
-    color: "#ffffff",
-    display: "flex",
-    alignItems: "stretch",
-    justifyContent: "center",
-  },
+page: {
+  minHeight: "100vh",
+  backgroundColor: "#000000",
+  padding: "20px",
+  boxSizing: "border-box",
+  fontFamily: "Montreal",
+  color: "#ffffff",
+  display: "flex",
+  alignItems: "stretch",
+  justifyContent: "center",
+},
+
+pageShell: {
+  width: "100%",
+  maxWidth: "1680px",
+  display: "flex",
+  flexDirection: "column",
+  minHeight: "calc(100vh - 40px)",
+  gap: "0",
+},
 
   pageMobile: {
     minHeight: "100vh",
@@ -582,25 +661,29 @@ const styles = {
     overflow: "visible",
   },
 
-  wrapper: {
-    display: "grid",
-    gridTemplateColumns: "1.04fr 0.96fr",
-    width: "100%",
-    maxWidth: "1680px",
-    minHeight: "calc(100vh - 40px)",
-    gap: "28px",
-    alignItems: "stretch",
+
+
+  pageShellMobile: {
+    minHeight: "auto",
+    gap: "14px",
   },
+
+  wrapper: {
+  display: "grid",
+  gridTemplateColumns: "1.04fr 0.96fr",
+  width: "100%",
+  flex: 1,
+  gap: "28px",
+  alignItems: "stretch",
+},
 
   wrapperTablet: {
     gridTemplateColumns: "1fr 1fr",
     gap: "18px",
-    minHeight: "calc(100vh - 40px)",
   },
 
   wrapperMobile: {
     gridTemplateColumns: "1fr",
-    minHeight: "auto",
     height: "auto",
     gap: "16px",
   },
@@ -621,13 +704,13 @@ const styles = {
     padding: "10px 4px 0 4px",
   },
 
-logo: {
-  width: "128px",
-  height: "auto",
-  display: "block",
-  marginBottom: "56px",
-  filter: "brightness(0) invert(1) contrast(1.2)",
-},
+  logo: {
+    width: "128px",
+    height: "auto",
+    display: "block",
+    marginBottom: "56px",
+    filter: "brightness(0) invert(1) contrast(1.2)",
+  },
 
   logoTablet: {
     width: "118px",
@@ -1150,6 +1233,96 @@ logo: {
     height: "200px",
     bottom: "-90px",
     left: "-80px",
+  },
+
+tickerWrap: {
+  position: "relative",
+  width: "100%",
+  overflow: "hidden",
+  borderTop: "1px solid rgba(255,255,255,0.08)",
+  borderBottom: "1px solid rgba(255,255,255,0.06)",
+  background:
+    "linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%)",
+  padding: "8px 0",
+  marginTop: "0",
+},
+
+tickerWrapMobile: {
+  padding: "7px 0",
+},
+
+tickerLink: {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: "14px",
+  color: "#F2F2F2",
+  textDecoration: "none",
+  fontFamily: "MontrealMono",
+  fontSize: "14px",
+  whiteSpace: "nowrap",
+  padding: "0 20px",
+  letterSpacing: "0.04em",
+  textTransform: "uppercase",
+  transition: "opacity 0.2s ease, color 0.2s ease",
+},
+
+tickerLinkMobile: {
+  fontSize: "12px",
+  gap: "10px",
+  padding: "0 14px",
+},
+
+tickerArrow: {
+  fontSize: "14px",
+  lineHeight: 1,
+  opacity: 0.9,
+},
+
+  
+
+
+  tickerTrack: {
+    display: "flex",
+    alignItems: "center",
+    width: "max-content",
+    animationName: "owowTickerScroll",
+    animationDuration: "28s",
+    animationTimingFunction: "linear",
+    animationIterationCount: "infinite",
+  },
+
+ 
+
+ 
+
+  tickerLinkAccent: {
+    color: "#E49A2F",
+  },
+
+
+
+  tickerFadeLeft: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    bottom: 0,
+    width: "80px",
+    zIndex: 2,
+    pointerEvents: "none",
+    background:
+      "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.75) 40%, rgba(0,0,0,0) 100%)",
+  },
+
+  tickerFadeRight: {
+    position: "absolute",
+    right: 0,
+    top: 0,
+    bottom: 0,
+    width: "80px",
+    zIndex: 2,
+    pointerEvents: "none",
+    background:
+      "linear-gradient(270deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.75) 40%, rgba(0,0,0,0) 100%)",
   },
 };
 
