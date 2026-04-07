@@ -34,12 +34,12 @@ function Breadcrumbs() {
           <span className="breadcrumb__current">Dashboard Redesign</span>
         </nav>
 
-        <button className="btn-back" type="button" onClick={goToProjectsOverview}>
+        {/* <button className="btn-back" type="button" onClick={goToProjectsOverview}>
           <span className="btn-back__icon" aria-hidden="true">
             ←
           </span>
           <span className="btn-back__text">Back to Nike</span>
-        </button>
+        </button> */}
       </div>
  )
 }
