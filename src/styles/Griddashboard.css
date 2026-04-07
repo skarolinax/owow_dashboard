@@ -1,3 +1,27 @@
+:root[data-theme=dark] {
+  --bg-main: #0A0A0A;
+  --accent-card: #1b1b1b;
+  --color-text-primary: #f6f6f6;
+  --icon-filter: invert(100%);
+  --stroke-color: #2A2A2A;
+  --info-1-color: #FEB800;
+  --error-color: #ff573b;
+  --success-color: #018848;
+  --info-2-color: #0988EF;
+}
+
+:root[data-theme=light] {
+  --bg-main: #F6F6F6;
+  --accent-card: #E2E2E2;
+  --color-text-primary: #1b1b1b;
+  --icon-filter: none;
+  --stroke-color: #D1D2CC;
+  --info-1-color: #FEB800;
+  --error-color: #ff573b;
+  --success-color: #018848;
+  --info-2-color: #0988EF;
+}
+
 .page-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -29,6 +53,7 @@
 .page-title {
   font-size: 28px;
   margin-bottom: 24px;
+  color: var(--color-text-primary);
   font-family: "MontrealMono", sans-serif;
   font-weight: 100;}
 
@@ -51,7 +76,7 @@
 }
 
 .card {
-  background-color: #1a1a1a;
+  background-color: var(--accent-card);
   border-radius: 12px;
   padding: 20px;
 }
@@ -70,6 +95,7 @@
   margin: 0;
   font-family: "MontrealMono", "Inter", system-ui, -apple-system, sans-serif;
   letter-spacing: 0.03em;
+  color: var(--color-text-primary);
 }
 
 .view-details {
