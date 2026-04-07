@@ -17,6 +17,29 @@
   font-style: normal;
 }
 
+:root[data-theme=dark] {
+  --bg-main: #0A0A0A;
+  --accent-card: #1b1b1b;
+  --color-text-primary: #f6f6f6;
+  --icon-filter: invert(100%);
+  --stroke-color: #2A2A2A;
+  --info-1-color: #FEB800;
+  --error-color: #ff573b;
+  --success-color: #018848;
+  --info-2-color: #0988EF;
+}
+
+:root[data-theme=light] {
+  --bg-main: #F6F6F6;
+  --accent-card: #E2E2E2;
+  --color-text-primary: #1b1b1b;
+  --icon-filter: none;
+  --stroke-color: #D1D2CC;
+  --info-1-color: #FEB800;
+  --error-color: #ff573b;
+  --success-color: #018848;
+  --info-2-color: #0988EF;
+}
 
 
 .risks-page {
@@ -114,7 +137,7 @@
 }
 
 .card {
-  background-color: #1a1a1a;
+  background-color: var(--accent-card);
   border-radius: 12px;
   padding: 20px;
 }
@@ -195,6 +218,7 @@
 .impact-name {
   font-size: 14px;
   font-weight: 500;
+  color: var(--color-text-primary);
 }
 
 .impact-desc {
@@ -239,7 +263,7 @@
 
 /* Stop risk cards stretching full width */
 .risk-card {
-  background: #1a1a1a;
+  background: var(--accent-card);
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 8px;
@@ -253,7 +277,7 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 12px;
-  background: #1a1a1a;
+  background: var(--accent-card);
   padding: 10px 16px;
   border-radius: 8px;
   width: fit-content;
@@ -303,7 +327,7 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 12px;
-  background: #1a1a1a;
+  background: var(--accent-card);
   padding: 10px 16px;
   border-radius: 8px;
   width: fit-content;
@@ -315,6 +339,7 @@
   font-size: 15px;
   font-weight: 600;
   margin: 0;
+  color: var(--color-text-primary);
 }
 
 .risk-group-count {
@@ -327,7 +352,7 @@
 
 /* ---- Individual risk cards ---- */
 .risk-card {
-  background: #1a1a1a;
+  background: var(--accent-card);
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 8px;
@@ -348,6 +373,7 @@
 .risk-card-name {
   font-size: 14px;
   font-weight: 500;
+  color: var(--color-text-primary);
 }
 
 .risk-card-tag {
@@ -395,7 +421,7 @@
 }
 
 .risk-card {
-  background: #1a1a1a;
+  background: var(--accent-card);
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 8px;
@@ -408,7 +434,7 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 12px;
-  background: #1a1a1a;
+  background: var(--accent-card);
   padding: 10px 16px;
   border-radius: 8px;
   width: fit-content;
