@@ -76,13 +76,11 @@ function RisksPage() {
 
   return (
     <div className="risks-page">
-      <nav className="breadcrumb" aria-label="Breadcrumb">
-        <Link className="breadcrumb__link" to="/clients">
+      <nav className="breadcrumb" aria-label="Breadcrumb">        <Link className="breadcrumb__link" to="/clients">
           Clients
         </Link>
 
         <span className="breadcrumb__sep">{">"}</span>
-
         <button
           className="breadcrumb__link"
           type="button"

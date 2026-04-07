@@ -164,13 +164,11 @@ function StatusPage() {
         className="breadcrumb"
         aria-label="Breadcrumb"
         style={isMobile ? styles.breadcrumbMobile : undefined}
-      >
-        <Link className="breadcrumb__link" to="/clients">
+      >        <Link className="breadcrumb__link" to="/clients">
           Clients
         </Link>
 
         <span className="breadcrumb__sep">{">"}</span>
-
         <button
           className="breadcrumb__link"
           type="button"

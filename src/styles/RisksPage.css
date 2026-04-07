@@ -133,7 +133,7 @@
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  /* This creates the donut ring using conic-gradient */
+  
   background: conic-gradient(
     #f97316 0% 50%,  
     #333 50% 100%     
@@ -234,7 +234,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-bottom: 24px;
-  max-width: 700px; /* ← add this */
+  max-width: 700px; 
 }
 
 /* Stop risk cards stretching full width */
@@ -244,7 +244,7 @@
   padding: 16px;
   margin-bottom: 8px;
   border-left: 3px solid transparent;
-  max-width: 700px; /* ← add this */
+  max-width: 700px;
 }
 
 /* Stop risk group header stretching */
@@ -257,7 +257,7 @@
   padding: 10px 16px;
   border-radius: 8px;
   width: fit-content;
-  max-width: 700px; /* ← add this */
+  max-width: 700px; 
 }
 
 .status-box.at-risk    { background: #2a0a0a; }
